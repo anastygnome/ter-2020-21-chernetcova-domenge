@@ -1,4 +1,6 @@
+% !TeX encoding = UTF-
 % !TeX spellcheck = fr-FR
+
 \documentclass[a4paper,french,final]{memoir}
 \input{backend_code/preambule}
 \input{backend_code/bibliographie}
@@ -18,24 +20,22 @@ La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'o
 
 L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
 
-On peut alors se poser des questions fondamentales à l'étude de l'infini : comment peut on caractériser les ensembles infinis ? Est-ce qu'il y a un infini << plus grand >> ou << plus petit >> que celui des nombres ?  
+On peut alors se poser des questions fondamentales à l'étude de l'infini~: comment peut on caractériser les ensembles infinis ? Est-ce qu'il y a un infini << plus grand >> ou << plus petit >> que celui des nombres ?  
 
 Dans la première partie, nous allons rappeler ce que sont les ensembles, cruciaux pour l'étude de l'infini du point de vue ensembliste, et introduire une axiomatique de $\mathbb{N}$. 
 Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d'ensembles usuels et aux propriétés d'ensembles dénombrables.
 
 \epigraph{%
-	\enquote{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun.}\newline \newline
-\enquote{Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et  les comparer entre elles.}
+	\enquote{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}\newline \newline
+\enquote{Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et de les comparer entre elles}
 }{Carl Friedrich \bsc{Gauss}\footnotemark~(1831)}\footnotetext{Voir \cite{gauss_cite}}
 \chapter{Notations}
 \mainmatter
-\part{Préliminaires au dénombrement}
-
-\part{Préliminaires au dénombrement : Notion de comptage}
+\part{Préliminaires au dénombrement~: Comptage, ensembles, bijection}
 \chapter{\texorpdfstring{Définition de $\mathbb{N}$}{Définition de N}}
 aa
-\chapter{Rappels de théorie des ensembles}
-
+\chapter{Rappels de théorie des ensembles: notion de fonction}
+\diagbij
 \chapter{Définition de la cardinalité}
 \part{Dénombrabilité}
 \chapter{Définition et propriétés de la dénombrabilité}
@@ -45,13 +45,13 @@ aa
 \begin{defb}{Finitude}{fini}
      Soit $E$ un ensemble. 
 	    
-	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\varphi : \{1,\dots,n \} \to E$, avec $n \in \mathbb{N}$. 
+	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\varphi~: \{1,\dots,n \} \to E$, avec $n \in \mathbb{N}$. 
 		
 	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$. 
 \end{defb}
 
 \begin{defb}{Equipotence}{equip}
-    On dit que $E$ et $F$ sont équipotents ssi $\Card(E) = \Card(F)$ s' il existe $\varphi : E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$. 
+    On dit que $E$ et $F$ sont équipotents ssi $\Card(E) = \Card(F)$ s' il existe $\varphi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$. 
 \end{defb}
 
 \begin{theoremb}{}{mmpuiss}
@@ -69,7 +69,7 @@ aa
 \end{proof}
 
 \begin{theoremb}{}{assequiv}
-	Soient $E, F$ deux ensembles et $\varphi : E \to F$ une application. Si $E \mathrel{\approx} F$ alors les 3 assertions suivantes sont équivalentes :
+	Soient $E, F$ deux ensembles et $\varphi~: E \to F$ une application. Si $E \mathrel{\approx} F$ alors les 3 assertions suivantes sont équivalentes~:
 	
 	\begin{enumerate}
 		\item $\varphi$ est injective ;
@@ -109,7 +109,7 @@ aa
 
 	 Soit $E$ un ensemble infini. 
 	 
-	 On dit que $E$ est dénombrable ssi il existe une application $\varphi : \mathbb{N} \to E $ bijective. 
+	 On dit que $E$ est dénombrable ssi il existe une application $\varphi~: \mathbb{N} \to E $ bijective. 
 	 
 	 Un ensemble fini ou dénombrable est dit au plus dénombrable. 
 \end{defb}
@@ -131,7 +131,7 @@ soit
 \end{theoremb}
 
 \begin{theoremb}{Union de deux ensembles dénombrables}{union}
-    Soit $(A_i)_{i \in I}$ une famille dénombrable. 
+    Soit $(A_i)_{i \in I}$ une famille dénombrable d'ensemble dénombrable. 
 	
 	Alors $A= \bigcup_{i \in I} A_i$ est dénombrable. 
 \end{theoremb}
@@ -156,7 +156,7 @@ soit
 
 
 \chapter{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$}{Dénombrabilité de Q}} 
-\section{ \texorpdfstring{Dénombrabilité de 2$\mathbb{N}$}{}}
+\section{ \texorpdfstring{Dénombrabilité de 2$\mathbb{N}$}{Dénombrabilité de 2N}}
 \label{sec-denombrabilite_usuelle}
 Naturellement on pourrait penser que les ensembles inclus dans $\mathbb{N}$ ont une puissance inférieure à $\aleph_0$. Contre toute attente, voici un résultat sur la dénombrabilité de  $2\mathbb{N}$, l'ensemble des entiers naturels pairs.
 
@@ -167,10 +167,10 @@ Naturellement on pourrait penser que les ensembles inclus dans $\mathbb{N}$ ont 
 \begin{proof}
 	On construit l'application \[ \begin{array}{cccc}
 	\ & \mathbb{N}& \to& 2\mathbb{N} \\
-	\varphi : & n & \mapsto & 2n
+	\varphi~: & n & \mapsto & 2n
 	\end{array}.\]
 	
-	Cette application $\varphi $ est bijective car sa réciproque est $ \varphi^{-1} : \begin{array}{ccc}
+	Cette application $\varphi $ est bijective car sa réciproque est $ \varphi^{-1}~: \begin{array}{ccc}
 	2\mathbb{N} & \to & \mathbb{N}\\
 	k & \mapsto & \frac{k}{2}
 	\end{array}$. 
@@ -185,14 +185,14 @@ On peut introduire un résultat plus général qui couvre toute partie de $\math
 \end{theoremb}
 
 \begin{proof}
-	On construit, par récurrence, une bijection $\phi : \mathbb{N} \to E$ telle que: 
+	On construit, par récurrence, une bijection $\phi~: \mathbb{N} \to E$ telle que: 
 	
 	\[\left\lbrace \begin{array}{c}
 	\phi(0) = \min \{x \in E\} \\
 	\forall n \in \mathbb{N}, \phi(n+1) = \min \{x \in E, x > \phi(n) \}
 	\end{array} \right.\]
 	
-	C'est bien une bijection : elle est injective et surjective car $\forall k \in \mathbb{N}, k \leq \phi(k)$. 
+	C'est bien une bijection~: elle est injective et surjective car $\forall k \in \mathbb{N}, k \leq \phi(k)$. 
 \end{proof}
 
 \section{\texorpdfstring{Dénombrabilité de $\mathbb{N}^2$}{Dénombrabilité de N²}}
@@ -204,7 +204,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 \end{theoremb}
 
 \begin{proof} 
-	On peut compter les couples $(n,m) \in \mathbb{N}^2$ comme suit : \par On représente ces couples sur un quart de plan cartésien. 
+	On peut compter les couples $(n,m) \in \mathbb{N}^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien. 
 	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $(0,1)$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig-n_croix_n}.
 	\begin{figure}[htb]
 		\centering
@@ -213,7 +213,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 		\label{fig-n_croix_n}
 	\end{figure}
 	
-	On obtient la séquence suivante :
+	On obtient la séquence suivante~:
 	
 	\[\begin{array}{l}
 		(0,0) \\
@@ -225,7 +225,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 	Plus formellement, l'application qui range les couples de cette manière est 
 	\[\begin{array}{cccc}
 		\ & \mathbb{N} \times \mathbb{N} & \to & \mathbb{N} \\
-		\varphi : & (n,m) & \mapsto & {\underbrace{\frac{(n+m)(n+m+1)}{2}}_{\text{la place du couple dans la ligne}}} +  {\underbrace{\vphantom{\frac{(n+m)(n+m+1)}{2}} m}_{\text{la place du couple dans la colonne}}}
+		\varphi~: & (n,m) & \mapsto & {\underbrace{\frac{(n+m)(n+m+1)}{2}}_{\text{la place du couple dans la ligne}}} +  {\underbrace{\vphantom{\frac{(n+m)(n+m+1)}{2}} m}_{\text{la place du couple dans la colonne}}}
 	\end{array}.\]
 	
 	
@@ -237,9 +237,9 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 De la dénombrabilité de $\mathbb{N}^2$, on peut démontrer le \cref{thm-cartesien}. 
 
 \begin{proof}
-	Si $E$ et $F$ sont dénombrables, il existe $\varphi : E \to \mathbb{N}$ et $\psi : F \to \mathbb{N}$ bijectives. On peut alors définir \[ \begin{array}{cccc}
+	Si $E$ et $F$ sont dénombrables, il existe $\varphi~: E \to \mathbb{N}$ et $\psi~: F \to \mathbb{N}$ bijectives. On peut alors définir \[ \begin{array}{cccc}
 	\ & A \times B & \to & \mathbb{N}^2 \\
-	f : & (x,y) & \mapsto & (\varphi(x), \psi(y))
+	f~: & (x,y) & \mapsto & (\varphi(x), \psi(y))
 	\end{array}.\]
 	
 \end{proof}
@@ -258,16 +258,16 @@ On peut maintenant prouver le \cref{thm-union}.
 
 \section{\texorpdfstring{Dénombrabilité de $\mathbb{Z}$ et de $\mathbb{Q}$}{}}
 
-Intuitivement on pourrait penser que l'ensemble des entiers $\mathbb{Z}$ a une puissance supérieure que $\mathbb{N}$ étant donné qu'il contient deux fois plus d'élements : les entiers naturels et les entiers négatifs. 
+Intuitivement on pourrait penser que l'ensemble des entiers $\mathbb{Z}$ a une puissance supérieure que $\mathbb{N}$ étant donné qu'il contient deux fois plus d'élements~: les entiers naturels et les entiers négatifs. 
 
 \begin{theoremb}{Dénombrabilité de $\mathbb{Z}$}{denz}
 	L'ensemble $\mathbb{Z}$ des entiers est dénombrable. 
 \end{theoremb}
 
 \begin{proof}
-L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant :  $\mathbb{Z}=\left\lbrace 0,1,(-1),2,(-2),3,(-3) \dots\right\rbrace$ 
+L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant~:  $\mathbb{Z}=\left\lbrace 0,1,(-1),2,(-2),3,(-3) \dots\right\rbrace$ 
 
-	Pour montrer que la puissance de $\mathbb{Z}$ est bien $\aleph_0$, on définit donc l'application $\phi : \mathbb{N} \to \mathbb{Z}$ telle que \[ \forall k \in \mathbb{N}, \left\lbrace \begin{array}{c}
+	Pour montrer que la puissance de $\mathbb{Z}$ est bien $\aleph_0$, on définit donc l'application $\phi~: \mathbb{N} \to \mathbb{Z}$ telle que \[ \forall k \in \mathbb{N}, \left\lbrace \begin{array}{c}
 	\phi(2k) = -k \\
 	\phi(2k + 1) = k+1
 	\end{array} \right. .\]
@@ -326,3 +326,8 @@ $a$
 \Cref{thm-exem}, \cref{rem-rema}, \cref{note-not} \cref{def-def} 
 \deffunct{f}{E}{F}{x}{f(x)}
 \end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: t
+%%% End:
