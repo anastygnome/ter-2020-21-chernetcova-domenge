@@ -1,3 +1,4 @@
+\usepackage{cancel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   THEOREMES SANS BOITES   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,6 +51,9 @@ colbacktitle=white!80!bleu,colback=white!90!bleu,label type=definition}{def}
 \newtcbtheorem[auto counter, number within = section]
 {noteb}{Commentaire}{styletheorem,colframe=vert,
 colbacktitle=white!80!vert,colback=white!90!vert,label type=note}{note}
+\newtcbtheorem[auto counter, number within = section]
+{lemmab}{Lemme}{styletheorem,colframe=roug,
+colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 % le label type fait automatiquement la jonction avec cleveref pour nommer les théorèmes : le dernier groupe (thm,rem,def) permet de créer des labels automatiquement. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

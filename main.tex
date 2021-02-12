@@ -1,10 +1,11 @@
 %+ !TeX encoding = UTF-
 % !TeX spellcheck = fr-FR
-\documentclass[a4paper,french,final]{memoir}
+\documentclass[a4paper,french]{memoir}
 \input{backend_code/preambule}
 \input{backend_code/bibliographie}
 \input{personalisation}
 \input{figures/figures}
+\addto\captionsfrench{\renewcommand*{\cftappendixname}{Annexe~}}
 \begin{document}
 \begin{titlingpage}
 \input{backend_code/page_de_garde}
@@ -14,7 +15,7 @@
 \part{Introduction}
 
 \chapter{Avant-propos}
-
+\renewcommand*{\cftappendixname}{Appendix\space}
 La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'on étudie l'ensemble des entiers naturels. C'est une définition intuitive de l'infini. L'infini n'est pas un nombre, il n'obéit pas aux lois usuelles $+$ et $\times$ de la même manière que les nombres réels. En mathématiques, l'une des manières les plus simples de caractériser l'infini est celle de la théorie des ensembles. L'une des propriétés principales d'un ensemble est sa taille. Comme nous allons le voir, les ensembles mathématiques peuvent être finis ou infinis.
 
 L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
@@ -27,19 +28,72 @@ Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d
 \epigraph{%
 	\enquote{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}\newline \newline
 \enquote{Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et de les comparer entre elles}
-}{Carl Friedrich \bsc{Gauss}\footnotemark~(1831)}\footnotetext{Voir \cite{gauss_cite}}
+}{Carl Friedrich \bsc{Gauss}\footnotemark~(1831)}\footnotetext{Voir~\cite{gauss_cite}}
 \chapter{Notations}
 \mainmatter
 \part{Préliminaires au dénombrement~: Comptage, ensembles, bijection}
-\chapter{\texorpdfstring{Définition de $\mathbb{N}$}{Définition de N}}
-aa
 \chapter{Rappels de théorie des ensembles: notion de fonction}
+Notion de fonction, injections, surjections, bijection. 
+Lien même nombre d'objets $ \iff$ bijection ensembliste. 
 \diagbij
+\chapter{\texorpdfstring{Définition de $\mathbb{N}$}{Définition de N}}
+Axiomatique de \bsc{Peano}, Récurrence
+
 \chapter{Définition de la cardinalité}
-\part{Dénombrabilité}
+\chapter{Des ensembles infinis ? } 
+L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\mathbb{N}$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C. 
+
+On se propose donc ici de reformuler sa démonstration en terme modernes. 
+La démonstration du théorème suivant est rejetée en \cref{annexe-thmfondarith}.\marginpar{$\to$ const. $\mathbb{N}$?}
+
+\begin{defb}{Divisibilité}{div}
+Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : $$b=ka \xLeftrightarrow{a \neq 0} \frac{b}{a}=k.$$
+\end{defb}
+\begin{remarkb}{}{divinf}
+0 ne divise que 0. De plus, si $a$ divise $b$, alors $a\leq b$. Par conséquent, 1 est le seul entier naturel qui divise 1.
+\end{remarkb}
+\begin{defb}{Nombre premiers entre eux}{coprem}
+On dit que deux nombres entiers $n,p$ sont \emph{premiers entre eux} ou \emph{copremiers} s'ils n'ont pas de diviseur commun, mis à part 1. On dit alors que $n$ \emph{est premier} à ou avec $q$.
+\end{defb}
+\begin{defb}{Nombre premier}{prem}
+On dit qu'un nombre est premier, s'il n'a pas de diviseurs autre que 1 et lui-même. Dans le cas contraire, on le dit \emph{composé}.
+
+Par convention\footnotemark, 1 n'est ni premier ni composé.
+\end{defb}
+ \footnotetext{Cette convention est récente dans l'histoire des mathématiques : 1 était considéré premier jusqu'à la fin du XIX\ieme~siècle, voire au début du XX\ieme.}
+La remarque suivante justifie l'emploi du même vocabulaire : 
+\begin{remarkb}{}{prem-equiv}
+Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le précèdent, c'est-à-dire s'il n'a aucun diviseur commun avec un entier qui lui est inférieur. 
+\end{remarkb}
+\newpage
+Le lemme suivant est \textbf{fondamental} dans ce qui suit.
+\begin{lemmab}[saveto={premier.tex}]{Théorème fondamental de l'arithmétique}{Fonda-Arith}
+  Tout entier naturel non-nul peut être écrit comme un produit de nombres premiers d'une unique façon, à l'ordre près des facteurs.
+\end{lemmab}
+La démonstration de ce théorème est rejetée en~\cref{annexe-thmfondarith}.
+
+Ces rappels balayés, on peut démontrer le résultat d'Euclide 
+
+\begin{theoremb}{Infinité des nombres premiers}{nombpreminf} 
+Toute liste finie de nombre premiers est nécessairement incomplète.
+
+Autrement dit, il existe une infinité de nombres premiers.
+\end{theoremb}
+\begin{proof}
+
+On démontre le résultat par réccurence. Une liste vide (à 0 éléments) ne contient aucun nombre premier, elle est donc incomplète car 2 est premier. 
+Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : $$N=\prod_{i=1}^{n} p_i$$
+Si notre suite est vide, on pose $N=2$.
+
+Sinon, les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{lem-Fonda-Arith}, et $N$ est supérieur ou égal à 2. 
+
+Dans les deux cas, d'après le \cref{lem-ncopremsn}, $N+1$ est premier avec $N$. Comme $N\geq 2$, alors $N+1\geq 3$, et $N$ admet donc un facteur premier, en vertu du~\cref{lem-Fonda-Arith}. Mais alors, d'après la \cref{rem-prem-equiv}, aucun des facteurs premiers de $N+1$ ne figure dans notre liste. En particulier, le plus petit facteur premier de $N+1$. On peut alors compléter notre liste. 
+
+Par réccurence, le résultat est démontré.
+\end{proof}
 \chapter{Définition et propriétés de la dénombrabilité}
 
-\section{Ensembles finis et infinis}
+\section{Ensembles finis et infinis} \marginpar{$\to$  def cardinalité ?}
 
 \begin{defb}{Finitude}{fini}
      Soit $E$ un ensemble. 
@@ -113,15 +167,9 @@ aa
 	 Un ensemble fini ou dénombrable est dit au plus dénombrable. 
 \end{defb}
 
-On note par la suite $\aleph_0$, lire \emph{aleph zéro,} la puissance de $\mathbb{N}$. 
+On note par la suite $\aleph_0$,lire \emph{alèf zéro,}\footnote{Aleph, première lettre  de l'alphabet hébreu} la puissance de $\mathbb{N}$. 
 
-\begin{proof}
-a
-\proofpart{test}
-soit
-\end{proof}
-
-\chapter{Propriétés usuelles de dénombrabilité}
+\section{Propriétés usuelles de dénombrabilité}
 
 \begin{theoremb}{}{parties}
 
@@ -144,7 +192,6 @@ soit
 		\item Plus généralement, tout produit \textbf{fini} $\prod_{i=1}^{n} A_i $ est dénombrable.
 	\end{enumerate}
 \end{theoremb}
-
 \begin{proof}
 	Les  \cref{thm-union,thm-cartesien} seront démontrées par la suite dans la \cref{sec-denombrabilite_usuelle}~.
 	
@@ -260,7 +307,7 @@ On peut maintenant prouver le \cref{thm-union}.
 Intuitivement on pourrait penser que l'ensemble des entiers $\mathbb{Z}$ a une puissance supérieure que $\mathbb{N}$ étant donné qu'il contient deux fois plus d'élements~: les entiers naturels et les entiers négatifs. 
 
 \begin{theoremb}{Dénombrabilité de $\mathbb{Z}$}{denz}
-	L'ensemble $\mathbb{Z}$ des entiers est dénombrable. 
+	L'ensemble $\mathbb{Z}$ des eentiers est dénombrable. 
 \end{theoremb}
 
 \begin{proof}
@@ -296,10 +343,26 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 A ce stade, on a montré que les ensembles de nombres classiques sont dénombrables, mais bien évidemment, il existe des ensembles non dénombrables, comme $\mathbb{R}$. 
 
 
-\backmatter
 \nocite{*}
 \printbibliography
-\appendix
+\appendix % Changes the numbering format from alph to arabic
+\chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe-thmfondarith}
+\begin{lemmab}{}{ncopremsn}
+  Soit $n$ un entier naturel. Alors $n$ est premier avec $n+1$ .
+\end{lemmab}
+\begin{proof}
+La remarque précédente montre le résultat pour $n=0$. Comme 2 est premier, le résultat est vrai pour $n=1$. Supposons donc $n>1$. Il existerait donc un entier $k>1$ qui divise à la fois $n~\&~n+1$, il existerait deux entiers $l_1$ et $l_2$ tels que :  
+\begin{align*}
+  n+1& =kl_2=kl_{1}+1\\
+\shortintertext{Soit~:} 
+\cancel{k}l_2& >\cancel{k}l_1\\
+\shortintertext{On a alors~:} 
+1& =k(l_2-l_1)\\
+\intertext{Donc $(l_2-l_1)= 1$, et : }
+1& =k>1
+\end{align*}
+D'après la \cref{rem-divinf}, d'où la contradiction.
+\end{proof}
 \chapter{manuel des commandes}
 \begin{theoremb}{Exemple}{exem}
 \(\alpha\beta\gamma ABCD=\)
@@ -330,3 +393,4 @@ $a$
 %%% TeX-engine: luatex
 %%% TeX-master: t
 %%% End:
+%https://mathcs.clarku.edu/~djoyce/java/elements/bookIX/propIX20.html
