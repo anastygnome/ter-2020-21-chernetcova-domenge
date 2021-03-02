@@ -31,11 +31,12 @@
 \newcommand*{\thetitle}{\@title}
 \newcommand*{\thedate}{\@date}
 \renewcommand{\xmapsto}[2][]{\mathrel{\mathpalette\xmapsto@{{#1}{#2}}}}
+\renewcommand{\xmapsto}[2][]{\mathrel{\mathpalette\xmapsto@{{#1}{#2}}}}
 \newcommand{\xmapsto@}[2]{\xmapsto@@{#1}#2}
 \newcommand{\xmapsto@@}[3]{%
   \begingroup
-  \sbox\z@{$\m@th#1\mathop{}\limits_{#2}^{\;#3\;}$}%
-  \mathop{\Uhextensible width \wd\z@ 22 "27FC}_{#2}^{#3}%
+  \sbox\z@{$\m@th#1\mathop{}\limits_{\;#2\;}^{\;#3\;}$}%
+  \mathop{\Uhextensible width \wd\z@ 0 "27FC}_{#2}^{#3}%
   \endgroup
 }
 \renewcommand{\xLeftrightarrow}[2][]{\mathrel{\mathpalette\xLeftrightarrow@{{#1}{#2}}}}
