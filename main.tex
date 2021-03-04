@@ -41,7 +41,7 @@ Axiomatique de \bsc{Peano}, Récurrence
 L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\mathbb{N}$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C. 
 
 On se propose donc ici de reformuler sa démonstration en terme modernes. 
-La démonstration du théorème suivant est rejetée en \cref{annexe-thmfondarith}.\marginpar{$\to$ const. $\mathbb{N}$?}
+La démonstration du théorème suivant est rejetée en \cref{annexe:thmfondarith}.\marginpar{$\to$ const. $\mathbb{N}$?}
 
 \begin{defb}{Divisibilité}{div}
 Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : $$b=ka \xLeftrightarrow{ a \mathrel{\neq} 0 } \frac{b}{a}=k.$$
@@ -67,7 +67,7 @@ Le lemme suivant est \textbf{fondamental} dans ce qui suit.
 \begin{lemmab}[saveto={premier.tex}]{Théorème fondamental de l'arithmétique}{Fonda-Arith}
   Tout entier naturel non-nul peut être écrit comme un produit de nombres premiers d'une unique façon, à l'ordre près des facteurs.
 \end{lemmab}
-La démonstration de ce théorème est rejetée en~\cref{annexe-thmfondarith}.
+La démonstration de ce théorème est rejetée en~\cref{annexe:thmfondarith}.
 
 Ces rappels balayés, on peut démontrer le résultat d'Euclide 
 
@@ -82,9 +82,9 @@ On démontre le résultat par récurrence. Une liste vide (à 0 éléments) ne c
 Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : $$N=\prod_{i=1}^{n} p_i$$
 Si notre suite est vide, on pose $N=2$.
 
-Sinon, les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{lem-Fonda-Arith}, et $N$ est supérieur ou égal à 2. 
+Sinon, les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{lem:Fonda-Arith}, et $N$ est supérieur ou égal à 2. 
 
-Dans les deux cas, d'après le \cref{lem-ncopremsn}, $N+1$ est premier avec $N$. Comme $N\geq 2$, alors $N+1\geq 3$, et $N$ admet donc un facteur premier, en vertu du~\cref{lem-Fonda-Arith}. Mais alors, d'après la \cref{rem-prem-equiv}, aucun des facteurs premiers de $N+1$ ne figure dans notre liste. En particulier, le plus petit facteur premier de $N+1$. On peut alors compléter notre liste. 
+Dans les deux cas, d'après le \cref{lem:ncopremsn}, $N+1$ est premier avec $N$. Comme $N\geq 2$, alors $N+1\geq 3$, et $N$ admet donc un facteur premier, en vertu du~\cref{lem:Fonda-Arith}. Mais alors, d'après la \cref{rem:prem-equiv}, aucun des facteurs premiers de $N+1$ ne figure dans notre liste. En particulier, le plus petit facteur premier de $N+1$. On peut alors compléter notre liste. 
 
 Par récurrence, le résultat est démontré.
 \end{proof}
@@ -146,7 +146,7 @@ Par récurrence, le résultat est démontré.
 
 
 \begin{proof}
-	Si $\mathbb{N}$ était fini, d'après le \cref{thm-partn}, $\mathbb{N}$ admettrait un majorant. Autrement dit \[\exists k \in \mathbb{N}, \forall x \in \mathbb{N}, x \leq k.\]
+	Si $\mathbb{N}$ était fini, d'après le \cref{thm:partn}, $\mathbb{N}$ admettrait un majorant. Autrement dit \[\exists k \in \mathbb{N}, \forall x \in \mathbb{N}, x \leq k.\]
 
 	Or la construction de $\mathbb{N}$ implique que si $ k \in \mathbb{N}$, alors $k + 1 \in \mathbb{N}$ et $\exists x \in \mathbb{N}, x > k, x= k+1$, d'où une contradiction. 
 	
@@ -190,7 +190,7 @@ On note par la suite $\aleph_0$,lire \emph{alèf zéro,}\footnote{Aleph, premiè
 	\end{enumerate}
 \end{theoremb}
 \begin{proof}
-	Les  \cref{thm-union,thm-cartesien} seront démontrées par la suite dans la \cref{sec-denombrabilite_usuelle}~.
+	Les  \cref{thm:union,thm:cartesien} seront démontrées par la suite dans la \cref{sec:denombrabilite_usuelle}~.
 	
 	% saut de ligne pour virer le cqfd
 \end{proof}
@@ -200,7 +200,7 @@ On note par la suite $\aleph_0$,lire \emph{alèf zéro,}\footnote{Aleph, premiè
 
 \chapter{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$}{Dénombrabilité de Q}} 
 \section{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$}{Dénombrabilité de 2N}}
-\label{sec-denombrabilite_usuelle}
+\label{sec:denombrabilite_usuelle}
 Naturellement on pourrait penser que les ensembles inclus dans $\mathbb{N}$ ont une puissance inférieure à $\aleph_0$. Contre toute attente, voici un résultat sur la dénombrabilité de  $2\mathbb{N}$, l'ensemble des entiers naturels pairs.
 
 \begin{theoremb}{Dénombrabilité de 2$\mathbb{N}$}{}
@@ -248,12 +248,12 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 
 \begin{proof} 
 	On peut compter les couples $(n,m) \in \mathbb{N}^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien. 
-	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $(0,1)$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig-n_croix_n}.
+	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $(0,1)$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig:n_croix_n}.
 	\begin{figure}[htb]
 		\centering
 		\includegraphics[scale=0.3]{n_croix_n.png}
 		\caption{Dénombrabilité de $\mathbb{N}^2$}
-		\label{fig-n_croix_n}
+		\label{fig:n_croix_n}
 	\end{figure}
 	
 	On obtient la séquence suivante~:
@@ -277,7 +277,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 
 
 
-De la dénombrabilité de $\mathbb{N}^2$, on peut démontrer le \cref{thm-cartesien}. 
+De la dénombrabilité de $\mathbb{N}^2$, on peut démontrer le \cref{thm:cartesien}. 
 
 \begin{proof}
 	Si $E$ et $F$ sont dénombrables, il existe $\varphi~: E \to \mathbb{N}$ et $\psi~: F \to \mathbb{N}$ bijectives. On peut alors définir \[ \begin{array}{cccc}
@@ -289,7 +289,7 @@ De la dénombrabilité de $\mathbb{N}^2$, on peut démontrer le \cref{thm-cartes
 
 $f $ est bien bijective. Donc $A \times B$ est bien dénombrable. On procède par récurrence immédiate pour $n$ ensembles. 
 
-On peut maintenant prouver le \cref{thm-union}. 
+On peut maintenant prouver le \cref{thm:union}. 
 
 
 \begin{proof}
@@ -327,7 +327,7 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 	
 	Pour établir une bijection entre $\mathbb{Q}$ et $\mathbb{N}$, on commence par écrire un tableau où on range $\frac{p}{q}$ à la colonne $q$ et à la ligne $p$.  
 	
-	On parcourt le tableau comme c'est indiqué par les flèches dans la \cref{fig-denombQ}. 
+	On parcourt le tableau comme c'est indiqué par les flèches dans la \cref{fig:denombQ}. 
 	
 	On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau diagonalement vers le haut jusqu'à atteindre $\frac{1}{3}$, etc. 
 	
@@ -345,7 +345,7 @@ A ce stade, on a montré que les ensembles de nombres classiques sont dénombrab
 \appendix 
 \renewcommand{\thechapter}{A.\arabic{chapter}} % Changes the numbering format from alph to arabic
 \addtocontents{toc}{\protect\addtolength{\cftchapternumwidth}{7.22pt}}
-\chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe-thmfondarith}
+\chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe:thmfondarith}
 \begin{lemmab}{}{ncopremsn}
   Soit $n$ un entier naturel. Alors $n$ est premier avec $n+1$ .
 \end{lemmab}
@@ -360,7 +360,7 @@ La remarque précédente montre le résultat pour $n=0$. Comme 2 est premier, le
 \intertext{Donc $(l_2-l_1)= 1$, et : }
 1& =k>1
 \end{align*}
-D'après la \cref{rem-divinf}, d'où la contradiction.
+D'après la \cref{rem:divinf}, d'où la contradiction.
 \end{proof}
 \chapter{Manuel des commandes}
 \begin{theoremb}{Exemple}{exem}
@@ -384,7 +384,7 @@ $a$
 \proofpart*{test}
 \[BIDULE\]
 \end{proof}
-\Cref{thm-exem}, \cref{rem-rema}, \cref{note-not} \cref{def-def} 
+\Cref{thm:exem}, \cref{rem:rema}, \cref{note:not} \cref{def:def} 
 \deffunct{f}{E}{F}{x}{f(x)}
 \end{document}
 %%% Local Variables:
