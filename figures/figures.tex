@@ -1,3 +1,5 @@
+\usetikzlibrary{arrows.meta}
+\tikzset{|/.tip={Bar[width=.8ex,round]}}
 \makeatletter
 \newcommand{\diagdenomb}{\@ifstar{\@diagdenomb}{\@@diagdenomb}}
 \newcommand{\@diagdenomb}{\begin{figure}[htbp]
@@ -129,37 +131,7 @@
     \label{fig:denombQ}
 \end{figure}
 }
-\makeatother
-\graphicspath{{./figures/}} % pour les images, plus besoin d'écrire "./figures"
-\newcommand{\diagbij}{\begin{figure}[htbp]
-	\centering
-	\begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=.8pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}]
-	\node[ele,label=left:$a$] (a1) at (0,4) {};    
-	\node[ele,label=left:$b$] (a2) at (0,3) {};    
-	\node[ele,label=left:$c$] (a3) at (0,2) {};
-	\node[ele,label=left:$d$] (a4) at (0,1) {};
-	\node[ele,label=left:$d$] (a5) at (0,1) {};
-	\node[ele,fill=roug,label=right:$1$] (b1) at (4,4) {};
-	\node[ele,fill=roug,label=right:$2$] (b2) at (4,3) {};
-	\node[ele,fill=roug,label=right:$3$] (b3) at (4,2) {};
-	\node[ele,fill=roug,label=right:$4$] (b4) at (4,1) {};
-	
-	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4) (a5),minimum width=2cm] {} ;
-	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm] {} ;  
-	\draw[->,thick,shorten <=2pt,shorten >=2] (a1) -- (b4);
-	\draw[->,thick,shorten <=2pt,shorten >=2] (a2) -- (b2);
-	\draw[->,thick,shorten <=2pt,shorten >=2] (a3) -- (b1);
-	\draw[->,thick,shorten <=2pt,shorten >=2] (a4) -- (b3);
-	\end{tikzpicture}
-	\caption{diagramme d'une fonction bjective}
-	\label{fig-fonctbij}
-\end{figure}}
-
-\newcommand{\compfonc}{
-\begin{figure}
-    \centering
-    \begin{tikzpicture}[
-    >=stealth,
+\tikzset{    >=stealth,
     bullet/.style={
         fill=black,
         circle,
@@ -167,7 +139,6 @@
         inner sep=1pt
     },
     projection/.style={
-        ->,
         thick,
         shorten <=2pt,
         shorten >=2pt
@@ -175,29 +146,124 @@
     every fit/.style={
         ellipse,
         draw,
-        inner sep=0pt
-    }
-    ]
-    \node at (2,4.7) {$f$};
-    \draw[projection] (1,4.5) -- (3,4.5);
-    \node at (0,5) {$X$};
-    \node[bullet,label=below:$x$] (START)   at (0,2.5){};
-    \node at (4,5) {$Y$};
-    \node[bullet,label=below:$f(x)$] at (4,2.5){};
-    \node at (6,4.7) {$g$};
-    \draw[projection] (5,4.5) -- (7,4.5);
-    \node at (8,5) {$Z$};
-    \node[bullet,label=below:$g\big(f(x)\big)$] (END) at (8,2.5){};
-    
-    \draw [line width=8pt, yellow, shorten <=0.25cm,, shorten >=0.6cm, ->] (START.south) to[out=-50, in=-120, distance=4cm, ] (END);
-
-    \draw (0,2.5) ellipse (1.02cm and 2.2cm);
-    \draw (4,2.5) ellipse (1.02cm and 2.2cm);
-    \draw (8,2.5) ellipse (1.02cm and 2.2cm);
-
-    \draw[projection] (0.3,2.5) -- (3.7,2.5);
-    \draw[projection] (4.3,2.5) -- (7.7,2.5);
-    \end{tikzpicture}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}}
+        inner sep=2pt
+        }}
+\makeatother
+\graphicspath{{./figures/}} % pour les images, plus besoin d'écrire "./figures"
+\newcommand{\diagfonctbij}{
+	\begin{figure}[htbp]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:$a$] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:$b$] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:$c$] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:$d$] (a4) at (0,1) {};%
+	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\end{tikzpicture}%
+%
+	\caption{diagramme sagittal d'une application bijective.}
+	\label{fig:fonctbij}
+\end{figure}
+}
+\newcommand{\diagfonctinj}{
+	\begin{figure}[htbp]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:$a$] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:$b$] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:$c$] (a3) at (0,2) {};%
+	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3),minimum width=2cm, label=above:$X$] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\end{tikzpicture}%
+%
+	\caption{diagramme sagittal d'une application injective.}
+	\label{fig:fonctinj}
+\end{figure}
+}
+\newcommand{\diagfonctsurj}{
+	\begin{figure}[htbp]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:$a$] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:$b$] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:$c$] (a3) at (0,2) {};%
+	\node[bullet,fill=bleu,label=left:$c$] (a4) at (0,1) {};%
+	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[->,projection] (a4) to[out=20, in=170] (b1);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\end{tikzpicture}%
+%
+	\caption{diagramme sagittal d'une application injective.}
+	\label{fig:fonctsurj}
+\end{figure}
+}
+\newcommand{\diagcompfonct}{
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\node[bullet,label=left:$a$] (a1) at (0,4) {};    
+			\node[coordinate,label] (a2) at (0,3) {};    
+			\node[coordinate,label] (a3) at (0,2) {};
+			\node[coordinate,label] (a4) at (0,1) {};
+			\node[coordinate,fill=roug] (b1) at (4,4) {};
+			\node[coordinate,fill=roug] (b2) at (4,3) {};
+			\node[coordinate,fill=roug] (b3) at (4,2) {};
+			\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};
+			\node[coordinate,fill=vert] (c1) at (8,4) {};
+			\node[bullet,fill=vert,label=right:š] (c2) at (8,3) {};
+			\node[coordinate,fill=vert] (c3) at (8,2) {};
+			\node[coordinate,fill=vert] (c4) at (8,1) {};
+			\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
+			\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  
+			\node[fill=vert,draw=vert,fill opacity=0.3,fit= (c1) (c2) (c3) (c4),minimum width=2cm, label=above:$Z$] (Z) {} ;  
+			\draw[->,projection] (a1) to[out=-10, in=150] (b4);
+			%
+			\draw[->,projection] (b4) to[out=50, in=180] (c2);
+			\draw[->,projection,dashed] (a1) to[out=-25, in=180] (c2);
+			%
+			\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+			\draw[|->,thick,shorten <=1cm,shorten >=1cm] (Y.north) -- node [midway,above,align=center]{$g$} (Z.north);
+			\draw[|->,thick,dashed,shorten <=.5cm,shorten >=.5cm] (X.north) to[out=50, in=130] node [midway,above=.25em,align=center]{$g\circ f$} (Z.north);
+		\end{tikzpicture}
+		\caption{Composition d'applications, détail pour un antécédent.}
+		\label{fig:diagcompfonct}
+	\end{figure}
+}
