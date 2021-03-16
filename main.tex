@@ -14,14 +14,15 @@
 \tableofcontents
 \part{Introduction}
 \chapter{Avant-propos}
-La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'on étudie l'ensemble des entiers naturels. C'est une définition intuitive de l'infini. L'infini n'est pas un nombre, il n'obéit pas aux lois usuelles $+$ et $\times$ de la même manière que les nombres réels. En mathématiques, l'une des manières les plus simples de caractériser l'infini est celle de la théorie des ensembles. L'une des propriétés principales d'un ensemble est sa taille. Comme nous allons le voir, les ensembles mathématiques peuvent être finis ou infinis.
 
-L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
+La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'on étudie l'ensemble des entiers naturels. C'est une définition intuitive de l'infini. L'infini n'est pas un nombre, il n'obéit pas aux lois usuelles $+$ et $\times$ de la même manière que les nombres réels. En mathématiques, l'une des manières les plus simples de caractériser l'infini est celle de la théorie des ensembles. L'une des propriétés principales d'un ensemble est sa taille. Comme nous allons le voir, les ensembles mathématiques peuvent être finis ou infinis : L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
 
 On peut alors se poser des questions fondamentales à l'étude de l'infini~: comment peut on caractériser les ensembles infinis ? Est-ce qu'il y a un infini << plus grand >> ou << plus petit >> que celui des nombres ?  
 
-Dans la première partie, nous allons rappeler ce que sont les ensembles, cruciaux pour l'étude de l'infini du point de vue ensembliste, et introduire une axiomatique de $\mathbb{N}$. 
+Dans la première partie, nous allons rappeler ce que sont les ensembles, cruciaux pour l'étude de l'infini du point de vue ensembliste.
 Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d'ensembles usuels et aux propriétés d'ensembles dénombrables.
+
+Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter}. Nous avons choisi une approche différente : nous voulions insister davantage sur l'aspect formel de la dénombrabilité, c'est pourquoi nous avons introduit des définitions, des notations, des propositions démontrées pour souligner notre propos. \`A notre avis, ce travail est nécessaire pour bien aborder la notion de la dénombrabilité et pour ne pas se perdre dans les différentes notions. Ainsi, nous avons choisi d'en donner une définition rigoureuse. Bien que cette notion soit intuitive, il s'avère difficile de l'expliquer rigoureusement avec des mots du langage << courant >> (non mathématique). En ce sens, le langage mathématique offre une exactitude que la langue naturelle n'a pas.
 
 \epigraph{%
 	\foreignlanguage{german}{\enquote{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}}\newline \newline
@@ -29,7 +30,7 @@ Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d
 }{Carl Friedrich \bsc{Gauss}\footnotemark~(1831)}\footnotetext{Voir~\cite{gauss_cite}}
 \mainmatter
 \part{Préliminaires au dénombrement~: Comptage, ensembles, bijection}
-\chapter{Rappels de théorie des ensembles: notion de fonction}
+\chapter{Rappels de théorie des ensembles \& notion de fonction}
 Notion de fonction, injections, surjections, bijection. 
 Lien même nombre d'objets $ \iff$ bijection ensembliste. 
 \clearpage
@@ -42,12 +43,11 @@ Lien même nombre d'objets $ \iff$ bijection ensembliste.
 Axiomatique de \bsc{Peano}, Récurrence
 
 \chapter{Définition de la cardinalité}
-\chapter{Des ensembles infinis ? } 
+\chapter{Des parties infinies ? } 
 L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\mathbb{N}$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C. 
 
 On se propose donc ici de reformuler sa démonstration en terme modernes. 
-La démonstration du théorème suivant est rejetée en \cref{annexe:thmfondarith}.\marginpar{$\to$ const. $\mathbb{N}$?}
-
+La démonstration du théorème suivant est rejetée en \cref{annexe:thmfondarith}.
 \begin{defb}{Divisibilité}{div}
 Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : $$b=ka \xLeftrightarrow{ a \mathrel{\neq} 0 } \frac{b}{a}=k.$$
 \end{defb}
@@ -67,11 +67,17 @@ La remarque suivante justifie l'emploi du même vocabulaire :
 \begin{remarkb}{}{prem-equiv}
 Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le précèdent, c'est-à-dire s'il n'a aucun diviseur commun avec un entier qui lui est inférieur. 
 \end{remarkb}
-\newpage
+\begin{lemmab}{}{divprod}
+Si $n$ divise deux entiers $a,b$, il divise aussi leur produit $ab$. 
+\end{lemmab}
+\begin{proof}
+Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{knk'}_{\eqdef k_2\in \mathbb{N}}\times n.\]
+\end{proof}
 Le lemme suivant est \textbf{fondamental} dans ce qui suit.
 \begin{lemmab}{Théorème fondamental de l'arithmétique}{Fonda-Arith}
   Tout entier naturel non-nul peut être écrit comme un produit de nombres premiers d'une unique façon, à l'ordre près des facteurs.
 \end{lemmab}
+
 La démonstration de ce théorème est rejetée en~\cref{annexe:thmfondarith}.
 
 Ces rappels balayés, on peut démontrer le résultat d'Euclide 
@@ -82,20 +88,18 @@ Toute liste finie de nombre premiers est nécessairement incomplète.
 Autrement dit, il existe une infinité de nombres premiers.
 \end{theoremb}
 \begin{proof}
-
+\reversemarginpar
 On démontre le résultat par récurrence. Une liste vide (à 0 éléments) ne contient aucun nombre premier, elle est donc incomplète car 2 est premier. 
-Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : $$N=\prod_{i=1}^{n} p_i$$
+Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : \[ N=\prod_{i=1}^{n} p_i\]\sidepar{\vspace*{-3.5\baselineskip}\itshape \footnotesize Donc $N$ est égal à Pi de 1 à $n$ de $p_i$}
 Si notre suite est vide, on pose $N=2$.
-
-Sinon, les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{lem:Fonda-Arith}, et $N$ est supérieur ou égal à 2. 
-
-Dans les deux cas, d'après le \cref{lem:ncopremsn}, $N+1$ est premier avec $N$. Comme $N\geq 2$, alors $N+1\geq 3$, et $N$ admet donc un facteur premier, en vertu du~\cref{lem:Fonda-Arith}. Mais alors, d'après la \cref{rem:prem-equiv}, aucun des facteurs premiers de $N+1$ ne figure dans notre liste. En particulier, le plus petit facteur premier de $N+1$. On peut alors compléter notre liste. 
+Les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{lem:Fonda-Arith}.
+\sidepar{\itshape \footnotesize $2$ est le plus petit nombre premier.}
+Dans les deux cas, d'après le \cref{lem:ncopremsn}, $N+1$ est premier avec $N$. Comme $N\geq 2$,  alors $N+1\geq 3$, et $N$ admet donc un facteur premier, en vertu du~\cref{lem:Fonda-Arith}. Mais alors, d'après la \cref{rem:prem-equiv}, un des facteurs premiers de $N+1$ ne figure dans notre liste. 
 
 Par récurrence, le résultat est démontré.
 \end{proof}
-\chapter{Définition et propriétés de la dénombrabilité}
-
-\section{Ensembles finis et infinis} \marginpar{$\to$  def cardinalité ?}
+\part{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$}{Dénombrabilité de Q}} \chapter{Définition et propriétés de la dénombrabilité}
+\section{Ensembles finis et infinis} \sidepar{$\to$  def cardinalité ?}
 
 \begin{defb}{Finitude}{fini}
      Soit $E$ un ensemble. 
@@ -114,11 +118,11 @@ Par récurrence, le résultat est démontré.
 \end{theoremb}
 
 \begin{proof}
-    Soient $E, F, G$ 3 ensembles finis.
+    Soient $E, F, G$, trois ensembles.
 	\begin{enumerate} 
-		\item $E \mathrel{\approx} E$ étant donné que $E$ a le même cardinal que E. $\mathrel{\approx}$ est réflexive.
-		\item $E \mathrel{\approx} F$ signifie que $ \Card(E) = \Card(F)$ et par symétrie de l'égalité, $\Card(F) = \Card(E)$, ie $F \mathrel{\approx} E$. $\mathrel{\approx}$ est symétrique. 
-		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors $\Card(E) = \Card(F)$ et $\Card(F) = \Card(G)$. Par transitivité de l'égalité, $\Card(E) = \Card(G)$, ie $E \mathrel{\approx} G$. $\mathrel{\approx}$ est transitive. 
+		\item $E \mathrel{\approx} E$, car l'application identité est une bijection. $\mathrel{\approx}$ est réflexive.
+		\item $E \mathrel{\approx} F$ signifie qu'il existe une bijection de E dans F. Alors, l'inverse de cette bijection est une application de F dans E, elle-même bijective.
+		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans g,$\psi$. Par composition, $\psi\circ\phi$ est une bijection de E dans G, ie $E \mathrel{\approx} G$. $\mathrel{\approx}$ est transitive. 
 	\end{enumerate}
 	$\mathrel{\approx}$ est bien une relation d'équivalence.
 \end{proof}
@@ -169,8 +173,9 @@ Par récurrence, le résultat est démontré.
 	 Un ensemble fini ou dénombrable est dit au plus dénombrable. 
 \end{defb}
 
-On note par la suite $\aleph_0$,lire \emph{alèf zéro,}\footnote{Aleph, première lettre  de l'alphabet hébreu} la puissance de $\mathbb{N}$. 
-
+On note par la suite $\aleph_0$,lire \emph{alèf zéro}\footnote{Aleph, première lettre  de l'alphabet hébreu}, le cardinal de $\mathbb{N}$. 
+\clearpage
+\begin{samepage}
 \section{Propriétés usuelles de dénombrabilité}
 
 \begin{theoremb}{}{parties}
@@ -199,14 +204,11 @@ On note par la suite $\aleph_0$,lire \emph{alèf zéro,}\footnote{Aleph, premiè
 	
 	% saut de ligne pour virer le cqfd
 \end{proof}
+\end{samepage}
 
-
-
-
-\chapter{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$}{Dénombrabilité de Q}} 
 \section{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$}{Dénombrabilité de 2N}}
 \label{sec:denombrabilite_usuelle}
-Naturellement on pourrait penser que les ensembles inclus dans $\mathbb{N}$ ont une puissance inférieure à $\aleph_0$. Contre toute attente, voici un résultat sur la dénombrabilité de  $2\mathbb{N}$, l'ensemble des entiers naturels pairs.
+Naturellement on pourrait penser que les ensembles inclus dans $\mathbb{N}$ ont une cardinal inférieur à $\aleph_0$. Contre toute attente, voici un résultat sur la dénombrabilité de  $2\mathbb{N}$, l'ensemble des entiers naturels pairs.
 
 \begin{theoremb}{Dénombrabilité de 2$\mathbb{N}$}{}
 	L'ensemble 2$\mathbb{N}$ des entiers naturels pairs est dénombrable. 
@@ -223,7 +225,7 @@ Naturellement on pourrait penser que les ensembles inclus dans $\mathbb{N}$ ont 
 	k & \mapsto & \frac{k}{2}
 	\end{array}$. 
 	
-	2$\mathbb{N}$ est en bijection avec $\mathbb{N}$. 2$\mathbb{N}$ est bien un ensemble dénombrable de puissance $\aleph_0$. 
+	2$\mathbb{N}$ est en bijection avec $\mathbb{N}$. 2$\mathbb{N}$ est bien un ensemble dénombrable de cardinal $\aleph_0$. 
 \end{proof}
 
 On peut introduire un résultat plus général qui couvre toute partie de $\mathbb{N}$. 
@@ -247,7 +249,7 @@ On peut introduire un résultat plus général qui couvre toute partie de $\math
 
 Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E^2) \neq \Card(E)$. On pourrait penser que $\mathbb{N}^2 $ contient plus d'élements que $\mathbb{N}$. 
 
-\begin{theoremb}{Dénombrabilité de $\mathbb{N}^2$}{}
+\begin{theoremb}{Dénombrabilité de $\mathbb{N}^2$}{n2_denombrable}
 	$\mathbb{N}^2$ est dénombrable. 
 \end{theoremb}
 
@@ -281,6 +283,24 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 \end{proof}
 
 
+Par récurrence sur $k \in \mathbb{N}$, on peut montrer le théorème suivant :
+
+\begin{theoremb}{}{nk_denombrable}
+    $\mathbb{N}^k$ est dénombrable.
+\end{theoremb}
+
+\begin{proof}
+
+Pour $k = 3$, on peut, en utilisant les notations du \cref{thm:n2_denombrable}, établir une bijection entre $\mathbb{N}^2$ et $\mathbb{N}^3$. Posons $h_3 : \mathbb{N}^2 \to \mathbb{N}^3$ telle que $h_3(n,m) = (n,\varphi^{-1}(m))$. $h_3$ est bien une bijection. 
+
+Soit $k \in \mathbb{N}$ fixé. Supposons l'hypothèse vraie au rang $k$, i. e. $\mathbb{N}^k$ est dénombrable.
+
+On construit une bijection entre $\mathbb{N}^2$ et $\mathbb{N}^{k+1}$. On pose $h_{k+1}(n_1, \dots, n_{k+1}) = (h_k(n_1, \dots, n_k),n_{k+1})$ où $h_k(n_1, \dots, n_k) \in \mathbb{N}$ car d'après l'hypothèse de récurrence, $\mathbb{N}^k$ est dénombrable. On a ainsi établi une bijection entre $\mathbb{N}^{k+1}$ et $\mathbb{N}^2$. Or $\mathbb{N}^2$ est dénombrable. Donc $\mathbb{N}^k$ est dénombrable. 
+
+Par récurrence, $\forall k \in \mathbb{N}, \mathbb{N}^k$ est dénombrable. 
+
+\end{proof}
+
 
 De la dénombrabilité de $\mathbb{N}^2$, on peut démontrer le \cref{thm:cartesien}. 
 
@@ -292,7 +312,14 @@ De la dénombrabilité de $\mathbb{N}^2$, on peut démontrer le \cref{thm:cartes
 	
 \end{proof}
 
-$f $ est bien bijective. Donc $A \times B$ est bien dénombrable. On procède par récurrence immédiate pour $n$ ensembles. 
+$f $ est bien bijective. Donc $A \times B$ est bien dénombrable. On procède par récurrence immédiate pour $k$ ensembles. 
+
+Soit $\prod_{i =1}^k A_i$ le produit cartésien de $k$ ensembles dénombrables. Si $\forall i \in \{1,\dots,k\}, \varphi_i : A_i \to \mathbb{N}$ est une bijection, alors on peut construire l'application \[ \begin{array}{cccc}
+	\ & \prod_{i=1}^k A_i & \to & \mathbb{N}^k\\
+	f~: & (x_1,\dots,x_k) & \mapsto & (\varphi_1(x_1),\dots, \varphi_k(x_k))
+	\end{array}.\] 
+C'est une bijection de $\prod_{i=1}^k A_i $ vers $\mathbb{N}^k$ qui est dénombrable. Donc $\prod_{i=1}^kA_i$ est dénombrable.
+
 
 On peut maintenant prouver le \cref{thm:union}. 
 
@@ -302,31 +329,32 @@ On peut maintenant prouver le \cref{thm:union}.
 	
 	Ainsi $A = \bigcup_{i \in I} A_i = \{x_{n, i}, (n,i) \in \mathbb{N} \times I\}$. Les élements $x_{n,i}$ sont indéxés par $\mathbb{N} \times I$ qui est un produit cartésien d'ensembles dénombrables ($I$ est une famille indéxée par $\mathbb{N}$, elle est bien dénombrable). Donc $A$ est dénombrable.
 \end{proof}
-
-
+\clearpage
 \section{\texorpdfstring{Dénombrabilité de $\mathbb{Z}$ et de $\mathbb{Q}$}{}}
 
-Intuitivement on pourrait penser que l'ensemble des entiers $\mathbb{Z}$ a une puissance supérieure que $\mathbb{N}$ étant donné qu'il contient deux fois plus d'élements~: les entiers naturels et les entiers négatifs. 
+Intuitivement on pourrait penser que l'ensemble des entiers $\mathbb{Z}$ a un cardinal supérieur à $\mathbb{N}$ étant donné qu'il contient ``deux fois plus" d'élements~: les entiers naturels et les entiers négatifs. 
 
 \begin{theoremb}{Dénombrabilité de $\mathbb{Z}$}{denz}
-	L'ensemble $\mathbb{Z}$ des eentiers est dénombrable. 
+	L'ensemble $\mathbb{Z}$ des entiers est dénombrable. 
 \end{theoremb}
 
 \begin{proof}
 L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant~:  $\mathbb{Z}=\left\lbrace 0,1,(-1),2,(-2),3,(-3) \dots\right\rbrace$ 
 
-	Pour montrer que la puissance de $\mathbb{Z}$ est bien $\aleph_0$, on définit donc l'application $\phi~: \mathbb{N} \to \mathbb{Z}$ telle que \[ \forall k \in \mathbb{N}, \left\lbrace \begin{array}{c}
-	\phi(2k) = -k \\
-	\phi(2k + 1) = k+1
-	\end{array} \right. .\]
+	Pour montrer que le cardinal de $\mathbb{Z}$ est bien $\aleph_0$, on définit donc l'application $\phi~: \mathbb{N} \to \mathbb{Z}$ telle que \[ \forall k \in \mathbb{N}, \
+	\begin{dcases}
+	\phi(2k)& = -k \\
+	\phi(2k + 1)& = k+1
+	\end{dcases}
+\]
 	
 	C'est bien une bijection. Donc $\mathbb{Z}$ est dénombrable. 
 \end{proof}
+\begin{samepage}
 
 \begin{theoremb}{Dénombrabilité de $\mathbb{Q}$}{denq}
 	$\mathbb{Q}$ est dénombrable.
 \end{theoremb}
-
 \begin{proof}
 	Tout $x \in \mathbb{Q}$ a un unique représentant irréductible $\frac{p}{q}$ où $p \wedge q = 1$. 
 	
@@ -337,35 +365,90 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 	On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau diagonalement vers le haut jusqu'à atteindre $\frac{1}{3}$, etc. 
 	
 	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L'application $\varphi$ qui range les rationnels $x \in \mathbb{Q}$ dans ce tableau est donc une bijection.
-	
-	 
 \end{proof}
-\diagdenomb
-
-A ce stade, on a montré que les ensembles de nombres classiques sont dénombrables, mais bien évidemment, il existe des ensembles non dénombrables, comme $\mathbb{R}$. 
-
-
-\nocite{*}
-\printbibliography
-\appendix 
-\renewcommand{\thechapter}{A.\arabic{chapter}} % Changes the numbering format from alph to arabic
-\addtocontents{toc}{\protect\addtolength{\cftchapternumwidth}{7.22pt}}
+\begin{figure}[!htbp]
+    \centering
+\begin{tikzpicture}
+\tikzstyle{keepstyle} =[rectangle, rounded corners, draw, fill=white]
+\node at (0,0) {$\vdots$};
+\node[keepstyle] (51) at (0,1) {$\frac{5}{1}$};
+\node[keepstyle] (41) at (0,2) {$\frac{4}{1}$};
+\node[keepstyle] (31) at (0,3) {$\frac{3}{1}$};
+\node[keepstyle] (21) at (0,4) {$\frac{2}{1}$};
+\node[keepstyle] (11) at (0,5) {$\frac{1}{1}$};
+\node at (1,0) {$\vdots$};
+\node[keepstyle] (52) at (1,1) {$\frac{5}{2}$};
+\node at (1,2) {$\frac{4}{2}$};
+\node[keepstyle] (32) at (1,3) {$\frac{3}{2}$};
+\node at (1,4) {$\frac{2}{2}$};
+\node[keepstyle] (12) at (1,5) {$\frac{1}{2}$};
+\node at (2,0) {$\vdots$};
+\node at (2,1) {$\frac{5}{3}$};
+\node[keepstyle] (43) at (2,2) {$\frac{4}{3}$};
+\node at (2,3) {$\frac{3}{3}$};
+\node[keepstyle] (23) at (2,4) {$\frac{2}{3}$};
+\node[keepstyle] (13) at (2,5) {$\frac{1}{3}$};
+\node at (3,0) {$\vdots$};
+\node at (3,1) {$\frac{5}{4}$};
+\node at (3,2) {$\frac{4}{4}$};
+\node[keepstyle] (34) at (3,3) {$\frac{3}{4}$};
+\node at (3,4) {$\frac{2}{4}$};
+\node[keepstyle] (14) at (3,5) {$\frac{1}{4}$};
+\node at (4,0) {$\vdots$};
+\node  at (4,1) {$\frac{5}{5}$};
+\node at (4,2) {$\frac{4}{5}$};
+\node at (4,3) {$\frac{3}{5}$};
+\node[keepstyle] (25) at (4,4) {$\frac{2}{5}$};
+\node[keepstyle] (15) at (4,5) {$\frac{1}{5}$};
+\node at (5,0) {$\vdots$};
+\node  at (5,1) {$\frac{5}{6}$};
+\node at (5,2) {$\frac{4}{6}$};
+\node at (5,3) {$\frac{3}{6}$};
+\node at (5,4) {$\frac{2}{6}$};
+\node[keepstyle] (16) at (5,5) {$\frac{1}{6}$};
+\node at (6,1) {$\cdots$};
+\node at (6,2) {$\cdots$};
+\node at (6,3) {$\cdots$};
+\node at (6,4) {$\cdots$};
+\node at (6,5) {$\cdots$};
+\draw [-latex,red, thick] (11) -- (12);
+\draw [-latex, red, thick] (12) -- (21);
+\draw [-latex, red, thick] (21) -- (31);
+\draw [-latex, red, thick] (31) -- (13);
+\draw [-latex, red, thick] (13) -- (14);
+\draw [-latex, red, thick] (14) -- (23);
+\draw [-latex, red, thick] (23) -- (32);
+\draw [-latex, red, thick] (32) -- (41);    
+\draw [-latex, red, thick] (41) -- (51);
+\draw [-latex, red, thick] (51) -- (15);
+\draw [-latex, red, thick] (15) -- (16);
+\draw [-latex, red, thick] (16) -- (25);
+\draw [-latex, red, thick] (25) -- (34);
+\draw [-latex, red, thick] (34) -- (43);
+\draw [-latex, red, thick] (43) -- (52);
+\end{tikzpicture}
+\caption{Dénombrabilité de $\mathbb{Q}$}
+    \label{fig:denombQ}
+\end{figure}
+\end{samepage}
+\appendixpage\appendix
 \chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe:thmfondarith}
+Pour mener à bien la démonstration, on aura besoin d'un lemme. 
 \begin{lemmab}{}{ncopremsn}
   Soit $n$ un entier naturel. Alors $n$ est premier avec $n+1$ .
 \end{lemmab}
 \begin{proof}
-La remarque précédente montre le résultat pour $n=0$. Comme 2 est premier, le résultat est vrai pour $n=1$. Supposons donc $n>1$. Il existerait donc un entier $k>1$ qui divise à la fois $n~\&~n+1$, il existerait deux entiers $l_1$ et $l_2$ tels que :  
+La remarque précédente montre le résultat pour $n=0$. Comme 2 est premier, le résultat est vrai pour $n=1$. Supposons donc $n>1$. Soit  $k$ un entier non-nul qui divise à la fois $n~\&~n+1$, il existe alors deux entiers $l_1$ et $l_2$ tels que :  
 \begin{align*}
   n+1& =kl_2=kl_{1}+1\\
 \shortintertext{Soit~:} 
 \cancel{k}l_2& >\cancel{k}l_1\\
 \shortintertext{On a alors~:} 
 1& =k(l_2-l_1)\\
-\intertext{Donc $(l_2-l_1)= 1$, et : }
-1& =k>1
+\intertext{Donc $k \mid 1$, et : }
+k& =1
 \end{align*}
-D'après la \cref{rem:divinf}, d'où la contradiction.
+Le seul entier qui puisse diviser à la fois $n$ et $n+1$. Le lemme est ainsi démontré.
 \end{proof}
 \chapter{Manuel des commandes}
 \begin{theoremb}{Exemple}{exem}
@@ -390,6 +473,12 @@ $a$
 \end{proof}
 \Cref{thm:exem}, \cref{rem:rema}, \cref{note:not} \cref{def:def} 
 \deffunct{f}{E}{F}{x}{f(x)}
+\backmatter
+\begingroup
+\raggedright
+\nocite{*}
+\printbibliography
+\endgroup
 \end{document}
 %%% Local Variables:
 %%% mode: latex

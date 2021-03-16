@@ -2,7 +2,7 @@
 \tikzset{|/.tip={Bar[width=.8ex,round]}}
 \makeatletter
 \newcommand{\diagdenomb}{\@ifstar{\@diagdenomb}{\@@diagdenomb}}
-\newcommand{\@diagdenomb}{\begin{figure}[htbp]
+\newcommand{\@diagdenomb}{\begin{figure}[!htbp]
     \centering
 \begin{tikzpicture}
 \tikzstyle{keepstyle} =[rectangle, rounded corners, draw, fill=white]
@@ -63,7 +63,6 @@
 \draw [-latex, red, thick] (34) -- (43);
 \draw [-latex, red, thick] (43) -- (52);
 \end{tikzpicture}
-%\caption*{Dénombrabilité de $\mathbb{Q}$}
 \end{figure}
 }
 \newcommand{\@@diagdenomb}{\begin{figure}[htbp]
@@ -127,7 +126,7 @@
 \draw [-latex, red, thick] (34) -- (43);
 \draw [-latex, red, thick] (43) -- (52);
 \end{tikzpicture}
-\caption{Dénombrabilité de $\mathbb{Q}$}
+\caption{Dénombrabilité de $\mathbb{Q}$\protect\cite{Tikz-Count}}
     \label{fig:denombQ}
 \end{figure}
 }
@@ -164,8 +163,8 @@
 	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
 	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
 %
-	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
-	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$E$] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$F$] (Y) {} ;  %
 %
 	\draw[->,projection] (a1) to[out=20, in=150] (b4);
 	\draw[->,projection] (a2) to[out=20, in=160] (b2);
@@ -218,12 +217,11 @@
 	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
 	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
 	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
-	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
 %
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
-	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a1) to[out=20, in=150] (b3);
 	\draw[->,projection] (a2) to[out=20, in=160] (b2);
 	\draw[->,projection] (a3) to[out=20, in=170] (b1);
 	\draw[->,projection] (a4) to[out=20, in=170] (b1);
@@ -231,7 +229,7 @@
 	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%
 %
-	\caption{diagramme sagittal d'une application injective.}
+	\caption{diagramme sagittal d'une application surjective.\\ On a $|X|\geq|Y|$.}
 	\label{fig:fonctsurj}
 \end{figure}
 }

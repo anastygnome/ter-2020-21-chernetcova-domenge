@@ -11,7 +11,7 @@
 \newtheorem*{question}{Question}
 \newtheorem*{answer}{Réponse}
 \newtheorem{remark}{Remarque}
-\theoremsymbol{\text{\bsc{c.q.f.d}}} % mod
+\theoremsymbol{\text{\textsc{c.q.f.d}}} % mod
 \theorembodyfont{\normalfont}
 \theoremprework{\setcounter{proofpart}{0}}
 \newtheorem*{proof}{Démonstration}
@@ -89,9 +89,37 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 \DeclareMathOperator{\Card}{Card} % s'utilise avec \Card en mode maths
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   	Marges.   			     %
+%   	Marges et note en marge.   			 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setheadfoot{2\baselineskip}{\footskip}
+\setheadfoot{2\baselineskip}{2\footskip}
 \setlrmargins{*}{*}{*}         % Marges égales
 \checkandfixthelayout[nearest]
+\renewcommand*{\sideparfont}{\itshape \footnotesize}
+\renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Numérotation (classe memoir)       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand*{\cftdotsep}{1}
+\setpnumwidth{3em}
+\setrmarg{4em}
+  \setlength{\cftchapternumwidth}{2.55em}
+\setsecnumdepth{subsubsection}
+\renewcommand{\cftpartaftersnum}{.}
+\renewcommand{\cftchapteraftersnum}{.}
+\renewcommand{\cftpartdotsep}{\cftdotsep}
+\renewcommand{\cftchapterdotsep}{\cftdotsep}% Chapters should use dots in ToC
+\aliaspagestyle{title}{empty} 
+\aliaspagestyle{part}{empty} 
+\addto\captionsfrench{\renewcommand{\appendixpagename}{Annexes}}
+\addto\captionsfrench{\renewcommand{\appendixtocname}{Annexes}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Numérotation (classe memoir)       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+\setmathfont{Asana Math}
+\setmathfont[range={bb}]{STIX Two Math}
+\setmathfont[range={scr,cal}]{TeX Gyre Pagella Math}

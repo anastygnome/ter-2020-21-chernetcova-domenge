@@ -1,18 +1,14 @@
 \usepackage{luacode}
 \usepackage[german,main=french]{babel}
 \usepackage[autostyle=true,maxlevel=3]{csquotes}
-\usepackage{microtype}
 \usepackage{fontspec}
 \usepackage{geometry}
 \usepackage{mathtools} 
 \usepackage[math-style=french,warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
-\setmainfont{TeX Gyre Termes}
-\setmathfont{Asana Math}
-\setmathfont[range=bb]{STIX Two Math}
-\setmathfont[range={scr,cal}]{TeX Gyre Pagella Math}
+\defaultfontfeatures{Ligatures={TeX}}
 \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 \usepackage[most]{tcolorbox}
-\usepackage{xparse,xpatch}
+\usepackage{ragged2e}  % for use in margin notes content align
 \usepackage{tikz}
 \usepackage{caption}
 \usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc}
@@ -73,15 +69,5 @@
   \normalfont
   \@afterheading
 }
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%            NUMEROTATION (CLASSE MEMOIR)       %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setsecnumdepth{subsubsection}
-\renewcommand{\cftpartaftersnum}{.}
-\renewcommand{\cftchapteraftersnum}{.}
-\renewcommand{\cftpartdotsep}{\cftdotsep}
-\renewcommand{\cftchapterdotsep}{\cftdotsep}% Chapters should use dots in ToC
-\aliaspagestyle{title}{empty} 
-\aliaspagestyle{part}{empty} 
-%\setlength\headheight{\dimexpr \headheight+0.20004pt}
+\showboxdepth=\maxdimen
+\showboxbreadth=\maxdimen
