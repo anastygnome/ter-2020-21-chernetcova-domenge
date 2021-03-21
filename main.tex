@@ -4,12 +4,11 @@
 \input{backend_code/preambule}
 \input{backend_code/bibliographie}
 \input{personalisation}
-\input{figures/figures}
 \begin{document}
 \begin{titlingpage}
 \input{backend_code/page_de_garde}
 \end{titlingpage}
-
+\hypersetup{pageanchor=true}
 \frontmatter
 \tableofcontents
 \part{Introduction}
@@ -24,30 +23,281 @@ Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d
 
 Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter}. Nous avons choisi une approche différente : nous voulions insister davantage sur l'aspect formel de la dénombrabilité, c'est pourquoi nous avons introduit des définitions, des notations, des propositions démontrées pour souligner notre propos. \`A notre avis, ce travail est nécessaire pour bien aborder la notion de la dénombrabilité et pour ne pas se perdre dans les différentes notions. Ainsi, nous avons choisi d'en donner une définition rigoureuse. Bien que cette notion soit intuitive, il s'avère difficile de l'expliquer rigoureusement avec des mots du langage << courant >> (non mathématique). En ce sens, le langage mathématique offre une exactitude que la langue naturelle n'a pas.
 
-\epigraph{%
-	\foreignlanguage{german}{\enquote{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}}\newline \newline
+\epigraph{\foreignlanguage{german}{\enquote{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}}\newline\newline
 \enquote{Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et de les comparer entre elles}
-}{Carl Friedrich \bsc{Gauss}\footnotemark~(1831)}\footnotetext{Voir~\cite{gauss_cite}}
+}{Carl~Friedrich~\bsc{Gauß}~\cite{gauss_cite}}
 \mainmatter
 \part{Préliminaires au dénombrement~: Comptage, ensembles, bijection}
-\chapter{Rappels de théorie des ensembles \& notion de fonction}
-Notion de fonction, injections, surjections, bijection. 
-Lien même nombre d'objets $ \iff$ bijection ensembliste. 
-\clearpage
-\diagfonctinj
-\diagfonctsurj
-\diagfonctbij
-\diagcompfonct
+\chapter{Ensembles \& fonctions}
+\section{\'Enumérations, comptage : notion de fonction}
+Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser cette notion 
+Si on veut compter, à voix haute, une par une, les lettres du mot~:\[\text{cbda}\]
 
-\chapter{\texorpdfstring{Définition de $\mathbb{N}$}{Définition de N}}
-Axiomatique de \bsc{Peano}, Récurrence
+On le numérotera comme suit : 
+\begin{table}[h]
+\centering
+\begin{tabular}{lllll}
+c & b & d & a &  \\
+1 & 2 & 3 & 4 &  
+\end{tabular}
+\end{table}
+
+Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph{patate} : 
+	\begin{figure}[h]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};%
+	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{comptage} (Y.north);
+%	\node[below] at (X.south) {t};
+	\end{tikzpicture}%
+%
+	\caption{diagramme sagittal représentant le comptage ci-dessus.}
+	\label{fig:comptage}
+\end{figure}
+%
+%\diagfonctinj
+%\diagfonctsurj
+
+%\diagcompfonct
+Si cet exemple a l'air simple, il n'est pas simpliste pour autant :  ce procédé, qui consiste à associer à chaque lettre un nombre est omniprésent en mathématique et il porte le nom \emph{d'application}. 
+Plus remarquable encore, ce diagramme permet même de donner une première définition quasi-formelle de ce qu'est une application. Une chose est \emph{cruciale} : chaque lettre ne doit être comptabilisée une seule et unique fois, sinon, le résultat final est faussé ! 
+
+Pour fixer les idées voici deux nouvelles applications.
+
+	\begin{figure}[H]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:$1$] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:$2$] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:$3$] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:$4$] (a4) at (0,1) {};%
+	%
+	\node[bullet,fill=roug,label=right:pair] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:impair] (b2) at (4,3) {};
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2),minimum width=3.2cm] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=140] (b2);
+	\draw[->,projection] (a2) to[out=20, in=160] (b1);
+	\draw[->,projection] (a3) to[out=20, in=140] (b2);
+	\draw[->,projection] (a4) to[out=20, in=160] (b1);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{parité} (Y.north);
+%	\node[below] at (X.south) {t};
+	\end{tikzpicture}%
+%
+	\caption{application parité.}
+	\label{fig:parité}
+\end{figure}	
+
+Cet exemple simple est très utilisé, notamment en informatique, en remplaçant pair et impair par $0$ et $1$, respectivement. \sidepar{les développeurs aguerris auront reconnu la formule ~\textup{\texttt{n=n\&1}}.}
+\tikzset{external/remake next}
+\begin{figure}[htb]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:lundi] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:mardi] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:mercredi] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:jeudi] (a4) at (0,1) {};%
+	\node[bullet,fill=bleu,label=left:vendredi] (a5) at (0,0) {};%
+	\node[bullet,fill=bleu,label=left:samedi] (a6) at (0,-1) {};%
+	\node[bullet,fill=bleu,label=left:dimanche] (a7) at (0,-2) {};%
+
+	%
+	\node[bullet,fill=roug,label=right:$0$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$1$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$2$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$3$] (b4) at (4,1) {};%
+	\node[bullet,fill=roug,label=right:$4$] (b5) at (4,0) {};%
+	\node[bullet,fill=roug,label=right:$5$] (b6) at (4,-1) {};%
+	\node[bullet,fill=roug,label=right:$6$] (b7) at (4,-2) {};%
+
+
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4) (a5) (a6) (a7),minimum width=4.6cm] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4) (b5) (b6) (b7),minimum width=2cm] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b7);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b3);
+	\draw[->,projection] (a4) to[out=20, in=150] (b4);
+	\draw[->,projection] (a5) to[out=20, in=150] (b5);
+	\draw[->,projection] (a6) to[out=20, in=150] (b6);
+	\draw[->,projection] (a7) to[out=20, in=150] (b1);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{jour n\textsuperscript{o}} (Y.north);
+%	\node[below] at (X.south) {t};
+	\end{tikzpicture}%
+%
+	\caption{ Application \enquote{jours de la semaine} (convention anglo-saxonne).}
+	\label{fig:jourssem}
+\end{figure}
+\sidepar{ En 1990, \bsc{Keith} a trouvé le jour correspondant à une date grâce à l'expression suivante (en  langage \textup{\textsf{C}) :\\\texttt{int weekday  = (d~+=~m~<~3~? y-\/-~: y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)\%7;  
+}}}
+\clearpage
+Il y a cependant un détail à régler : Comment considère-t-on les points qui ne sont pas reliés ? 
+	\begin{figure}[h]
+	\centering
+    \begin{tikzpicture}[scale=0.5]
+	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};%
+	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};
+	\node[bullet,fill=roug,label=right:$5$] (b5) at (4,0) {};%
+
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4) (b5),minimum width=2cm] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{comptage 2} (Y.north);
+%	\node[below] at (X.south) {t};
+	\end{tikzpicture}%
+%
+	\caption{Un point n'est pas relié à droite : est-ce une application ?}
+	\label{fig:comptageinj}
+\clearpage
+\end{figure}
+\tikzset{external/force remake=true}
+
+	\begin{figure}[h]
+	\centering
+    \begin{tikzpicture}[scale=0.5]
+	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};
+	\node[bullet,fill=bleu,label=left:e] (a5) at (0,0) {};%
+	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};
+
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4) (a5),minimum width=2cm] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{comptage 3} (Y.north);
+%	\node[below] at (X.south) {t};
+	\end{tikzpicture}%
+%
+	\caption{Un point n'est pas relié à gauche : est-ce une application ?}
+	\label{fig:fonctcomptage}
+\end{figure}
+\clearpage
+Revenons au comptage de mots pour trancher. Dans le premier cas, on a : \sidepar{\vspace{\onelineskip} le caractère \textup{\texttt{\backslash0}} signale la fin d'un mot (caractère 0 en ASCII)} 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llllll} 
+c & b & d & a & \texttt{\backslash0} \\
+1 & 2 & 3 & 4 &  5
+\end{tabular}
+\end{table} 
 
 \chapter{Définition de la cardinalité}
-\chapter{Des parties infinies ? } 
-L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\mathbb{N}$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C. 
+\section{Ensembles finis et infinis}
+
+\begin{defb}{Finitude}{fini}
+     Soit $E$ un ensemble. 
+	    
+	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\phi~: \{1,\dots,n \} \to E$, avec $n \in \NN$. 
+		
+	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$. 
+\end{defb} 
+
+\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -\/Deux ouates.}
+
+\begin{defb}{\'Equipotence}{equip}
+    On dit que $E$ et $F$ sont équipotents s' il existe $\phi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$. 
+\end{defb}
+
+\begin{theoremb}{}{mmpuiss}
+    $ \mathrel{\approx}$ est une relation d'équivalence. 
+\end{theoremb}
+\begin{proof}\sidepar{Une relation d'équivalence est un \enquote{prisme de lecture} mathématique.
+\\[\onelineskip]
+Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met donc dans le même panier, ou plutôt, dans la même classe\textellipsis}
+    Soient $E, F, G$, trois ensembles.
+	\begin{enumerate} 
+		\item $E \mathrel{\approx} E$, car l'application identité est une bijection. $\mathrel{\approx}$ est réflexive.
+		\item $E \mathrel{\approx} F$ signifie qu'il existe une bijection de E dans F. Alors, l'inverse de cette bijection est une application de F dans E, elle-même bijective.
+		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par composition, $\psi\circ\phi$ est une bijection de E dans G, c. -à-d. $E \mathrel{\approx} G$. $\mathrel{\approx}$ est transitive. 
+	\end{enumerate}
+	$\mathrel{\approx}$ est bien une relation d'équivalence.
+\end{proof}
+
+\begin{theoremb}{}{assequiv}
+	Soient $E, F$ deux ensembles \textbf{finis} et $\phi~: E \to F$ une application. Si $E \mathrel{\approx} F$ alors les 3 assertions suivantes sont équivalentes~:
+	
+	\begin{enumerate}
+		\item $\phi$ est injective ;
+		\item $\phi$ est surjective ;
+		\item $\phi$ est bijective. 
+	\end{enumerate}
+\end{theoremb}
+
+\begin{defb}{Ensemble infini}{ifini}
+	Soit $E$ un ensemble.
+	
+	On dit que $E$ est infini ssi $E$ n'est pas fini.
+\end{defb}
+
+\begin{theoremb}{}{partn} 
+	Toute partie de $\NN$ est finie ssi elle est majorée. 
+\end{theoremb}
+
+
+
+\begin{theoremb}{}{ninfini}
+	$\NN$ est infini. 
+\end{theoremb}
+
+
+\begin{proof}
+	Si $\NN$ était fini, d'après le \cref{thm:partn}, $\NN$ admettrait un majorant. Autrement dit \[\exists k \in \NN, \forall x \in \NN, x \leq k.\]
+
+	Or la construction de $\NN$ implique que si $ k \in \NN$, alors $k + 1 \in \NN$ et $\exists x \in \NN, x > k, x= k+1$, d'où une contradiction. 
+	
+	Donc $\NN$ est infini.
+\end{proof}
+\section{Des parties infinies ?}
+L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\NN$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C. 
 
 On se propose donc ici de reformuler sa démonstration en terme modernes. 
-La démonstration du théorème suivant est rejetée en \cref{annexe:thmfondarith}.
 \begin{defb}{Divisibilité}{div}
 Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : $$b=ka \xLeftrightarrow{ a \mathrel{\neq} 0 } \frac{b}{a}=k.$$
 \end{defb}
@@ -71,13 +321,12 @@ Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le p
 Si $n$ divise deux entiers $a,b$, il divise aussi leur produit $ab$. 
 \end{lemmab}
 \begin{proof}
-Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{knk'}_{\eqdef k_2\in \mathbb{N}}\times n.\]
+Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{knk'}_{\eqdef k_2\in \mathbb{N}}{}\times n.\]
 \end{proof}
-Le lemme suivant est \textbf{fondamental} dans ce qui suit.
+Le lemme suivant est \textbf{fondamental} dans ce qui suit :
 \begin{lemmab}{Théorème fondamental de l'arithmétique}{Fonda-Arith}
   Tout entier naturel non-nul peut être écrit comme un produit de nombres premiers d'une unique façon, à l'ordre près des facteurs.
 \end{lemmab}
-
 La démonstration de ce théorème est rejetée en~\cref{annexe:thmfondarith}.
 
 Ces rappels balayés, on peut démontrer le résultat d'Euclide 
@@ -92,174 +341,85 @@ Autrement dit, il existe une infinité de nombres premiers.
 On démontre le résultat par récurrence. Une liste vide (à 0 éléments) ne contient aucun nombre premier, elle est donc incomplète car 2 est premier. 
 Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : \[ N=\prod_{i=1}^{n} p_i\]\sidepar{\vspace*{-3.5\baselineskip}\itshape \footnotesize Donc $N$ est égal à Pi de 1 à $n$ de $p_i$}
 Si notre suite est vide, on pose $N=2$.
+
 Les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{lem:Fonda-Arith}.
 \sidepar{\itshape \footnotesize $2$ est le plus petit nombre premier.}
-Dans les deux cas, d'après le \cref{lem:ncopremsn}, $N+1$ est premier avec $N$. Comme $N\geq 2$,  alors $N+1\geq 3$, et $N$ admet donc un facteur premier, en vertu du~\cref{lem:Fonda-Arith}. Mais alors, d'après la \cref{rem:prem-equiv}, un des facteurs premiers de $N+1$ ne figure dans notre liste. 
-
-Par récurrence, le résultat est démontré.
+Si $N+1$ est premier, alors notre liste est incomplète. Dans le cas contraire, on est assuré de l'existence d'un facteur premier $p$ pour $N+1$. Mais, d'après le \cref{lem:ncopremsn}, ce facteur premier n'est pas dans la décomposition de $N$, il n'est donc pas dans notre liste. Dans les deux cas, notre liste est incomplète. 
 \end{proof}
-\part{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$}{Dénombrabilité de Q}} \chapter{Définition et propriétés de la dénombrabilité}
-\section{Ensembles finis et infinis} \sidepar{$\to$  def cardinalité ?}
-
-\begin{defb}{Finitude}{fini}
-     Soit $E$ un ensemble. 
-	    
-	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\varphi~: \{1,\dots,n \} \to E$, avec $n \in \mathbb{N}$. 
-		
-	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$. 
-\end{defb}
-
-\begin{defb}{Equipotence}{equip}
-    On dit que $E$ et $F$ sont équipotents ssi $\Card(E) = \Card(F)$ s' il existe $\varphi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$. 
-\end{defb}
-
-\begin{theoremb}{}{mmpuiss}
-    $ \mathrel{\approx}$ est une relation d'équivalence. 
-\end{theoremb}
-
-\begin{proof}
-    Soient $E, F, G$, trois ensembles.
-	\begin{enumerate} 
-		\item $E \mathrel{\approx} E$, car l'application identité est une bijection. $\mathrel{\approx}$ est réflexive.
-		\item $E \mathrel{\approx} F$ signifie qu'il existe une bijection de E dans F. Alors, l'inverse de cette bijection est une application de F dans E, elle-même bijective.
-		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans g,$\psi$. Par composition, $\psi\circ\phi$ est une bijection de E dans G, ie $E \mathrel{\approx} G$. $\mathrel{\approx}$ est transitive. 
-	\end{enumerate}
-	$\mathrel{\approx}$ est bien une relation d'équivalence.
-\end{proof}
-
-\begin{theoremb}{}{assequiv}
-	Soient $E, F$ deux ensembles \textbf{finis} et $\varphi~: E \to F$ une application. Si $E \mathrel{\approx} F$ alors les 3 assertions suivantes sont équivalentes~:
-	
-	\begin{enumerate}
-		\item $\varphi$ est injective ;
-		\item $\varphi$ est surjective ;
-		\item $\varphi$ est bijective. 
-	\end{enumerate}
-\end{theoremb}
-
-\begin{defb}{Ensemble infini}{ifini}
-	Soit $E$ un ensemble.
-	
-	On dit que $E$ est infini ssi $E$ n'est pas fini.
-\end{defb}
-
-\begin{theoremb}{}{partn} 
-	Toute partie de $\mathbb{N}$ est finie ssi elle est majorée. 
-\end{theoremb}
-
-
-
-\begin{theoremb}{}{ninfini}
-	$\mathbb{N}$ est infini. 
-\end{theoremb}
-
-
-\begin{proof}
-	Si $\mathbb{N}$ était fini, d'après le \cref{thm:partn}, $\mathbb{N}$ admettrait un majorant. Autrement dit \[\exists k \in \mathbb{N}, \forall x \in \mathbb{N}, x \leq k.\]
-
-	Or la construction de $\mathbb{N}$ implique que si $ k \in \mathbb{N}$, alors $k + 1 \in \mathbb{N}$ et $\exists x \in \mathbb{N}, x > k, x= k+1$, d'où une contradiction. 
-	
-	Donc $\mathbb{N}$ est infini.
-\end{proof}
-
-\section{Ensembles dénombrables}
-
+Comme on l'a vu ci-avant, l'infini nous réserve quelques surprises. Il est donc judicieux de considérer une famille plus large d'ensemble : les ensembles \emph{dénombrables} et \emph{au plus dénombrables}. 
+\part{Dénombrabilité}
+\chapter{\texorpdfstring{\'Etude de 2$\NN$, $\ZZ$, $\QQ$}{Dénombrabilité : Étude de N,2N,Z, et Q}} 
+\section{Définition générale de la dénombrabilité}
+Commençons par une définition précise de ce que l'on vient de constater :
 \begin{defb}{Ensemble démombrable, au plus dénombrable}{denomb}
 
 	 Soit $E$ un ensemble infini. 
 	 
-	 On dit que $E$ est dénombrable ssi il existe une application $\varphi~: \mathbb{N} \to E $ bijective. 
+	 On dit que $E$ est dénombrable ssi il existe une application $\phi~: \NN \to E $ bijective. 
 	 
-	 Un ensemble fini ou dénombrable est dit au plus dénombrable. 
+	 Un ensemble fini ou dénombrable est dit au plus dénombrable. \newline
+	 On note par la suite $\aleph_0$, lire \emph{alèf zéro}\footnotemark, le cardinal de $\NN$. 
 \end{defb}
-
-On note par la suite $\aleph_0$,lire \emph{alèf zéro}\footnote{Aleph, première lettre  de l'alphabet hébreu}, le cardinal de $\mathbb{N}$. 
-\clearpage
-\begin{samepage}
-\section{Propriétés usuelles de dénombrabilité}
-
-\begin{theoremb}{}{parties}
-
-	Soient $E$ et $F$ deux ensembles. 
-	Si $E \subset F$ et si $F$ est dénombrable, alors $E$ est au plus dénombrable.
-\end{theoremb}
-
-\begin{theoremb}{Union de deux ensembles dénombrables}{union}
-    Soit $(A_i)_{i \in I}$ une famille dénombrable d'ensemble dénombrable. 
-	
-	Alors $A= \bigcup_{i \in I} A_i$ est dénombrable. 
-\end{theoremb}
+\footnotetext{Aleph, première lettre  de l'alphabet hébreu}
 
 
-\begin{theoremb}{Produit cartésien d'ensembles dénombrables}{cartesien}
-	Soient $A, B, A_1, \dots, A_i, \dots, A_n$ des ensembles dénombrables. 
-	
-	\begin{enumerate}
-		\item Le produit cartésien $A \times B$ est dénombrable. 
-		\item Plus généralement, tout produit \textbf{fini} $\prod_{i=1}^{n} A_i $ est dénombrable.
-	\end{enumerate}
-\end{theoremb}
-\begin{proof}
-	Les  \cref{thm:union,thm:cartesien} seront démontrées par la suite dans la \cref{sec:denombrabilite_usuelle}~.
-	
-	% saut de ligne pour virer le cqfd
-\end{proof}
-\end{samepage}
-
-\section{\texorpdfstring{Dénombrabilité de 2$\mathbb{N}$}{Dénombrabilité de 2N}}
+\section{\texorpdfstring{Dénombrabilité de 2$\NN$}{Dénombrabilité de 2N}}
 \label{sec:denombrabilite_usuelle}
-Naturellement on pourrait penser que les ensembles inclus dans $\mathbb{N}$ ont une cardinal inférieur à $\aleph_0$. Contre toute attente, voici un résultat sur la dénombrabilité de  $2\mathbb{N}$, l'ensemble des entiers naturels pairs.
+Il semble que l'ensemble des nombre premier n'est pas le seul à défier notre intuition :  voici un résultat sur la dénombrabilité de  $2\NN$, l'ensemble des entiers naturels pairs.
 
-\begin{theoremb}{Dénombrabilité de 2$\mathbb{N}$}{}
-	L'ensemble 2$\mathbb{N}$ des entiers naturels pairs est dénombrable. 
+\begin{theoremb}{Dénombrabilité de 2$\NN$}{}
+	L'ensemble 2$\NN$ des entiers naturels pairs est dénombrable. 
 \end{theoremb}
 
 \begin{proof}
 	On construit l'application \[ \begin{array}{cccc}
-	\ & \mathbb{N}& \to& 2\mathbb{N} \\
-	\varphi~: & n & \mapsto & 2n
+	\ & \NN& \to& 2\NN \\
+	\phi~: & n & \mapsto & 2n
 	\end{array}.\]
 	
-	Cette application $\varphi $ est bijective car sa réciproque est $ \varphi^{-1}~: \begin{array}{ccc}
-	2\mathbb{N} & \to & \mathbb{N}\\
+	Cette application $\phi $ est bijective car sa réciproque est $ \phi^{-1}~: \begin{array}{ccc}
+	2\NN & \to & \NN\\
 	k & \mapsto & \frac{k}{2}
 	\end{array}$. 
 	
-	2$\mathbb{N}$ est en bijection avec $\mathbb{N}$. 2$\mathbb{N}$ est bien un ensemble dénombrable de cardinal $\aleph_0$. 
+	2$\NN$ est en bijection avec $\NN$. 2$\NN$ est bien un ensemble dénombrable de cardinal $\aleph_0$. 
 \end{proof}
 
-On peut introduire un résultat plus général qui couvre toute partie de $\mathbb{N}$. 
+On peut introduire un résultat plus général qui couvre toute partie de $\NN$. 
 
-\begin{theoremb}{Dénombrabilité des parties infinies de $\mathbb{N}$}{}
-	Toute partie $E \subset \mathbb{N}$ infinie a le même cardinal que $\mathbb{N}$. 
+\begin{theoremb}{Dénombrabilité des parties infinies de $\NN$}{}
+	Toute partie $E \subset \NN$ infinie a le même cardinal que $\NN$. 
 \end{theoremb}
 
 \begin{proof}
-	On construit, par récurrence, une bijection $\phi~: \mathbb{N} \to E$ telle que: 
+	On construit, par récurrence, une bijection $\phi~: \NN \to E$ telle que: 
 	
 	\[\left\lbrace \begin{array}{c}
 	\phi(0) = \min \{x \in E\} \\
-	\forall n \in \mathbb{N}, \phi(n+1) = \min \{x \in E, x > \phi(n) \}
+	\forall n \in \NN, \phi(n+1) = \min \{x \in E, x > \phi(n) \}
 	\end{array} \right.\]
 	
-	C'est bien une bijection~: elle est injective et surjective car $\forall k \in \mathbb{N}, k \leq \phi(k)$. 
+	C'est bien une bijection~: elle est injective et surjective car $\forall k \in \NN, k \leq \phi(k)$. 
 \end{proof}
+On en déduit le résultat suivant : 
+\begin{theoremb}{}{parties}
+	Soient $E$ et $F$ deux ensembles. 
+	Si $E \subset F$ et si $F$ est dénombrable, alors $E$ est au plus dénombrable.
+\end{theoremb}
+\section{\texorpdfstring{Dénombrabilité de $\NN^2$}{Dénombrabilité de N²}}
+Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E^2) \neq \Card(E)$. On pourrait penser que $\NN^2 $ contient plus d'élements que $\NN$. 
 
-\section{\texorpdfstring{Dénombrabilité de $\mathbb{N}^2$}{Dénombrabilité de N²}}
-
-Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E^2) \neq \Card(E)$. On pourrait penser que $\mathbb{N}^2 $ contient plus d'élements que $\mathbb{N}$. 
-
-\begin{theoremb}{Dénombrabilité de $\mathbb{N}^2$}{n2_denombrable}
-	$\mathbb{N}^2$ est dénombrable. 
+\begin{theoremb}{Dénombrabilité de $\NN^2$}{n2_denombrable}
+	$\NN^2$ est dénombrable. 
 \end{theoremb}
 
 \begin{proof} 
-	On peut compter les couples $(n,m) \in \mathbb{N}^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien. 
+	On peut compter les couples $(n,m) \in \NN^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien. 
 	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $(0,1)$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig:n_croix_n}.
 	\begin{figure}[htb]
 		\centering
 		\includegraphics[scale=0.3]{n_croix_n.png}
-		\caption{Dénombrabilité de $\mathbb{N}^2$}
+		\caption{Dénombrabilité de $\NN^2$}
 		\label{fig:n_croix_n}
 	\end{figure}
 	
@@ -274,99 +434,100 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 	\end{array}.\]
 	Plus formellement, l'application qui range les couples de cette manière est 
 	\[\begin{array}{cccc}
-		\ & \mathbb{N} \times \mathbb{N} & \to & \mathbb{N} \\
-		\varphi~: & (n,m) & \mapsto & {\underbrace{\frac{(n+m)(n+m+1)}{2}}_{\text{la place du couple dans la ligne}}} +  {\underbrace{\vphantom{\frac{(n+m)(n+m+1)}{2}} m}_{\text{la place du couple dans la colonne}}}
+		\ & \NN \times \NN & \to & \NN \\
+		\phi~: & (n,m) & \mapsto & {\underbrace{\frac{(n+m)(n+m+1)}{2}}_{\text{la place du couple dans la ligne}}} +  {\underbrace{\vphantom{\frac{(n+m)(n+m+1)}{2}} m}_{\text{la place du couple dans la colonne}}}
 	\end{array}.\]
 	
 	
-	$\varphi$ est bien bijective. $\mathbb{N}^2$ est bien dénombrable.
+	$\phi$ est bien bijective. $\NN^2$ est bien dénombrable.
 \end{proof}
 
 
-Par récurrence sur $k \in \mathbb{N}$, on peut montrer le théorème suivant :
-
+Par récurrence sur $k \in \NN$, on peut montrer le théorème suivant :
 \begin{theoremb}{}{nk_denombrable}
-    $\mathbb{N}^k$ est dénombrable.
+    $\NN^k$ est dénombrable.
 \end{theoremb}
 
 \begin{proof}
 
-Pour $k = 3$, on peut, en utilisant les notations du \cref{thm:n2_denombrable}, établir une bijection entre $\mathbb{N}^2$ et $\mathbb{N}^3$. Posons $h_3 : \mathbb{N}^2 \to \mathbb{N}^3$ telle que $h_3(n,m) = (n,\varphi^{-1}(m))$. $h_3$ est bien une bijection. 
+Pour $k = 3$, on peut, en utilisant les notations du \cref{thm:n2_denombrable}, établir une bijection entre $\NN^2$ et $\NN^3$. Posons $h_3 : \NN^2 \to \NN^3$ telle que $h_3(n,m) = (n,\phi^{-1}(m))$. $h_3$ est bien une bijection. 
 
-Soit $k \in \mathbb{N}$ fixé. Supposons l'hypothèse vraie au rang $k$, i. e. $\mathbb{N}^k$ est dénombrable.
+Soit $k \in \NN$ fixé. Supposons l'hypothèse vraie au rang $k$, i. e. $\NN^k$ est dénombrable.
 
-On construit une bijection entre $\mathbb{N}^2$ et $\mathbb{N}^{k+1}$. On pose $h_{k+1}(n_1, \dots, n_{k+1}) = (h_k(n_1, \dots, n_k),n_{k+1})$ où $h_k(n_1, \dots, n_k) \in \mathbb{N}$ car d'après l'hypothèse de récurrence, $\mathbb{N}^k$ est dénombrable. On a ainsi établi une bijection entre $\mathbb{N}^{k+1}$ et $\mathbb{N}^2$. Or $\mathbb{N}^2$ est dénombrable. Donc $\mathbb{N}^k$ est dénombrable. 
+On construit une bijection entre $\NN^2$ et $\NN^{k+1}$. On pose $h_{k+1}(n_1, \dots, n_{k+1}) = (h_k(n_1, \dots, n_k),n_{k+1})$ où $h_k(n_1, \dots, n_k) \in \NN$ car d'après l'hypothèse de récurrence, $\NN^k$ est dénombrable. On a ainsi établi une bijection entre $\NN^{k+1}$ et $\NN^2$. Or $\NN^2$ est dénombrable. Donc $\NN^k$ est dénombrable. 
 
-Par récurrence, $\forall k \in \mathbb{N}, \mathbb{N}^k$ est dénombrable. 
+Par récurrence, $\forall k \in \NN, \NN^k$ est dénombrable. 
 
 \end{proof}
-
-
-De la dénombrabilité de $\mathbb{N}^2$, on peut démontrer le \cref{thm:cartesien}. 
-
+De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :. 
+\begin{theoremb}{Produit cartésien d'ensembles dénombrables}{cartesien}
+	Soient $A, B, A_1, \dots, A_i, \dots, A_n$ des ensembles dénombrables. 
+	\begin{enumerate}
+		\item Le produit cartésien $A \times B$ est dénombrable. 
+		\item Plus généralement, tout produit \textbf{fini} $\prod_{i=1}^{n} A_i $ est dénombrable.
+	\end{enumerate}
+\end{theoremb}
 \begin{proof}
-	Si $E$ et $F$ sont dénombrables, il existe $\varphi~: E \to \mathbb{N}$ et $\psi~: F \to \mathbb{N}$ bijectives. On peut alors définir \[ \begin{array}{cccc}
-	\ & A \times B & \to & \mathbb{N}^2 \\
-	f~: & (x,y) & \mapsto & (\varphi(x), \psi(y))
+	Si $E$ et $F$ sont dénombrables, il existe $\phi~: E \to \NN$ et $\psi~: F \to \NN$ bijectives. On peut alors définir \[ \begin{array}{cccc}
+	\ & A \times B & \to & \NN^2 \\
+	f~: & (x,y) & \mapsto & (\phi(x), \psi(y))
 	\end{array}.\]
 	
 \end{proof}
 
 $f $ est bien bijective. Donc $A \times B$ est bien dénombrable. On procède par récurrence immédiate pour $k$ ensembles. 
 
-Soit $\prod_{i =1}^k A_i$ le produit cartésien de $k$ ensembles dénombrables. Si $\forall i \in \{1,\dots,k\}, \varphi_i : A_i \to \mathbb{N}$ est une bijection, alors on peut construire l'application \[ \begin{array}{cccc}
-	\ & \prod_{i=1}^k A_i & \to & \mathbb{N}^k\\
-	f~: & (x_1,\dots,x_k) & \mapsto & (\varphi_1(x_1),\dots, \varphi_k(x_k))
+Soit $\prod_{i =1}^k A_i$ le produit cartésien de $k$ ensembles dénombrables. Si $\forall i \in \{1,\dots,k\}, \phi_i : A_i \to \NN$ est une bijection, alors on peut construire l'application \[ \begin{array}{cccc}
+	\ & \prod_{i=1}^k A_i & \to & \NN^k\\
+	f~: & (x_1,\dots,x_k) & \mapsto & (\phi_1(x_1),\dots, \phi_k(x_k))
 	\end{array}.\] 
-C'est une bijection de $\prod_{i=1}^k A_i $ vers $\mathbb{N}^k$ qui est dénombrable. Donc $\prod_{i=1}^kA_i$ est dénombrable.
+C'est une bijection de $\prod_{i=1}^k A_i $ vers $\NN^k$ qui est dénombrable. Donc $\prod_{i=1}^kA_i$ est dénombrable.
 
 
-On peut maintenant prouver le \cref{thm:union}. 
-
-
+On peut encore montrer le résultat suivant : 
+\begin{theoremb}{Union de deux ensembles dénombrables}{union}
+    Soit $(A_i)_{i \in I}$ une famille dénombrable d'ensembles dénombrables. 
+	Alors $A= \bigcup_{i \in I} A_i$ est dénombrable. 
+\end{theoremb} 
 \begin{proof}
-	En effet, on peut écrire $\forall i \in I, A_i = \{x_{n,i}, n \in \mathbb{N}\}$. Chaque élement $x_{n, i}$ est indéxé par sa position $n$ dans $A_i$ et la position $i$ de $(A_i)$ dans $I$. 
+	En effet, on peut écrire $\forall i \in I, A_i = \{x_{n,i}, n \in \NN\}$. Chaque élement $x_{n, i}$ est indéxé par sa position $n$ dans $A_i$ et la position $i$ de $(A_i)$ dans $I$. 
 	
-	Ainsi $A = \bigcup_{i \in I} A_i = \{x_{n, i}, (n,i) \in \mathbb{N} \times I\}$. Les élements $x_{n,i}$ sont indéxés par $\mathbb{N} \times I$ qui est un produit cartésien d'ensembles dénombrables ($I$ est une famille indéxée par $\mathbb{N}$, elle est bien dénombrable). Donc $A$ est dénombrable.
+	Ainsi $A = \bigcup_{i \in I} A_i = \{x_{n, i}, (n,i) \in \NN \times I\}$. Les élements $x_{n,i}$ sont indéxés par $\NN \times I$ qui est un produit cartésien d'ensembles dénombrables ($I$ est une famille indéxée par $\NN$, elle est bien dénombrable). Donc $A$ est dénombrable.
 \end{proof}
-\clearpage
-\section{\texorpdfstring{Dénombrabilité de $\mathbb{Z}$ et de $\mathbb{Q}$}{}}
+\section{\texorpdfstring{Dénombrabilité de $\ZZ$ et de $\QQ$}{Dénombrabilité de Z et Q}}
 
-Intuitivement on pourrait penser que l'ensemble des entiers $\mathbb{Z}$ a un cardinal supérieur à $\mathbb{N}$ étant donné qu'il contient ``deux fois plus" d'élements~: les entiers naturels et les entiers négatifs. 
+Intuitivement on pourrait penser que l'ensemble des entiers $\ZZ$ a un cardinal supérieur à $\NN$ étant donné qu'il contient ``deux fois plus" d'élements~: les entiers naturels et les entiers négatifs. 
 
-\begin{theoremb}{Dénombrabilité de $\mathbb{Z}$}{denz}
-	L'ensemble $\mathbb{Z}$ des entiers est dénombrable. 
+\begin{theoremb}{Dénombrabilité de $\ZZ$}{denz}
+	L'ensemble $\ZZ$ des entiers est dénombrable. 
 \end{theoremb}
 
 \begin{proof}
-L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant~:  $\mathbb{Z}=\left\lbrace 0,1,(-1),2,(-2),3,(-3) \dots\right\rbrace$ 
+L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant~:  $\ZZ=\left\lbrace 0,1,(-1),2,(-2),3,(-3) \dots\right\rbrace$ 
 
-	Pour montrer que le cardinal de $\mathbb{Z}$ est bien $\aleph_0$, on définit donc l'application $\phi~: \mathbb{N} \to \mathbb{Z}$ telle que \[ \forall k \in \mathbb{N}, \
+	Pour montrer que le cardinal de $\ZZ$ est bien $\aleph_0$, on définit donc l'application $\phi~: \NN \to \ZZ$ telle que \[ \forall k \in \NN, \
 	\begin{dcases}
 	\phi(2k)& = -k \\
 	\phi(2k + 1)& = k+1
 	\end{dcases}
 \]
-	
-	C'est bien une bijection. Donc $\mathbb{Z}$ est dénombrable. 
+	C'est bien une bijection. Donc $\ZZ$ est dénombrable. 
 \end{proof}
-\begin{samepage}
-
-\begin{theoremb}{Dénombrabilité de $\mathbb{Q}$}{denq}
-	$\mathbb{Q}$ est dénombrable.
+\begin{theoremb}{Dénombrabilité de $\QQ$}{denq}
+	$\QQ$ est dénombrable.
 \end{theoremb}
 \begin{proof}
-	Tout $x \in \mathbb{Q}$ a un unique représentant irréductible $\frac{p}{q}$ où $p \wedge q = 1$. 
+	Tout $x \in \QQ$ a un unique représentant irréductible $\frac{p}{q}$ où $p \wedge q = 1$. 
 	
-	Pour établir une bijection entre $\mathbb{Q}$ et $\mathbb{N}$, on commence par écrire un tableau où on range $\frac{p}{q}$ à la colonne $q$ et à la ligne $p$.  
+	Pour établir une bijection entre $\QQ$ et $\NN$, on commence par écrire un tableau où on range $\frac{p}{q}$ à la colonne $q$ et à la ligne $p$.  
 	
 	On parcourt le tableau comme c'est indiqué par les flèches dans la \cref{fig:denombQ}. 
 	
-	On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau diagonalement vers le haut jusqu'à atteindre $\frac{1}{3}$, etc. 
+	On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau en diagonale vers le haut jusqu'à atteindre $\frac{1}{3}$, etc. 
 	
-	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L'application $\varphi$ qui range les rationnels $x \in \mathbb{Q}$ dans ce tableau est donc une bijection.
+	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L'application $\phi$ qui range les rationnels $x \in \QQ$ dans le tableau \cref{fig:denombQ} est donc une bijection.
 \end{proof}
-\begin{figure}[!htbp]
+\begin{figure}[hb]
     \centering
 \begin{tikzpicture}
 \tikzstyle{keepstyle} =[rectangle, rounded corners, draw, fill=white]
@@ -427,10 +588,14 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 \draw [-latex, red, thick] (34) -- (43);
 \draw [-latex, red, thick] (43) -- (52);
 \end{tikzpicture}
-\caption{Dénombrabilité de $\mathbb{Q}$}
+\caption{Dénombrabilité de $\QQ$}
     \label{fig:denombQ}
 \end{figure}
-\end{samepage}
+\raggedright
+\begingroup
+\nocite{*}
+\printbibliography
+\endgroup
 \appendixpage\appendix
 \chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe:thmfondarith}
 Pour mener à bien la démonstration, on aura besoin d'un lemme. 
@@ -474,11 +639,6 @@ $a$
 \Cref{thm:exem}, \cref{rem:rema}, \cref{note:not} \cref{def:def} 
 \deffunct{f}{E}{F}{x}{f(x)}
 \backmatter
-\begingroup
-\raggedright
-\nocite{*}
-\printbibliography
-\endgroup
 \end{document}
 %%% Local Variables:
 %%% mode: latex

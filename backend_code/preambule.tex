@@ -1,4 +1,5 @@
 \usepackage{luacode}
+\usepackage{shellesc}
 \usepackage[german,main=french]{babel}
 \usepackage[autostyle=true,maxlevel=3]{csquotes}
 \usepackage{fontspec}
@@ -8,15 +9,19 @@
 \defaultfontfeatures{Ligatures={TeX}}
 \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 \usepackage[most]{tcolorbox}
-\usepackage{ragged2e}  % for use in margin notes content align
+\usepackage{ragged2e}  % Permet la césure dans les marges
 \usepackage{tikz}
-\usepackage{caption}
 \usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc}
+\usepackage{caption}
 \usepackage{lualatex-math}
+\usepackage{float}
 \usepackage[unicode,naturalnames]{hyperref}
 \usepackage{cleveref}
 \AtBeginDocument{\let\savedemptyset\emptyset} % 
 \AtBeginDocument{\let\emptyset\varnothing} % 
+\AtBeginDocument{\let\savedphi\phi} % 
+\AtBeginDocument{\let\phi\varphi} %
+\AtBeginDocument{\let\varphi\savedphi} % 
 \AtBeginDocument{\let\savedleq\leq} % 
 \AtBeginDocument{\let\savedgeq\geq} %
 \AtBeginDocument{\let\leq\leqslant} % 
@@ -69,5 +74,6 @@
   \normalfont
   \@afterheading
 }
+% 2 lignes pour localiser les overfull hbox et vbox dans le log
 \showboxdepth=\maxdimen
 \showboxbreadth=\maxdimen

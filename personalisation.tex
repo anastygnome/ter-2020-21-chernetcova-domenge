@@ -27,14 +27,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   BOITES POUR THEOREMES   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tcbsetforeverylayer{shield externalize}% <--- interim solution before bug fix
 \tcbset{separator sign={},
         description delimiters parenthesis,
         label separator=:,
 styletheorem/.style={enhanced,
+  boxrule=\fboxrule,
   coltitle=black,
   colback=white,
+  before skip=2\fboxsep,
+  after skip=2\fboxsep,
   fonttitle=\bfseries,
-  boxrule=\fboxrule,
   boxed title style={boxrule=\fboxrule},
   attach boxed title to top left={yshift=-2mm, xshift=2mm},
     }%
@@ -71,6 +74,14 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
        &#4\xmapsto{\hphantom{#1}} #5
 \end{align*}%
 }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               Ensembles.                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\NN}{\mathbf{N}}
+\newcommand*{\ZZ}{\mathbf{Z}}
+\newcommand*{\QQ}{\mathbf{Q}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   PAGE DE GARDE            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,30 +92,24 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 \newcommand*{\thesupervisor}{Joachim \bsc{Asch}}
 \author{Anastasiia \bsc{Chernetcova}~\&~Tom \bsc{Domenge}}
 \title{Projet TER 2020\par
-            Dénombrabilité : \par $\mathbb{N},2\mathbb{N} \ \& \ \mathbb{Q}$\par}
+            Dénombrabilité : \par $\NN,2\NN \ \& \ \QQ$\par}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Opérateurs (dans le style de max etc.   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareMathOperator{\Card}{Card} % s'utilise avec \Card en mode maths
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   	Marges et note en marge.   			 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\setheadfoot{2\baselineskip}{2\footskip}
-\setlrmargins{*}{*}{*}         % Marges égales
+\setulmargins{*}{*}{*}
+\setheaderspaces{*}{*}{*}
+\setlrmargins{*}{*}{*}
+\setheadfoot{\headheight+0.314pt}{\footskip}
 \checkandfixthelayout[nearest]
-\renewcommand*{\sideparfont}{\itshape \footnotesize}
+\renewcommand*{\sideparfont}{\itshape\footnotesize}
 \renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            Numérotation (classe memoir)       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand*{\cftdotsep}{1}
-\setpnumwidth{3em}
-\setrmarg{4em}
-  \setlength{\cftchapternumwidth}{2.55em}
+
 \setsecnumdepth{subsubsection}
 \renewcommand{\cftpartaftersnum}{.}
 \renewcommand{\cftchapteraftersnum}{.}
@@ -114,6 +119,7 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 \aliaspagestyle{part}{empty} 
 \addto\captionsfrench{\renewcommand{\appendixpagename}{Annexes}}
 \addto\captionsfrench{\renewcommand{\appendixtocname}{Annexes}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            Numérotation (classe memoir)       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,3 +129,8 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 \setmathfont{Asana Math}
 \setmathfont[range={bb}]{STIX Two Math}
 \setmathfont[range={scr,cal}]{TeX Gyre Pagella Math}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Opérateurs (dans le style de max etc.   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\Card}{Card} % s'utilise avec \Card en mode maths
