@@ -77,3 +77,18 @@
 % 2 lignes pour localiser les overfull hbox et vbox dans le log
 \showboxdepth=\maxdimen
 \showboxbreadth=\maxdimen
+\newcounter{PageNumberBeforeMainmatter}
+\let\LaTeXStandardMainmatter\mainmatter%
+\renewcommand{\mainmatter}{%
+\setcounter{PageNumberBeforeMainmatter}{\number\value{page}}%
+\LaTeXStandardMainmatter%
+}%
+
+\let\LaTeXStandardAppendixPage\appendixpage
+\renewcommand{\appendixpage}{%
+\cleardoublepage%
+\pagenumbering{roman}%
+\setcounter{page}{\number\value{PageNumberBeforeMainmatter}+1}
+\LaTeXStandardAppendixPage%
+}%
+

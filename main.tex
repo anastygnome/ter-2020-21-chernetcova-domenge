@@ -29,7 +29,7 @@ Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter
 \mainmatter
 \part{Préliminaires au dénombrement~: Comptage, ensembles, bijection}
 \chapter{Ensembles \& fonctions}
-\section{\'Enumérations, comptage : notion de fonction}
+\section{\'Enumération et comptage}
 Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser cette notion 
 Si on veut compter, à voix haute, une par une, les lettres du mot~:\[\text{cbda}\]
 
@@ -43,7 +43,7 @@ c & b & d & a &  \\
 \end{table}
 
 Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph{patate} : 
-	\begin{figure}[h]
+\begin{figure}[h]
 	\centering
     \begin{tikzpicture}
 	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
@@ -76,7 +76,7 @@ Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph
 %\diagfonctsurj
 
 %\diagcompfonct
-Si cet exemple a l'air simple, il n'est pas simpliste pour autant :  ce procédé, qui consiste à associer à chaque lettre un nombre est omniprésent en mathématique et il porte le nom \emph{d'application}. 
+Si cet exemple a l'air simple, il n'est pas simpliste pour autant :  ce procédé, qui consiste à associer à chaque lettre un nombre est omniprésent en mathématiques et il porte le nom \emph{d'application}.
 Plus remarquable encore, ce diagramme permet même de donner une première définition quasi-formelle de ce qu'est une application. Une chose est \emph{cruciale} : chaque lettre ne doit être comptabilisée une seule et unique fois, sinon, le résultat final est faussé ! 
 
 Pour fixer les idées voici deux nouvelles applications.
@@ -109,7 +109,8 @@ Pour fixer les idées voici deux nouvelles applications.
 \end{figure}	
 
 Cet exemple simple est très utilisé, notamment en informatique, en remplaçant pair et impair par $0$ et $1$, respectivement. \sidepar{les développeurs aguerris auront reconnu la formule ~\textup{\texttt{n=n\&1}}.}
-\tikzset{external/remake next}
+
+\hrulefill
 \begin{figure}[htb]
 	\centering
     \begin{tikzpicture}
@@ -130,7 +131,6 @@ Cet exemple simple est très utilisé, notamment en informatique, en remplaçant
 	\node[bullet,fill=roug,label=right:$5$] (b6) at (4,-1) {};%
 	\node[bullet,fill=roug,label=right:$6$] (b7) at (4,-2) {};%
 
-
 %
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4) (a5) (a6) (a7),minimum width=4.6cm] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4) (b5) (b6) (b7),minimum width=2cm] (Y) {} ;  %
@@ -143,7 +143,7 @@ Cet exemple simple est très utilisé, notamment en informatique, en remplaçant
 	\draw[->,projection] (a6) to[out=20, in=150] (b6);
 	\draw[->,projection] (a7) to[out=20, in=150] (b1);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{jour n\textsuperscript{o}} (Y.north);
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{jour n\textsuperscript{o}} (Y.north);
 %	\node[below] at (X.south) {t};
 	\end{tikzpicture}%
 %
@@ -151,56 +151,24 @@ Cet exemple simple est très utilisé, notamment en informatique, en remplaçant
 	\label{fig:jourssem}
 \end{figure}
 \sidepar{ En 1990, \bsc{Keith} a trouvé le jour correspondant à une date grâce à l'expression suivante (en  langage \textup{\textsf{C}) :\\\texttt{int weekday  = (d~+=~m~<~3~? y-\/-~: y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)\%7;  
-}}}
+	}}}
 \clearpage
-Il y a cependant un détail à régler : Comment considère-t-on les points qui ne sont pas reliés ? 
-	\begin{figure}[h]
+\section{Étude de deux cas limites}
+Il y a cependant un détail à régler : Comment considère-t-on les points qui ne sont pas reliés ?
+\begin{figure}[h]
 	\centering
-    \begin{tikzpicture}[scale=0.5]
-	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
-	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
-	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
-	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};%
-	%
-	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
-	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
-	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
-	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};
-	\node[bullet,fill=roug,label=right:$5$] (b5) at (4,0) {};%
-
-%
-	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
-	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4) (b5),minimum width=2cm] (Y) {} ;  %
-%
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=150] (b3);
-%
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{comptage 2} (Y.north);
-%	\node[below] at (X.south) {t};
-	\end{tikzpicture}%
-%
-	\caption{Un point n'est pas relié à droite : est-ce une application ?}
-	\label{fig:comptageinj}
-\clearpage
-\end{figure}
-\tikzset{external/force remake=true}
-
-	\begin{figure}[h]
-	\centering
-    \begin{tikzpicture}[scale=0.5]
+    \begin{tikzpicture}
 	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
 	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
 	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
 	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};
-	\node[bullet,fill=bleu,label=left:e] (a5) at (0,0) {};%
+	\node[bullet,fill=bleu,label=left:e] (a5) at (0,0) {};
+
 	%
 	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
 	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
 	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
-	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};
-
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
 %
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4) (a5),minimum width=2cm] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm] (Y) {} ;  %
@@ -210,16 +178,58 @@ Il y a cependant un détail à régler : Comment considère-t-on les points qui 
 	\draw[->,projection] (a3) to[out=20, in=170] (b1);
 	\draw[->,projection] (a4) to[out=20, in=150] (b3);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{comptage 3} (Y.north);
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{1\ier~cas} (Y.north);
 %	\node[below] at (X.south) {t};
 	\end{tikzpicture}%
 %
-	\caption{Un point n'est pas relié à gauche : est-ce une application ?}
-	\label{fig:fonctcomptage}
-\end{figure}
-\clearpage
-Revenons au comptage de mots pour trancher. Dans le premier cas, on a : \sidepar{\vspace{\onelineskip} le caractère \textup{\texttt{\backslash0}} signale la fin d'un mot (caractère 0 en ASCII)} 
+	\caption{Un point n'est pas relié à gauche. Est-ce une application ?}
+	\label{fig:comptinj}
+  \end{figure}
 
+  Revenons au problème de comptage. On se trouverait dans la situation suivante
+\begin{table}[h]
+\centering
+\begin{tabular}{llllll}
+c & b & d & a & e \\
+1 & 2 & 3 & 4 & \textcolor{red}{?}
+\end{tabular}
+On a oublié la lettre e !
+
+La~\cref{fig:comptinj} n'est pas une application.
+
+\hrulefill
+\end{table}
+\begin{figure}[h]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
+	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};%
+ 	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
+	\node[bullet,fill=roug,label=right:$5$] (b5) at (4,0) {};%
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4) (b5),minimum width=2cm] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) --node [sloped, anchor=center, midway,above,align=center]{2\ieme~cas} (Y.north);
+%	\node[below] at (X.south) {t};
+	\end{tikzpicture}%
+%
+	\caption{Un point n'est pas relié à droite. Est-ce une application ?}
+	\label{fig:fonctcomp}
+  \end{figure}
+  \clearpage
+ Revenons une fois encore au comptage de mots pour trancher. Dans ce cas, on obtient : \sidepar{\vspace{\onelineskip} le  \textup{\texttt{\backslash0}} signale la fin d'un mot ou d'une chaîne de caractères (caractère 0 en ASCII)}
 \begin{table}[h]
 \centering
 \begin{tabular}{llllll} 
@@ -228,6 +238,7 @@ c & b & d & a & \texttt{\backslash0} \\
 \end{tabular}
 \end{table} 
 
+Contrairement au cas précédent, nous avions correctement compté le nombre de lettre du mot. On peut donc sans risque accepter ce cas particulier. On dira que l'application est \emph{non-surjective}.
 \chapter{Définition de la cardinalité}
 \section{Ensembles finis et infinis}
 
@@ -596,7 +607,8 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 \nocite{*}
 \printbibliography
 \endgroup
-\appendixpage\appendix
+\appendixpage
+\appendix
 \chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe:thmfondarith}
 Pour mener à bien la démonstration, on aura besoin d'un lemme. 
 \begin{lemmab}{}{ncopremsn}
