@@ -280,7 +280,7 @@ Nous sommes désormais en capacité de formaliser la notion d'application :
 	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$. 
 \end{defb} 
 
-\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -Deux ouates.}
+%\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -Deux ouates.}
 
 \begin{defb}{\'Equipotence}{equip}
     On dit que $E$ et $F$ sont équipotents s' il existe $\phi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$. 
@@ -568,7 +568,7 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 	
 	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L'application $\phi$ qui range les rationnels $x \in \QQ$ dans le tableau \cref{fig:denombQ} est donc une bijection.
 \end{proof}
-\begin{figure}[hb]
+\begin{figure}[!htb]
     \centering
 \begin{tikzpicture}
 \tikzstyle{keepstyle} =[rectangle, rounded corners, draw, fill=white]
@@ -631,7 +631,19 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 \end{tikzpicture}
 \caption{Dénombrabilité de $\QQ$}
     \label{fig:denombQ}
-\end{figure}
+  \end{figure}
+  \section{Complément : dénombrabilité de l'ensemble des polynômes à coefficients entiers}
+
+On se propose d'appliquer toutes les notions que nous venons de voir pour démontrer l'assertion suivante : l'ensemble des polynômes à coefficients entiers est dénombrable. Ce résultat peut paraître surprenant. En effet, étant donné qu'un polynôme est caractérisé par ses coefficients, on pense, intuitivement, que l'on peut trouver plus de <<combinaisons d'entiers>> pour caractériser un polynôme que d'entiers.
+
+Soit $P = \sum_{k = 1}^d a_k X^k $, où $d = deg(P)$. Notons $\ZZ_d[X] = \{P \in \ZZ[X], deg(P) \leq d \}.$
+On pose  $(a_0, \dots, a_d) $ une suite de ses coefficients. On définit une application \[\phi : \begin{array}{ccc}
+\ZZ[X] & \to & \ZZ^{d+1}\\
+P & \mapsto & (a_0, \dots, a_d)
+\end{array}\]
+$\phi$ est une injection, car $\forall (P,Q) \in \ZZ[X]^2$, où $P = \sum_{k=1}^d a_k X^k$ et $Q = \sum_{k=1}^d b_k X^k$, $ P = Q \iff \forall k \in \{1,\dots, d\}, a_k = b_k$. C'est une surjection, car à toute suite de coefficients $(a_0,\dots, a_d)$ on peut associer un polynôme $P = \sum_{k=1}^d a_k X^k \in \ZZ[X]$. Or on a vu que comme $\ZZ$ est dénombrable, $\ZZ^{d+1}$ l'est aussi par extension (car $\NN^{d+1}$ est dénombrable), donc $\ZZ_d[X]$ est dénombrable.
+
+\noindent Mais $\ZZ[X] = \bigcup_{d \in \NN} \ZZ_d[X]$. On a vu que toute réunion dénombrable d'ensembles dénombrables est dénombrable. Donc $\ZZ[X]$ est dénombrable.
 \raggedright
 \begingroup
 \nocite{*}
@@ -640,7 +652,7 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 \appendixpage
 \appendix
 \chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe:thmfondarith}
-Pour mener à bien la démonstration, on aura besoin d'un lemme. 
+Pour mener à bin la démonstration, on aura besoin d'un lemme.
 \begin{lemmab}{}{ncopremsn}
   Soit $n$ un entier naturel. Alors $n$ est premier avec $n+1$ .
 \end{lemmab}
