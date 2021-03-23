@@ -342,7 +342,7 @@ L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $
 
 On se propose donc ici de reformuler sa démonstration en terme modernes. 
 \begin{defb}{Divisibilité}{div}
-Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : $$b=ka \xLeftrightarrow{ a \mathrel{\neq} 0 } \frac{b}{a}=k.$$
+Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : \[b=ka \xLeftrightarrow{ a \mathrel{\neq} 0 } \frac{b}{a}=k.\]
 \end{defb}
 \begin{remarkb}{}{divinf}
 0 ne divise que 0. De plus, si $a$ divise $b$, alors $a\leq b$. Par conséquent, 1 est le seul entier naturel qui divise 1.
@@ -364,7 +364,7 @@ Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le p
 Si $n$ divise deux entiers $a,b$, il divise aussi leur produit $ab$. 
 \end{lemmab}
 \begin{proof}
-Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{knk'}_{\eqdef k_2\in \mathbb{N}}{}\times n.\]
+Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{knk'}_{\eqdef k_2\in \NN}{}\times n.\]
 \end{proof}
 Le lemme suivant est \textbf{fondamental} dans ce qui suit :
 \begin{lemmab}{Théorème fondamental de l'arithmétique}{Fonda-Arith}
@@ -475,7 +475,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 
 \begin{proof} 
 	On peut compter les couples $(n,m) \in \NN^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien. 
-	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $(0,1)$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig:n_croix_n}.
+	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $\left]0,1\right[$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig:n_croix_n}.
 	\begin{figure}[htb]
 		\centering
 		\includegraphics[scale=0.3]{n_croix_n.png}
@@ -487,7 +487,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 	
 	\[\begin{array}{l}
 		(0,0) \\
-		(1,0), (0,1) \\
+		(1,0), \left]0,1\right[ \\
 		(0,2), (1,1), (2,0) \\
 		(3,0), (1,2), (2,1), (0,3) \\
 		\cdots
@@ -655,14 +655,30 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
   \addcontentsline{toc}{chapter}{Complément : dénombrabilité de l'ensemble des polynômes à coefficients entiers}% fait un chapitre sans numéro en table des matières
 On se propose d'appliquer toutes les notions que nous venons de voir pour démontrer l'assertion suivante : l'ensemble des polynômes à coefficients entiers est dénombrable. Ce résultat peut paraître surprenant. En effet, étant donné qu'un polynôme est caractérisé par ses coefficients, on pense, intuitivement, que l'on peut trouver plus de <<combinaisons d'entiers>> pour caractériser un polynôme que d'entiers.
 
-Soit $P = \sum_{k = 1}^d a_k X^k $, où $d = deg(P)$. Notons $\ZZ_d[X] = \{P \in \ZZ[X], deg(P) \leq d \}.$
+Soit $P \eqdef \sum_{k = 1}^d a_k X^k $, où $d = \operatorname{deg}(P)$. Notons $\ZZ_d[X] = \{P \in \ZZ[X], \operatorname{deg}(P) \leq d \}.$
 On pose  $(a_0, \dots, a_d) $ une suite de ses coefficients. On définit une application \[\phi : \begin{array}{ccc}
 \ZZ[X] & \to & \ZZ^{d+1}\\
 P & \mapsto & (a_0, \dots, a_d)
 \end{array}\]
-$\phi$ est une injection, car $\forall (P,Q) \in \ZZ[X]^2$, où $P = \sum_{k=1}^d a_k X^k$ et $Q = \sum_{k=1}^d b_k X^k$, $ P = Q \iff \forall k \in \{1,\dots, d\}, a_k = b_k$. C'est une surjection, car à toute suite de coefficients $(a_0,\dots, a_d)$ on peut associer un polynôme $P = \sum_{k=1}^d a_k X^k \in \ZZ[X]$. Or on a vu que comme $\ZZ$ est dénombrable, $\ZZ^{d+1}$ l'est aussi par extension (car $\NN^{d+1}$ est dénombrable), donc $\ZZ_d[X]$ est dénombrable.
+$\phi$ est une injection, car $\forall Q \in \ZZ[X]$, où $Q \eqdef \sum_{k=1}^d b_k X^k,$ \[{{P = Q} \iff {\forall k \in \{1,\dots, d\}, a_k = b_k}}\]. C'est une surjection, car à toute suite de coefficients $(a_0,\dots, a_d)$ on peut associer un polynôme $P = \sum_{k=1}^d a_k X^k \in \ZZ[X]$. Or on a vu que comme $\ZZ$ est dénombrable, $\ZZ^{d+1}$ l'est aussi par extension (car $\NN^{d+1}$ est dénombrable), donc $\ZZ_d[X]$ est dénombrable.
 
 \noindent Mais $\ZZ[X] = \bigcup_{d \in \NN} \ZZ_d[X]$. On a vu que toute réunion dénombrable d'ensembles dénombrables est dénombrable. Donc $\ZZ[X]$ est dénombrable.
+
+\section*{\texorpdfstring{Application : bijection entre deux sous-ensembles de $\QQ$}{}}
+
+Nous allons appliquer les concepts vu récemment pour répondre à la question suivante : $ X = \QQ \cap [0,1]$ est-il plus grand que $ Y = \QQ \cap \left]0,1\right[$ ?
+
+Naturellement, on peut penser que, comme 0 et 1 sont des rationnels, ils sont dans $X$ et qu'$X$ contient deux éléments de plus que $Y$. 
+
+Montrons que $ X = \QQ \cap [0,1]$ et $ Y = \QQ \cap \left]0,1\right[$ sont en bijection. 
+\begin{proof}
+$X $ et $Y$ sont des sous-ensembles de $\QQ$. Donc ils sont dénombrables. Ainsi \[\exists \phi : \NN \to X \text{ et } \psi : \NN \to Y\text{ , bijectives.}\] 
+
+Ainsi on peut construire une bijection $\gamma \eqdef \phi^{-1} \circ \psi : X \to Y$. 
+
+On en déduit que $X$ et $Y$ sont équipotents. 
+\end{proof}
+Ce problème est une illustration du paradoxe de \bsc{Hilbert} : si $A$ et $B$ sont~dénombrables, peu importe le nombre \emph{fini} d'élements que l'on ajoute à $A$ ou à $B$, ils auront  la même puissance~$\aleph_0$.
 \raggedright
 \begingroup
 \nocite{*}
