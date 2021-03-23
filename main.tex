@@ -27,8 +27,8 @@ Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter
 \enquote{Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et de les comparer entre elles}
 }{Carl~Friedrich~\bsc{Gauß}~\cite{gauss_cite}}
 \mainmatter
-\part{Préliminaires au dénombrement~: Comptage, ensembles, bijection}
-\chapter{Ensembles \& fonctions}
+\part{Préliminaires au dénombrement~: Comptage, applications, bijection}
+\chapter{Ensembles \& applications}
 \section{\'Enumération et comptage}
 Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser cette notion 
 Si on veut compter, à voix haute, une par une, les lettres du mot~:\[\text{cbda}\]
@@ -185,7 +185,7 @@ Il y a cependant un détail à régler : Comment considère-t-on les points qui 
 	\caption{Un point n'est pas relié à gauche. Est-ce une application ?}
 	\label{fig:comptinj}
   \end{figure}
-
+  %\clearpage
   Revenons au problème de comptage. On se trouverait dans la situation suivante
 \begin{table}[h]
 \centering
@@ -195,7 +195,7 @@ c & b & d & a & e \\
 \end{tabular}
 On a oublié la lettre e !
 
-La~\cref{fig:comptinj} n'est pas une application.
+Le cas de la ~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une application.
 
 \hrulefill
 \end{table}
@@ -228,8 +228,8 @@ La~\cref{fig:comptinj} n'est pas une application.
 	\caption{Un point n'est pas relié à droite. Est-ce une application ?}
 	\label{fig:fonctcomp}
   \end{figure}
-  \clearpage
- Revenons une fois encore au comptage de mots pour trancher. Dans ce cas, on obtient : \sidepar{\vspace{\onelineskip} le  \textup{\texttt{\backslash0}} signale la fin d'un mot ou d'une chaîne de caractères (caractère 0 en ASCII)}
+\clearpage
+ Revenons une fois encore au comptage de mots pour trancher. Dans ce cas, on obtient :
 \begin{table}[h]
 \centering
 \begin{tabular}{llllll} 
@@ -237,20 +237,50 @@ c & b & d & a & \texttt{\backslash0} \\
 1 & 2 & 3 & 4 &  5
 \end{tabular}
 \end{table} 
+\sidepar{\vspace*{-4\onelineskip}Le \textup{\texttt{\backslash0}} signale la fin d'un mot ou d'une chaîne de caractères (caractère 0 en \hyphenation{ASCII} ASCII)}
+Contrairement au cas précédent, nous avions correctement compté le nombre de lettre du mot. On a simplement une valeur surnuméraire.  On peut donc sans risque accepter ce cas particulier. Comme toutes les valeurs ne sont pas atteintes, on dira que l'application est \emph{non-surjective}.
 
-Contrairement au cas précédent, nous avions correctement compté le nombre de lettre du mot. On peut donc sans risque accepter ce cas particulier. On dira que l'application est \emph{non-surjective}.
+\section{Formalisation du concept d'application}
+Maintenant que l'on dispose d'une idée claire du concept d'application, on va essayer de le formaliser. En fait, une fonction se décrit à l'aide de 3 éléments :
+\begin{enumerate}
+  \item
+		Un ensemble dit \emph{de départ}, en \textcolor{bleu}{bleu} dans nos diagrammes.
+  \item
+		Un ensemble dit \emph{d'arrivée}, en \textcolor{roug}{rouge} dans nos diagrammes.
+  \item
+		Un ensemble de \emph{flèches} qui relient un élément de l'ensemble de départ à un élément de l'ensemble d'arrivée.
+\end{enumerate}
+La \cref{fig:comptinj} nous a apporté une précision supplémentaire :
+
+\begin{center} % Center the box
+  \fbox{% creates the frame
+  \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}% An \fbox has the width of its contents plus 2 \fboxsep plus 2 \fboxrule
+  {\centering \textbf{Tout} élément de l'ensemble de départ est relié à \textbf{un seul} élément de l'ensemble d'arrivée.}%
+  } %Creates the text, centered with centering
+\end{center}
+Pour formaliser la fonction de flèche, on utilise les couples : ce sont des \emph{paires ordonnées} d'objets. Ainsi, par exemple, dans la \cref{fig:fonctcomp}, la flèche $b\to 2$ peut être réprésentée par le couple $(b;2)$.
+\noindent On choisit par la suite de représenter une flèche $\text{départ}\to \text{arrivée}$ par le couple $(\text{départ};\text{arrivée})$.
+
+Nous sommes désormais en capacité de formaliser la notion d'application :
+\begin{defb}{Application, graphe}{app}
+  Soit $X$ et $Y$ deux ensembles quelconques.
+
+  On appelle \emph{application de $X$ dans $Y$} le triplet $f\eqdef(X,Y,F)$, où $F\subseteq (X\times Y)$ \footnote{ \textit{litt.} $F$, un ensemble de couples} vérifie : \[ \boxed{\forall x \in X, \exists!\,y \in Y \mid (x,y) \in F.\,}\footnote{C'est la condition encadrée plus haut.}\]
+  L'ensemble $F$ est appelé \emph{graphe de l'application} $f$, On le notera $\mathscr{G}_{f}$.
+ \end{defb}
+\chapter{Applications injectives \& surjectives, composition}
 \chapter{Définition de la cardinalité}
 \section{Ensembles finis et infinis}
 
 \begin{defb}{Finitude}{fini}
      Soit $E$ un ensemble. 
 	    
-	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\phi~: \{1,\dots,n \} \to E$, avec $n \in \NN$. 
-		
+	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\phi~: \{1,\dots,n \} \to E$, avec $n \in \NN$.
+
 	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$. 
 \end{defb} 
 
-\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -\/Deux ouates.}
+\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -Deux ouates.}
 
 \begin{defb}{\'Equipotence}{equip}
     On dit que $E$ et $F$ sont équipotents s' il existe $\phi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$. 
