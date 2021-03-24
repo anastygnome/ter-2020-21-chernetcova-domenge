@@ -197,7 +197,7 @@ c & b & d & a & e \\
 \end{tabular}
 On a oublié la lettre e !
 
-Le cas de la ~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une application.
+Le cas de la~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une application.
 
 \hrulefill
 \end{table}
@@ -298,7 +298,7 @@ Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met do
 	\begin{enumerate} 
 		\item $E \mathrel{\approx} E$, car l'application identité est une bijection. $\mathrel{\approx}$ est réflexive.
 		\item $E \mathrel{\approx} F$ signifie qu'il existe une bijection de E dans F. Alors, l'inverse de cette bijection est une application de F dans E, elle-même bijective.
-		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par composition, $\psi\circ\phi$ est une bijection de E dans G, c. -à-d. $E \mathrel{\approx} G$. $\mathrel{\approx}$ est transitive. 
+		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par composition, $\psi\circ\phi$ est une bijection de E dans G, c.-à-d. $E \mathrel{\approx} G$. $\mathrel{\approx}$ est transitive.
 	\end{enumerate}
 	$\mathrel{\approx}$ est bien une relation d'équivalence.
 \end{proof}
@@ -437,18 +437,19 @@ Il semble que l'ensemble des nombre premier n'est pas le seul à défier notre i
 	\phi~: & n & \mapsto & 2n
 	\end{array}.\]
 	
-	Cette application $\phi $ est bijective car sa réciproque est $ \phi^{-1}~: \begin{array}{ccc}
+  Cette application $\phi $ est bijective car sa réciproque est donnée par :
+  \[ \phi^{-1}~: \begin{array}{ccc}
 	2\NN & \to & \NN\\
 	k & \mapsto & \frac{k}{2}
-	\end{array}$. 
+	\end{array}\]
 	
-	2$\NN$ est en bijection avec $\NN$. 2$\NN$ est bien un ensemble dénombrable de cardinal $\aleph_0$. 
+	2$\NN$ est en bijection avec $\NN$, donc dénombrable de cardinal $\aleph_0$.
 \end{proof}
 
 On peut introduire un résultat plus général qui couvre toute partie de $\NN$. 
 
 \begin{theoremb}{Dénombrabilité des parties infinies de $\NN$}{}
-	Toute partie $E \subset \NN$ infinie a le même cardinal que $\NN$. 
+	Toute partie $E \subseteq \NN$ infinie a le même cardinal que $\NN$.
 \end{theoremb}
 
 \begin{proof}
@@ -464,7 +465,7 @@ On peut introduire un résultat plus général qui couvre toute partie de $\NN$.
 On en déduit le résultat suivant : 
 \begin{theoremb}{}{parties}
 	Soient $E$ et $F$ deux ensembles. 
-	Si $E \subset F$ et si $F$ est dénombrable, alors $E$ est au plus dénombrable.
+	Si $E \subseteq F$ et si $F$ est dénombrable, alors $E$ est au plus dénombrable.
 \end{theoremb}
 \section{\texorpdfstring{Dénombrabilité de $\NN^2$}{Dénombrabilité de N²}}
 Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E^2) \neq \Card(E)$. On pourrait penser que $\NN^2 $ contient plus d'élements que $\NN$. 
@@ -475,7 +476,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 
 \begin{proof} 
 	On peut compter les couples $(n,m) \in \NN^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien. 
-	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $\left]0,1\right[$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig:n_croix_n}.
+	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $(0,1)$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig:n_croix_n}.
 	\begin{figure}[htb]
 		\centering
 		\includegraphics[scale=0.3]{n_croix_n.png}
