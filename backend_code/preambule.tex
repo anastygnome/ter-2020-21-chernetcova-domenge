@@ -87,10 +87,9 @@
 }%
 
 \let\LaTeXStandardAppendixPage\appendixpage
-\renewcommand{\appendixpage}{%
-\cleardoublepage%
+\renewcommand{\appendixpage}{
+\openany
+  \LaTeXStandardAppendixPage%
 \pagenumbering{roman}%
 \setcounter{page}{\number\value{PageNumberBeforeMainmatter}+1}
-\LaTeXStandardAppendixPage%
 }%
-

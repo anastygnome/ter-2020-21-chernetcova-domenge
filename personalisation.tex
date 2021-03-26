@@ -101,28 +101,28 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 \setulmargins{*}{*}{*}
 \setheaderspaces{*}{*}{*}
 \setlrmargins{*}{*}{*}
-\setheadfoot{24.60004pt}{\footskip}
+\setheadfoot{\headheight}{\footskip}
 \checkandfixthelayout[nearest]
 \renewcommand*{\sideparfont}{\itshape\footnotesize}
 \renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%            Polices                           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Numérotation (classe memoir)       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \setsecnumdepth{subsubsection}
 \renewcommand{\cftpartaftersnum}{.}
 \renewcommand{\cftchapteraftersnum}{.}
 \renewcommand{\cftpartdotsep}{\cftdotsep}
 \renewcommand{\cftchapterdotsep}{\cftdotsep}% Chapters should use dots in ToC
-\aliaspagestyle{title}{empty} 
-\aliaspagestyle{part}{empty} 
+\aliaspagestyle{title}{empty}
+\aliaspagestyle{part}{empty}
 \addto\captionsfrench{\renewcommand{\appendixpagename}{Annexes}}
 \addto\captionsfrench{\renewcommand{\appendixtocname}{Annexes}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%            Numérotation (classe memoir)       %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Polices                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setmainfont{TeX Gyre Pagella}
 \setmathfont{Asana Math}
 \setmathfont[range={"0000-"0001,"0020-"007E,
@@ -169,3 +169,4 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 %   Opérateurs (dans le style de max etc.   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareMathOperator{\Card}{Card} % s'utilise avec \Card en mode maths
+\newcommand{\square}{\mdlgwhtsquare}

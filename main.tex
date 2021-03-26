@@ -4,6 +4,14 @@
 \input{backend_code/preambule}
 \input{backend_code/bibliographie}
 \input{personalisation}
+<<<<<<< HEAD
+=======
+\input{figures/figures}
+\tikzexternalize[prefix=figures/,shell escape=-enable-write18]
+\tikzset{external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --interaction=errorstopmode -jobname "\image" "\texsource"}}
+\tikzset{external/mode=list and make}
+\tikzexternaldisable
+>>>>>>> 5c66dc7 (Ajout démo partie finie ssi maj, diverses corr)
 \begin{document}
 \begin{titlingpage}
 \input{backend_code/page_de_garde}
@@ -14,11 +22,11 @@
 \part{Introduction}
 \chapter{Avant-propos}
 
-La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'on étudie l'ensemble des entiers naturels. C'est une définition intuitive de l'infini. L'infini n'est pas un nombre, il n'obéit pas aux lois usuelles $+$ et $\times$ de la même manière que les nombres réels. En mathématiques, l'une des manières les plus simples de caractériser l'infini est celle de la théorie des ensembles. L'une des propriétés principales d'un ensemble est sa taille. Comme nous allons le voir, les ensembles mathématiques peuvent être finis ou infinis : L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
+La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'on étudie l'ensemble des entiers naturels. C'est une définition intuitive de l'infini. L'infini n'est pas un nombre, il n'obéit pas aux lois usuelles $+$ et $\times$ de la même manière que les nombres réels. En mathématiques, l'une des manières les plus simples de caractériser l'infini est celle de la théorie des ensembles. L'une des propriétés principales d'un ensemble est sa taille. Comme nous allons le voir, les ensembles mathématiques peuvent être finis ou infinis. : L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
 
-On peut alors se poser des questions fondamentales à l'étude de l'infini~: comment peut on caractériser les ensembles infinis ? Est-ce qu'il y a un infini << plus grand >> ou << plus petit >> que celui des nombres ?  
+On peut alors se poser des questions fondamentales à l'étude de l'infini~: comment peut on caractériser les ensembles infinis ? Est-ce qu'il y a un infini << plus grand >> ou << plus petit >> que celui des nombres entiers naturels ?  
 
-Dans la première partie, nous allons rappeler ce que sont les ensembles, cruciaux pour l'étude de l'infini du point de vue ensembliste.
+Dans la première partie, nous allons introduire la notion de l'ensemble et des applications et définir ce que sont les ensembles finis et infinis. rappeler ce que sont les ensembles, cruciaux pour l'étude de l'infini du point de vue ensembliste.
 Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d'ensembles usuels et aux propriétés d'ensembles dénombrables.
 
 Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter}. Nous avons choisi une approche différente : nous voulions insister davantage sur l'aspect formel de la dénombrabilité, c'est pourquoi nous avons introduit des définitions, des notations, des propositions démontrées pour souligner notre propos. \`A notre avis, ce travail est nécessaire pour bien aborder la notion de la dénombrabilité et pour ne pas se perdre dans les différentes notions. Ainsi, nous avons choisi d'en donner une définition rigoureuse. Bien que cette notion soit intuitive, il s'avère difficile de l'expliquer rigoureusement avec des mots du langage << courant >> (non mathématique). En ce sens, le langage mathématique offre une exactitude que la langue naturelle n'a pas.
@@ -153,7 +161,7 @@ Cet exemple simple est très utilisé, notamment en informatique, en remplaçant
 \sidepar{ En 1990, \bsc{Keith} a trouvé le jour correspondant à une date grâce à l'expression suivante (en  langage \textup{\textsf{C}) :\\\texttt{int weekday  = (d~+=~m~<~3~? y-\/-~: y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)\%7;  
 	}}}
 \clearpage
-\section{Étude de deux cas limites}
+\section{Étude de deux cas limites}\label{sec:diffappfonct}
 Il y a cependant un détail à régler : Comment considère-t-on les points qui ne sont pas reliés ?
 \begin{figure}[h]
 	\centering
@@ -269,9 +277,51 @@ Nous sommes désormais en capacité de formaliser la notion d'application :
 
   On appelle \emph{application de $X$ dans $Y$} le triplet $f\eqdef(X,Y,F)$, où $F\subseteq (X\times Y)$ \footnote{ \textit{litt.} $F$, un ensemble de couples} vérifie : \[ \boxed{\forall x \in X, \exists!\,y \in Y \mid (x,y) \in F.\,}\footnote{C'est la condition encadrée plus haut.}\]
   L'ensemble $F$ est appelé \emph{graphe de l'application} $f$, On le notera $\mathscr{G}_{f}$.
- \end{defb}
-\chapter{Applications injectives \& surjectives, composition}
-\chapter{Définition de la cardinalité}
+\end{defb}
+On introduit aussi les deux définitions suivantes (qu'on illustrera ensuite) : 
+\begin{defb}{Image d'un élément, image directe}{imagefonct}
+  Soit $X$ et $Y$ deux ensembles et $f$ une application de $X$ dans $Y$.
+  on dit que $f$ \emph{applique} ou \emph{associe} $y \in Y $ à $x \in X$
+  si :
+  \[\boxed{(x,y) \in \mathscr{G}_{f}}\]
+  Par unicité de $y$, on notera $y\eqdef f(x)$. On dit que $y$ est l'image de $x$  et que $x$ est un antécédent de $y$ (par $f$)
+
+Soit $E$ une partie de $X$, on note $f(E)$ l'ensemble des images des éléments de $E$. C'est l'\emph{image directe} de $E$ par $f$.
+
+De même, soit $K$ une partie de $Y$, on note $f^\leftarrow(K)$ l'ensemble des antécédents des éléments de $K$
+\end{defb}
+ Revenons au premier diagramme avec ce nouveau formalisme :
+ \begin{figure}[htb]
+	\centering
+    \begin{tikzpicture}
+	\node[bullet,fill=bleu,label=left:$a$] (a1) at (0,4) {};
+	\node[bullet,fill=bleu,label=left:$b$] (a2) at (0,3) {};
+	\node[bullet,fill=bleu,label=left:$c$] (a3) at (0,2) {};
+	\node[bullet,fill=bleu,label=left:$d$] (a4) at (0,1) {};%
+	%
+	\node[bullet,fill=roug,label=right:$1$] (b1) at (4,4) {};
+	\node[bullet,fill=roug,label=right:$2$] (b2) at (4,3) {};
+	\node[bullet,fill=roug,label=right:$3$] (b3) at (4,2) {};
+	\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};%
+%
+	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$E$] (X) {} ;
+	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$F$] (Y) {} ;  %
+%
+	\draw[->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+%
+	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\end{tikzpicture}%
+%
+	\caption{diagramme sagittal du premier comptage.}
+	\label{fig:fonctbij}
+  \end{figure}
+<at home : ajouter les différents ensembles, expliciter la différence>
+ \chapter{Applications injectives \& surjectives, composition}
+ Comme on l'a vu
+ \chapter{Définition de la cardinalité}
 \section{Ensembles finis et infinis}
 
 \begin{defb}{Finitude}{fini}
@@ -297,8 +347,8 @@ Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met do
     Soient $E, F, G$, trois ensembles.
 	\begin{enumerate} 
 		\item $E \mathrel{\approx} E$, car l'application identité est une bijection. $\mathrel{\approx}$ est réflexive.
-		\item $E \mathrel{\approx} F$ signifie qu'il existe une bijection de E dans F. Alors, l'inverse de cette bijection est une application de F dans E, elle-même bijective.
-		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par composition, $\psi\circ\phi$ est une bijection de E dans G, c.-à-d. $E \mathrel{\approx} G$. $\mathrel{\approx}$ est transitive.
+		\item Si $E \mathrel{\approx} F$, alors il existe une bijection de E dans F. Son inverse est une bijection de~F~dans~E, d'où~${F \mathrel{\approx} E}$, et $\mathrel{\approx}$ est symétrique.
+		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par~composition, $\psi\circ\phi$ est une bijection de E dans G, c.-à-d. $E \mathrel{\approx} G$, et  $\mathrel{\approx}$ est transitive.
 	\end{enumerate}
 	$\mathrel{\approx}$ est bien une relation d'équivalence.
 \end{proof}
@@ -311,31 +361,49 @@ Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met do
 		\item $\phi$ est surjective ;
 		\item $\phi$ est bijective. 
 	\end{enumerate}
-\end{theoremb}
+  \end{theoremb}
 
+\begin{proof}
+\textellipsis
+\end{proof}
 \begin{defb}{Ensemble infini}{ifini}
 	Soit $E$ un ensemble.
 	
-	On dit que $E$ est infini ssi $E$ n'est pas fini.
+	On dit que $E$ est infini si $E$ n'est pas fini.
 \end{defb}
 
 \begin{theoremb}{}{partn} 
 	Toute partie de $\NN$ est finie ssi elle est majorée. 
 \end{theoremb}
+\begin{proof}
+Soit $E$ une partie de $\NN$. On peut supposer $E\neq\emptyset$.
+  \proofpart*{$(\Leftarrow)$}
+  Montrons que si $E$ est majorée par un entier $p$, alors elle admet un plus grand élément. On procède par récurrence sur $p$.
+  \proofpart*{Initialisation, $p=0$}
+  Si $E$ est majorée par $p=0, \, E=\{0\}$ et $0$ est son plus grand élément \sidepar{$\forall x \in E, {x\leq 0} \wedge {x\in \NN} \implies {x=0}$}, et la propriété est vérifiée
+  \proofpart*{Induction}
+  Supposons que la propriété soit vraie à un rang $n$ fixé, et supposons $E$ majoré par $n+1$.
 
-
-
+  \noindent Deux~cas peuvent se présenter :
+  \stepcounter{proofpart}\proofpart*{Cas n\textsuperscript{o}\theproofpart}
+  Si $n+1 \in E$, c'est le plus grand élément possible. La propriété est vraie au rang $n+1$
+  \stepcounter{proofpart}\proofpart*{Cas n\textsuperscript{o}\theproofpart}
+  Si $n+1 \notin E$ alors $E\subseteq \left\lBrack 1; n \right\rBrack$, et, par hypothèse de récurrence, la propriété est vraie au rang $n+1$.
+\proofpart*{Conclusion} Toute partie de $n$ majorée admet un plus grand élément.\hfill$\square$
+  \proofpart*{$(\Rightarrow)$}
+  Si $E$ est finie, disons à $n$ éléments, on peut numéroter chacun de ses éléments $(k_{i})_{i \in \left\lBrack 1;n\right\rBrack}$. (cf. supra)
+  On pose alors :
+  \[p\eqdef \sum_{i=1}^{n} k_{i}\]
+  Par définition de la sommation \emph{finie}, on a : \[\forall i\in\left\lBrack 1;n\right\rBrack, k_{i}\leq p\]
+ Et $E$ est majorée par $p$.
+\end{proof}
 \begin{theoremb}{}{ninfini}
 	$\NN$ est infini. 
 \end{theoremb}
-
-
 \begin{proof}
-	Si $\NN$ était fini, d'après le \cref{thm:partn}, $\NN$ admettrait un majorant. Autrement dit \[\exists k \in \NN, \forall x \in \NN, x \leq k.\]
+  L'application $f$ définie par : \deffunct{f}{\NN}{\NN}{n}{n+1} est injective, en effet, on a : \[\forall (m,n) \in \NN, m+1=n+1 \iff m=n\] pourtant, elle n'est pas surjective  : 0 n'est jamais atteint.
 
-	Or la construction de $\NN$ implique que si $ k \in \NN$, alors $k + 1 \in \NN$ et $\exists x \in \NN, x > k, x= k+1$, d'où une contradiction. 
-	
-	Donc $\NN$ est infini.
+\noindent La contraposée du \cref{thm:assequiv} donne le résultat.
 \end{proof}
 \section{Des parties infinies ?}
 L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\NN$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C. 
@@ -361,18 +429,20 @@ La remarque suivante justifie l'emploi du même vocabulaire :
 Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le précèdent, c'est-à-dire s'il n'a aucun diviseur commun avec un entier qui lui est inférieur. 
 \end{remarkb}
 \begin{lemmab}{}{divprod}
-Si $n$ divise deux entiers $a,b$, il divise aussi leur produit $ab$. 
+Si $n$ divise deux entiers $a$ et $b$, il divise aussi leur produit $ab$.
 \end{lemmab}
 \begin{proof}
-Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{knk'}_{\eqdef k_2\in \NN}{}\times n.\]
+Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{\phantom{k}knk'}_{\eqdef k_2\in \NN}\times{} n.\]
 \end{proof}
 Le lemme suivant est \textbf{fondamental} dans ce qui suit :
+
 \begin{lemmab}{Théorème fondamental de l'arithmétique}{Fonda-Arith}
   Tout entier naturel non-nul peut être écrit comme un produit de nombres premiers d'une unique façon, à l'ordre près des facteurs.
 \end{lemmab}
-La démonstration de ce théorème est rejetée en~\cref{annexe:thmfondarith}.
 
-Ces rappels balayés, on peut démontrer le résultat d'Euclide 
+La démonstration de ce résultat est rejetée en~\cref{annexe:thmfondarith}.
+
+Ces rappels balayés, on peut démontrer le résultat d'Euclide :
 
 \begin{theoremb}{Infinité des nombres premiers}{nombpreminf} 
 Toute liste finie de nombre premiers est nécessairement incomplète.
@@ -380,7 +450,6 @@ Toute liste finie de nombre premiers est nécessairement incomplète.
 Autrement dit, il existe une infinité de nombres premiers.
 \end{theoremb}
 \begin{proof}
-\reversemarginpar
 On démontre le résultat par récurrence. Une liste vide (à 0 éléments) ne contient aucun nombre premier, elle est donc incomplète car 2 est premier. 
 Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : \[ N=\prod_{i=1}^{n} p_i\]\sidepar{\vspace*{-3.5\baselineskip}\itshape \footnotesize Donc $N$ est égal à Pi de 1 à $n$ de $p_i$}
 Si notre suite est vide, on pose $N=2$.
@@ -391,7 +460,7 @@ Si $N+1$ est premier, alors notre liste est incomplète. Dans le cas contraire, 
 \end{proof}
 Comme on l'a vu ci-avant, l'infini nous réserve quelques surprises. Il est donc judicieux de considérer une famille plus large d'ensemble : les ensembles \emph{dénombrables} et \emph{au plus dénombrables}. 
 \part{Dénombrabilité}
-\chapter{\texorpdfstring{\'Etude de 2$\NN$, $\ZZ$, $\QQ$}{Dénombrabilité : Étude de N,2N,Z, et Q}} 
+\chapter{\texorpdfstring{\'Etude de $2\NN$, $\ZZ$, $\QQ$}{Dénombrabilité : Étude de N,2N,Z, et Q}}
 \section{Introduction : le paradoxe de \bsc{Hilbert}}
 
 Si on définit l'infini comme la cardinal de $\NN$, quel est le cardinal de $E= \{-1, 0, 1, 2, \dots\}$ ? Intuitivement on se dit que $E$ est infini, mais est-il plus grand que $\NN$ ? Il nous manque un moyen de comparer les infinis.
@@ -488,7 +557,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 	
 	\[\begin{array}{l}
 		(0,0) \\
-		(1,0), \left]0,1\right[ \\
+		(1,0), (0,1) \\ %ce sont des couples, pas des intervalles ouverts. 
 		(0,2), (1,1), (2,0) \\
 		(3,0), (1,2), (2,1), (0,3) \\
 		\cdots
@@ -511,14 +580,11 @@ Par récurrence sur $k \in \NN$, on peut montrer le théorème suivant :
 
 \begin{proof}
 
-Pour $k = 3$, on peut, en utilisant les notations du \cref{thm:n2_denombrable}, établir une bijection entre $\NN^2$ et $\NN^3$. Posons $h_3 : \NN^2 \to \NN^3$ telle que $h_3(n,m) = (n,\phi^{-1}(m))$. $h_3$ est bien une bijection. 
+  Pour $k = 3$, on peut, en utilisant les notations du \cref{thm:n2_denombrable}, établir une bijection entre $\NN^2$ et $\NN^3$. Posons $h_3 : \NN^2 \to \NN^3$ telle que $h_3(n,m) = (n,\phi^{-1}(m))$. $h_3$ est bien une bijection. Soit $k \in \NN$ fixé. Supposons l'hypothèse vraie au rang $k$, i. e. $\NN^k$ est dénombrable.
 
-Soit $k \in \NN$ fixé. Supposons l'hypothèse vraie au rang $k$, i. e. $\NN^k$ est dénombrable.
+  On construit une bijection entre $\NN^2$ et $\NN^{k+1}$ en posant $h_{k+1}(n_1, \dots, n_{k+1}) = (h_k(n_1, \dots, n_k),n_{k+1})$ où $h_k(n_1, \dots, n_k) \in \NN$. D'après l'hypothèse de récurrence, $\NN^k$ est dénombrable.
 
-On construit une bijection entre $\NN^2$ et $\NN^{k+1}$. On pose $h_{k+1}(n_1, \dots, n_{k+1}) = (h_k(n_1, \dots, n_k),n_{k+1})$ où $h_k(n_1, \dots, n_k) \in \NN$ car d'après l'hypothèse de récurrence, $\NN^k$ est dénombrable. On a ainsi établi une bijection entre $\NN^{k+1}$ et $\NN^2$. Or $\NN^2$ est dénombrable. Donc $\NN^k$ est dénombrable. 
-
-Par récurrence, $\forall k \in \NN, \NN^k$ est dénombrable. 
-
+  On a ainsi établi une bijection entre $\NN^{k+1}$ et $\NN^2$. Or $\NN^2$ est dénombrable. Donc $\NN^k$ est dénombrable. Par récurrence, $\forall k \in \NN, \NN^k$ est dénombrable.
 \end{proof}
 De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :. 
 \begin{theoremb}{Produit cartésien d'ensembles dénombrables}{cartesien}
@@ -546,7 +612,7 @@ C'est une bijection de $\prod_{i=1}^k A_i $ vers $\NN^k$ qui est dénombrable. D
 
 
 On peut encore montrer le résultat suivant : 
-\begin{theoremb}{Union de deux ensembles dénombrables}{union}
+\begin{theoremb}{Union dénombrable d'ensembles dénombrables}{union}
     Soit $(A_i)_{i \in I}$ une famille dénombrable d'ensembles dénombrables. 
 	Alors $A= \bigcup_{i \in I} A_i$ est dénombrable. 
 \end{theoremb} 
@@ -564,7 +630,7 @@ Intuitivement on pourrait penser que l'ensemble des entiers $\ZZ$ a un cardinal 
 \end{theoremb}
 
 \begin{proof}
-L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant~:  $\ZZ=\left\lbrace 0,1,(-1),2,(-2),3,(-3) \dots\right\rbrace$ 
+L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant~:  $\ZZ=\left\lbrace 0,1,(-1),2,(-2),3,(-3),\dots\right\rbrace$
 
 	Pour montrer que le cardinal de $\ZZ$ est bien $\aleph_0$, on définit donc l'application $\phi~: \NN \to \ZZ$ telle que \[ \forall k \in \NN, \
 	\begin{dcases}
@@ -584,7 +650,7 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 	
 	On parcourt le tableau comme c'est indiqué par les flèches dans la \cref{fig:denombQ}. 
 	
-	On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau en diagonale vers le haut jusqu'à atteindre $\frac{1}{3}$, etc. 
+	\noindent On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau en diagonale vers le haut jusqu'à atteindre $\frac{1}{3}$, etc.
 	
 	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L'application $\phi$ qui range les rationnels $x \in \QQ$ dans le tableau \cref{fig:denombQ} est donc une bijection.
 \end{proof}
@@ -652,32 +718,32 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 \caption{Dénombrabilité de $\QQ$}
     \label{fig:denombQ}
   \end{figure}
+\clearpage
   \section*{Complément : dénombrabilité de l'ensemble des polynômes à coefficients entiers}
   \addcontentsline{toc}{chapter}{Complément : dénombrabilité de l'ensemble des polynômes à coefficients entiers}% fait un chapitre sans numéro en table des matières
-On se propose d'appliquer toutes les notions que nous venons de voir pour démontrer l'assertion suivante : l'ensemble des polynômes à coefficients entiers est dénombrable. Ce résultat peut paraître surprenant. En effet, étant donné qu'un polynôme est caractérisé par ses coefficients, on pense, intuitivement, que l'on peut trouver plus de <<combinaisons d'entiers>> pour caractériser un polynôme que d'entiers.
+On se propose d'appliquer toutes les notions que nous venons de voir pour démontrer l'assertion suivante : l'ensemble des polynômes à coefficients entiers est dénombrable. Ce résultat peut paraître surprenant. En effet, étant donné qu'un polynôme est caractérisé par ses coefficients, on pense, intuitivement, que l'on peut trouver plus de \enquote{combinaisons d'entiers} pour caractériser un polynôme que d'entiers.
 
 Soit $P \eqdef \sum_{k = 1}^d a_k X^k $, où $d = \operatorname{deg}(P)$. Notons $\ZZ_d[X] = \{P \in \ZZ[X], \operatorname{deg}(P) \leq d \}.$
 On pose  $(a_0, \dots, a_d) $ une suite de ses coefficients. On définit une application \[\phi : \begin{array}{ccc}
 \ZZ[X] & \to & \ZZ^{d+1}\\
 P & \mapsto & (a_0, \dots, a_d)
 \end{array}\]
-$\phi$ est une injection, car $\forall Q \in \ZZ[X]$, où $Q \eqdef \sum_{k=1}^d b_k X^k,$ \[{{P = Q} \iff {\forall k \in \{1,\dots, d\}, a_k = b_k}}\]. C'est une surjection, car à toute suite de coefficients $(a_0,\dots, a_d)$ on peut associer un polynôme $P = \sum_{k=1}^d a_k X^k \in \ZZ[X]$. Or on a vu que comme $\ZZ$ est dénombrable, $\ZZ^{d+1}$ l'est aussi par extension (car $\NN^{d+1}$ est dénombrable), donc $\ZZ_d[X]$ est dénombrable.
-
-\noindent Mais $\ZZ[X] = \bigcup_{d \in \NN} \ZZ_d[X]$. On a vu que toute réunion dénombrable d'ensembles dénombrables est dénombrable. Donc $\ZZ[X]$ est dénombrable.
+$\phi$ est une injection, car $\forall Q \in \ZZ[X]$, où $Q \displaystyle\eqdef \sum_{k=1}^d b_k X^k,$ \[{{P = Q} \iff {\forall k \in \left\lBrack 1;d\right\rBrack, a_k = b_k}}.\]C'est une surjection : à toute suite de coefficients $(a_0,\dots, a_d)$ on peut associer un polynôme ${P = \sum_{k=1}^d a_k X^k}$. Or on a vu que comme $\ZZ$ est dénombrable, $\ZZ^{d+1}$ l'est aussi par extension,%\sidepar{car $\NN^{d+1}$ est dénombrable}%
+donc $\ZZ_d[X]$ est dénombrable Mais $\ZZ[X] = \bigcup_{d \in \NN} \ZZ_d[X]$. On a vu que toute réunion dénombrable d'ensembles dénombrables est dénombrable. Donc $\ZZ[X]$ est dénombrable.
 
 \section*{\texorpdfstring{Application : bijection entre deux sous-ensembles de $\QQ$}{}}
 
-Nous allons appliquer les concepts vu récemment pour répondre à la question suivante : $ X = \QQ \cap [0,1]$ est-il plus grand que $ Y = \QQ \cap \left]0,1\right[$ ?
+Nous allons appliquer les concepts vu récemment pour répondre à la question suivante :
+
+\[X = \QQ \cap [0,1] \text{ est-il plus grand que } Y = \QQ \cap \left]0,1\right[ \text{ ?}\]
 
 Naturellement, on peut penser que, comme 0 et 1 sont des rationnels, ils sont dans $X$ et qu'$X$ contient deux éléments de plus que $Y$. 
 
-Montrons que $ X = \QQ \cap [0,1]$ et $ Y = \QQ \cap \left]0,1\right[$ sont en bijection. 
+Montrons que $ X = \QQ \cap [0,1]$ et $ Y = \QQ \cap \left]0,1\right[$ sont en bijection.
 \begin{proof}
-$X $ et $Y$ sont des sous-ensembles de $\QQ$. Donc ils sont dénombrables. Ainsi \[\exists \phi : \NN \to X \text{ et } \psi : \NN \to Y\text{ , bijectives.}\] 
+$X $ et $Y$ sont des sous-ensembles de $\QQ$. Donc ils sont dénombrables. Ainsi \[\exists \phi : \NN \to X \text{ et } \psi : \NN \to Y\text{, bijectives.}\]
 
-Ainsi on peut construire une bijection $\gamma \eqdef \phi^{-1} \circ \psi : X \to Y$. 
-
-On en déduit que $X$ et $Y$ sont équipotents. 
+Ainsi on peut construire une bijection $\gamma \eqdef \phi^{-1} \circ \psi :\, X \to Y$, donc $X$ et $Y$ sont équipotents.
 \end{proof}
 Ce problème est une illustration du paradoxe de \bsc{Hilbert} : si $A$ et $B$ sont~dénombrables, peu importe le nombre \emph{fini} d'élements que l'on ajoute à $A$ ou à $B$, ils auront  la même puissance~$\aleph_0$.
 \raggedright
@@ -685,8 +751,8 @@ Ce problème est une illustration du paradoxe de \bsc{Hilbert} : si $A$ et $B$ s
 \nocite{*}
 \printbibliography
 \endgroup
-\appendixpage
 \appendix
+\appendixpage
 \chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe:thmfondarith}
 Pour mener à bin la démonstration, on aura besoin d'un lemme.
 \begin{lemmab}{}{ncopremsn}
