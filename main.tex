@@ -24,7 +24,7 @@
 
 La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'on étudie l'ensemble des entiers naturels. C'est une définition intuitive de l'infini. L'infini n'est pas un nombre, il n'obéit pas aux lois usuelles $+$ et $\times$ de la même manière que les nombres réels. En mathématiques, l'une des manières les plus simples de caractériser l'infini est celle de la théorie des ensembles. L'une des propriétés principales d'un ensemble est sa taille. Comme nous allons le voir, les ensembles mathématiques peuvent être finis ou infinis. : L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
 
-On peut alors se poser des questions fondamentales à l'étude de l'infini~: comment peut on caractériser les ensembles infinis ? Est-ce qu'il y a un infini << plus grand >> ou << plus petit >> que celui des nombres entiers naturels ?  
+On peut alors se poser des questions fondamentales à l'étude de l'infini~: comment peut on caractériser les ensembles infinis ? Est-ce qu'il y a un infini << plus grand >> ou << plus petit >> que celui des nombres entiers naturels ?
 
 Dans la première partie, nous allons introduire la notion de l'ensemble et des applications et définir ce que sont les ensembles finis et infinis. rappeler ce que sont les ensembles, cruciaux pour l'étude de l'infini du point de vue ensembliste.
 Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d'ensembles usuels et aux propriétés d'ensembles dénombrables.
@@ -38,24 +38,24 @@ Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter
 \part{Préliminaires au dénombrement~: Comptage, applications, bijection}
 \chapter{Ensembles \& applications}
 \section{\'Enumération et comptage}
-Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser cette notion 
+Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser cette notion
 Si on veut compter, à voix haute, une par une, les lettres du mot~:\[\text{cbda}\]
 
-On le numérotera comme suit : 
+On le numérotera comme suit :
 \begin{table}[h]
 \centering
 \begin{tabular}{lllll}
 c & b & d & a &  \\
-1 & 2 & 3 & 4 &  
+1 & 2 & 3 & 4 &
 \end{tabular}
 \end{table}
 
-Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph{patate} : 
+Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph{patate} :
 \begin{figure}[h]
 	\centering
     \begin{tikzpicture}
-	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
-	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};
+	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};
 	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
 	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};%
 	%
@@ -85,15 +85,15 @@ Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph
 
 %\diagcompfonct
 Si cet exemple a l'air simple, il n'est pas simpliste pour autant :  ce procédé, qui consiste à associer à chaque lettre un nombre est omniprésent en mathématiques et il porte le nom \emph{d'application}.
-Plus remarquable encore, ce diagramme permet même de donner une première définition quasi-formelle de ce qu'est une application. Une chose est \emph{cruciale} : chaque lettre ne doit être comptabilisée une seule et unique fois, sinon, le résultat final est faussé ! 
+Plus remarquable encore, ce diagramme permet même de donner une première définition quasi-formelle de ce qu'est une application. Une chose est \emph{cruciale} : chaque lettre ne doit être comptabilisée une seule et unique fois, sinon, le résultat final est faussé !
 
 Pour fixer les idées voici deux nouvelles applications.
 
 	\begin{figure}[H]
 	\centering
     \begin{tikzpicture}
-	\node[bullet,fill=bleu,label=left:$1$] (a1) at (0,4) {};    
-	\node[bullet,fill=bleu,label=left:$2$] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:$1$] (a1) at (0,4) {};
+	\node[bullet,fill=bleu,label=left:$2$] (a2) at (0,3) {};
 	\node[bullet,fill=bleu,label=left:$3$] (a3) at (0,2) {};
 	\node[bullet,fill=bleu,label=left:$4$] (a4) at (0,1) {};%
 	%
@@ -114,7 +114,7 @@ Pour fixer les idées voici deux nouvelles applications.
 %
 	\caption{application parité.}
 	\label{fig:parité}
-\end{figure}	
+\end{figure}
 
 Cet exemple simple est très utilisé, notamment en informatique, en remplaçant pair et impair par $0$ et $1$, respectivement. \sidepar{les développeurs aguerris auront reconnu la formule ~\textup{\texttt{n=n\&1}}.}
 
@@ -122,8 +122,8 @@ Cet exemple simple est très utilisé, notamment en informatique, en remplaçant
 \begin{figure}[htb]
 	\centering
     \begin{tikzpicture}
-	\node[bullet,fill=bleu,label=left:lundi] (a1) at (0,4) {};    
-	\node[bullet,fill=bleu,label=left:mardi] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:lundi] (a1) at (0,4) {};
+	\node[bullet,fill=bleu,label=left:mardi] (a2) at (0,3) {};
 	\node[bullet,fill=bleu,label=left:mercredi] (a3) at (0,2) {};
 	\node[bullet,fill=bleu,label=left:jeudi] (a4) at (0,1) {};%
 	\node[bullet,fill=bleu,label=left:vendredi] (a5) at (0,0) {};%
@@ -158,7 +158,7 @@ Cet exemple simple est très utilisé, notamment en informatique, en remplaçant
 	\caption{ Application \enquote{jours de la semaine} (convention anglo-saxonne).}
 	\label{fig:jourssem}
 \end{figure}
-\sidepar{ En 1990, \bsc{Keith} a trouvé le jour correspondant à une date grâce à l'expression suivante (en  langage \textup{\textsf{C}) :\\\texttt{int weekday  = (d~+=~m~<~3~? y-\/-~: y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)\%7;  
+\sidepar{ En 1990, \bsc{Keith} a trouvé le jour correspondant à une date grâce à l'expression suivante (en  langage \textup{\textsf{C}) :\\\texttt{int weekday  = (d~+=~m~<~3~? y-\/-~: y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)\%7;
 	}}}
 \clearpage
 \section{Étude de deux cas limites}\label{sec:diffappfonct}
@@ -166,8 +166,8 @@ Il y a cependant un détail à régler : Comment considère-t-on les points qui 
 \begin{figure}[h]
 	\centering
     \begin{tikzpicture}
-	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
-	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};
+	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};
 	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
 	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};
 	\node[bullet,fill=bleu,label=left:e] (a5) at (0,0) {};
@@ -212,8 +212,8 @@ Le cas de la~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une applic
 \begin{figure}[h]
 	\centering
     \begin{tikzpicture}
-	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};    
-	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};    
+	\node[bullet,fill=bleu,label=left:a] (a1) at (0,4) {};
+	\node[bullet,fill=bleu,label=left:b] (a2) at (0,3) {};
 	\node[bullet,fill=bleu,label=left:c] (a3) at (0,2) {};
 	\node[bullet,fill=bleu,label=left:d] (a4) at (0,1) {};%
  	%
@@ -238,18 +238,17 @@ Le cas de la~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une applic
 	\caption{Un point n'est pas relié à droite. Est-ce une application ?}
 	\label{fig:fonctcomp}
   \end{figure}
-\clearpage
- Revenons une fois encore au comptage de mots pour trancher. Dans ce cas, on obtient :
+  Revenons une fois encore au comptage de mots pour trancher. Dans ce cas, on obtient :
 \begin{table}[h]
 \centering
-\begin{tabular}{llllll} 
+\begin{tabular}{llllll}
 c & b & d & a & \texttt{\backslash0} \\
 1 & 2 & 3 & 4 &  5
 \end{tabular}
-\end{table} 
-\sidepar{\vspace*{-4\onelineskip}Le \textup{\texttt{\backslash0}} signale la fin d'un mot ou d'une chaîne de caractères (caractère 0 en \hyphenation{ASCII} ASCII)}
-Contrairement au cas précédent, nous avions correctement compté le nombre de lettre du mot. On a simplement une valeur surnuméraire.  On peut donc sans risque accepter ce cas particulier. Comme toutes les valeurs ne sont pas atteintes, on dira que l'application est \emph{non-surjective}.
+\end{table}
+\sidepar{\vspace*{-\onelineskip}Le \textup{\texttt{\backslash0}} signale la fin d'un mot ou d'une chaîne de caractères (caractère 0 en \hyphenation{ASCII} ASCII)}
 
+Contrairement au cas précédent, nous avions correctement compté le nombre de lettre du mot. On a simplement une valeur surnuméraire.  On peut donc sans risque accepter ce cas particulier. Comme toutes les valeurs ne sont pas atteintes, on dira que l'application est \emph{non-surjective}
 \section{Formalisation du concept d'application}
 Maintenant que l'on dispose d'une idée claire du concept d'application, on va essayer de le formaliser. En fait, une fonction se décrit à l'aide de 3 éléments :
 \begin{enumerate}
@@ -278,18 +277,23 @@ Nous sommes désormais en capacité de formaliser la notion d'application :
   On appelle \emph{application de $X$ dans $Y$} le triplet $f\eqdef(X,Y,F)$, où $F\subseteq (X\times Y)$ \footnote{ \textit{litt.} $F$, un ensemble de couples} vérifie : \[ \boxed{\forall x \in X, \exists!\,y \in Y \mid (x,y) \in F.\,}\footnote{C'est la condition encadrée plus haut.}\]
   L'ensemble $F$ est appelé \emph{graphe de l'application} $f$, On le notera $\mathscr{G}_{f}$.
 \end{defb}
-On introduit aussi les deux définitions suivantes (qu'on illustrera ensuite) : 
+
+En gardant ces notations, on introduit aussi les  définitions suivantes (que l'on illustrera ensuite) :
+
 \begin{defb}{Image d'un élément, image directe}{imagefonct}
   Soit $X$ et $Y$ deux ensembles et $f$ une application de $X$ dans $Y$.
   on dit que $f$ \emph{applique} ou \emph{associe} $y \in Y $ à $x \in X$
   si :
   \[\boxed{(x,y) \in \mathscr{G}_{f}}\]
   Par unicité de $y$, on notera $y\eqdef f(x)$. On dit que $y$ est l'image de $x$  et que $x$ est un antécédent de $y$ (par $f$)
-
-Soit $E$ une partie de $X$, on note $f(E)$ l'ensemble des images des éléments de $E$. C'est l'\emph{image directe} de $E$ par $f$.
-
-De même, soit $K$ une partie de $Y$, on note $f^\leftarrow(K)$ l'ensemble des antécédents des éléments de $K$
 \end{defb}
+\begin{defb}{image directe}{imd}
+Soit $E$ une partie de $X$, on note $f(E)$ l'ensemble des images des éléments de $E$. C'est l'\emph{image directe} de $E$ par $f$.
+\end{defb}
+On a aussi la notion duale pour l'ensemble d'arrivée : \sidepar{dual algébrique ou topologique ?}
+\begin{defb}{image réciproque}{imrec}
+De même, soit $K$ une partie de $Y$, on note $f^\leftarrow(K)$ l'ensemble des antécédents des éléments de $K$. C'est l'\emph{image directe} de $E$ par $f$
+\end{defb}\sidepar{Attention, cette notation de l'image réciproque n'est pas standard et on la note plutôt $f^{-1}$. On la +-réserve pour la réciproque.}
  Revenons au premier diagramme avec ce nouveau formalisme :
  \begin{figure}[htb]
 	\centering
@@ -325,27 +329,27 @@ De même, soit $K$ une partie de $Y$, on note $f^\leftarrow(K)$ l'ensemble des a
 \section{Ensembles finis et infinis}
 
 \begin{defb}{Finitude}{fini}
-     Soit $E$ un ensemble. 
-	    
+     Soit $E$ un ensemble.
+
 	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\phi~: \{1,\dots,n \} \to E$, avec $n \in \NN$.
 
-	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$. 
-\end{defb} 
+	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$.
+\end{defb}
 
 %\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -Deux ouates.}
 
 \begin{defb}{\'Equipotence}{equip}
-    On dit que $E$ et $F$ sont équipotents s' il existe $\phi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$. 
+    On dit que $E$ et $F$ sont équipotents s' il existe $\phi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$.
 \end{defb}
 
 \begin{theoremb}{}{mmpuiss}
-    $ \mathrel{\approx}$ est une relation d'équivalence. 
+    $ \mathrel{\approx}$ est une relation d'équivalence.
 \end{theoremb}
 \begin{proof}\sidepar{Une relation d'équivalence est un \enquote{prisme de lecture} mathématique.
 \\[\onelineskip]
 Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met donc dans le même panier, ou plutôt, dans la même classe\textellipsis}
     Soient $E, F, G$, trois ensembles.
-	\begin{enumerate} 
+	\begin{enumerate}
 		\item $E \mathrel{\approx} E$, car l'application identité est une bijection. $\mathrel{\approx}$ est réflexive.
 		\item Si $E \mathrel{\approx} F$, alors il existe une bijection de E dans F. Son inverse est une bijection de~F~dans~E, d'où~${F \mathrel{\approx} E}$, et $\mathrel{\approx}$ est symétrique.
 		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par~composition, $\psi\circ\phi$ est une bijection de E dans G, c.-à-d. $E \mathrel{\approx} G$, et  $\mathrel{\approx}$ est transitive.
@@ -355,11 +359,11 @@ Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met do
 
 \begin{theoremb}{}{assequiv}
 	Soient $E, F$ deux ensembles \textbf{finis} et $\phi~: E \to F$ une application. Si $E \mathrel{\approx} F$ alors les 3 assertions suivantes sont équivalentes~:
-	
+
 	\begin{enumerate}
 		\item $\phi$ est injective ;
 		\item $\phi$ est surjective ;
-		\item $\phi$ est bijective. 
+		\item $\phi$ est bijective.
 	\end{enumerate}
   \end{theoremb}
 
@@ -368,12 +372,12 @@ Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met do
 \end{proof}
 \begin{defb}{Ensemble infini}{ifini}
 	Soit $E$ un ensemble.
-	
+
 	On dit que $E$ est infini si $E$ n'est pas fini.
 \end{defb}
 
-\begin{theoremb}{}{partn} 
-	Toute partie de $\NN$ est finie ssi elle est majorée. 
+\begin{theoremb}{}{partn}
+	Toute partie de $\NN$ est finie ssi elle est majorée.
 \end{theoremb}
 \begin{proof}
 Soit $E$ une partie de $\NN$. On peut supposer $E\neq\emptyset$.
@@ -398,7 +402,7 @@ Soit $E$ une partie de $\NN$. On peut supposer $E\neq\emptyset$.
  Et $E$ est majorée par $p$.
 \end{proof}
 \begin{theoremb}{}{ninfini}
-	$\NN$ est infini. 
+	$\NN$ est infini.
 \end{theoremb}
 \begin{proof}
   L'application $f$ définie par : \deffunct{f}{\NN}{\NN}{n}{n+1} est injective, en effet, on a : \[\forall (m,n) \in \NN, m+1=n+1 \iff m=n\] pourtant, elle n'est pas surjective  : 0 n'est jamais atteint.
@@ -406,9 +410,9 @@ Soit $E$ une partie de $\NN$. On peut supposer $E\neq\emptyset$.
 \noindent La contraposée du \cref{thm:assequiv} donne le résultat.
 \end{proof}
 \section{Des parties infinies ?}
-L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\NN$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C. 
+L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $\NN$, stricte, est finie. Il n'en est rien, comme Euclide l'a démontré, vers~-300~av.~J.C.
 
-On se propose donc ici de reformuler sa démonstration en terme modernes. 
+On se propose donc ici de reformuler sa démonstration en terme modernes.
 \begin{defb}{Divisibilité}{div}
 Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : \[b=ka \xLeftrightarrow{ a \mathrel{\neq} 0 } \frac{b}{a}=k.\]
 \end{defb}
@@ -424,9 +428,9 @@ On dit qu'un nombre est premier, s'il n'a pas de diviseurs autre que 1 et lui-m�
 Par convention\footnotemark, 1 n'est ni premier ni composé.
 \end{defb}
  \footnotetext{Cette convention est récente dans l'histoire des mathématiques : 1 était considéré premier jusqu'à la fin du XIX\ieme~siècle, voire au début du XX\ieme.}
-La remarque suivante justifie l'emploi du même vocabulaire : 
+La remarque suivante justifie l'emploi du même vocabulaire :
 \begin{remarkb}{}{prem-equiv}
-Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le précèdent, c'est-à-dire s'il n'a aucun diviseur commun avec un entier qui lui est inférieur. 
+Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le précèdent, c'est-à-dire s'il n'a aucun diviseur commun avec un entier qui lui est inférieur.
 \end{remarkb}
 \begin{lemmab}{}{divprod}
 Si $n$ divise deux entiers $a$ et $b$, il divise aussi leur produit $ab$.
@@ -444,21 +448,21 @@ La démonstration de ce résultat est rejetée en~\cref{annexe:thmfondarith}.
 
 Ces rappels balayés, on peut démontrer le résultat d'Euclide :
 
-\begin{theoremb}{Infinité des nombres premiers}{nombpreminf} 
+\begin{theoremb}{Infinité des nombres premiers}{nombpreminf}
 Toute liste finie de nombre premiers est nécessairement incomplète.
 
 Autrement dit, il existe une infinité de nombres premiers.
 \end{theoremb}
 \begin{proof}
-On démontre le résultat par récurrence. Une liste vide (à 0 éléments) ne contient aucun nombre premier, elle est donc incomplète car 2 est premier. 
+On démontre le résultat par récurrence. Une liste vide (à 0 éléments) ne contient aucun nombre premier, elle est donc incomplète car 2 est premier.
 Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : \[ N=\prod_{i=1}^{n} p_i\]\sidepar{\vspace*{-3.5\baselineskip}\itshape \footnotesize Donc $N$ est égal à Pi de 1 à $n$ de $p_i$}
 Si notre suite est vide, on pose $N=2$.
 
 Les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{lem:Fonda-Arith}.
 \sidepar{\itshape \footnotesize $2$ est le plus petit nombre premier.}
-Si $N+1$ est premier, alors notre liste est incomplète. Dans le cas contraire, on est assuré de l'existence d'un facteur premier $p$ pour $N+1$. Mais, d'après le \cref{lem:ncopremsn}, ce facteur premier n'est pas dans la décomposition de $N$, il n'est donc pas dans notre liste. Dans les deux cas, notre liste est incomplète. 
+Si $N+1$ est premier, alors notre liste est incomplète. Dans le cas contraire, on est assuré de l'existence d'un facteur premier $p$ pour $N+1$. Mais, d'après le \cref{lem:ncopremsn}, ce facteur premier n'est pas dans la décomposition de $N$, il n'est donc pas dans notre liste. Dans les deux cas, notre liste est incomplète.
 \end{proof}
-Comme on l'a vu ci-avant, l'infini nous réserve quelques surprises. Il est donc judicieux de considérer une famille plus large d'ensemble : les ensembles \emph{dénombrables} et \emph{au plus dénombrables}. 
+Comme on l'a vu ci-avant, l'infini nous réserve quelques surprises. Il est donc judicieux de considérer une famille plus large d'ensemble : les ensembles \emph{dénombrables} et \emph{au plus dénombrables}.
 \part{Dénombrabilité}
 \chapter{\texorpdfstring{\'Etude de $2\NN$, $\ZZ$, $\QQ$}{Dénombrabilité : Étude de N,2N,Z, et Q}}
 \section{Introduction : le paradoxe de \bsc{Hilbert}}
@@ -482,12 +486,12 @@ Ce paradoxe introduit des résultats contre-intuitifs quant à la cardinalité d
 Commençons par une définition précise de ce que l'on vient de constater :
 \begin{defb}{Ensemble démombrable, au plus dénombrable}{denomb}
 
-	 Soit $E$ un ensemble infini. 
-	 
-	 On dit que $E$ est dénombrable ssi il existe une application $\phi~: \NN \to E $ bijective. 
-	 
+	 Soit $E$ un ensemble infini.
+
+	 On dit que $E$ est dénombrable ssi il existe une application $\phi~: \NN \to E $ bijective.
+
 	 Un ensemble fini ou dénombrable est dit au plus dénombrable. \newline
-	 On note par la suite $\aleph_0$, lire \emph{alèf zéro}\footnotemark, le cardinal de $\NN$. 
+	 On note par la suite $\aleph_0$, lire \emph{alèf zéro}\footnotemark, le cardinal de $\NN$.
 \end{defb}
 \footnotetext{Aleph, première lettre  de l'alphabet hébreu}
 
@@ -497,7 +501,7 @@ Commençons par une définition précise de ce que l'on vient de constater :
 Il semble que l'ensemble des nombre premier n'est pas le seul à défier notre intuition :  voici un résultat sur la dénombrabilité de  $2\NN$, l'ensemble des entiers naturels pairs.
 
 \begin{theoremb}{Dénombrabilité de 2$\NN$}{}
-	L'ensemble 2$\NN$ des entiers naturels pairs est dénombrable. 
+	L'ensemble 2$\NN$ des entiers naturels pairs est dénombrable.
 \end{theoremb}
 
 \begin{proof}
@@ -505,46 +509,46 @@ Il semble que l'ensemble des nombre premier n'est pas le seul à défier notre i
 	\ & \NN& \to& 2\NN \\
 	\phi~: & n & \mapsto & 2n
 	\end{array}.\]
-	
+
   Cette application $\phi $ est bijective car sa réciproque est donnée par :
   \[ \phi^{-1}~: \begin{array}{ccc}
 	2\NN & \to & \NN\\
 	k & \mapsto & \frac{k}{2}
 	\end{array}\]
-	
+
 	2$\NN$ est en bijection avec $\NN$, donc dénombrable de cardinal $\aleph_0$.
 \end{proof}
 
-On peut introduire un résultat plus général qui couvre toute partie de $\NN$. 
+On peut introduire un résultat plus général qui couvre toute partie de $\NN$.
 
 \begin{theoremb}{Dénombrabilité des parties infinies de $\NN$}{}
 	Toute partie $E \subseteq \NN$ infinie a le même cardinal que $\NN$.
 \end{theoremb}
 
 \begin{proof}
-	On construit, par récurrence, une bijection $\phi~: \NN \to E$ telle que: 
-	
+	On construit, par récurrence, une bijection $\phi~: \NN \to E$ telle que:
+
 	\[\left\lbrace \begin{array}{c}
 	\phi(0) = \min \{x \in E\} \\
 	\forall n \in \NN, \phi(n+1) = \min \{x \in E, x > \phi(n) \}
 	\end{array} \right.\]
-	
-	C'est bien une bijection~: elle est injective et surjective car $\forall k \in \NN, k \leq \phi(k)$. 
+
+	C'est bien une bijection~: elle est injective et surjective car $\forall k \in \NN, k \leq \phi(k)$.
 \end{proof}
-On en déduit le résultat suivant : 
+On en déduit le résultat suivant :
 \begin{theoremb}{}{parties}
-	Soient $E$ et $F$ deux ensembles. 
+	Soient $E$ et $F$ deux ensembles.
 	Si $E \subseteq F$ et si $F$ est dénombrable, alors $E$ est au plus dénombrable.
 \end{theoremb}
 \section{\texorpdfstring{Dénombrabilité de $\NN^2$}{Dénombrabilité de N²}}
-Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E^2) \neq \Card(E)$. On pourrait penser que $\NN^2 $ contient plus d'élements que $\NN$. 
+Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E^2) \neq \Card(E)$. On pourrait penser que $\NN^2 $ contient plus d'élements que $\NN$.
 
 \begin{theoremb}{Dénombrabilité de $\NN^2$}{n2_denombrable}
-	$\NN^2$ est dénombrable. 
+	$\NN^2$ est dénombrable.
 \end{theoremb}
 
-\begin{proof} 
-	On peut compter les couples $(n,m) \in \NN^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien. 
+\begin{proof}
+	On peut compter les couples $(n,m) \in \NN^2$ comme suit~: \par On représente ces couples sur un quart de plan cartésien.
 	On part du couple $(0, 0)$. Dans la ligne suivante, on range $(1,0) $ et $(0,1)$. On continue avec $(2,0), (1,1), (0,2)$ (on parcourt la diagonale du point de coordonnées $(n,0)$ pour arriver au point de coordonnées $(0,n)$). Ce procédé est illustré dans la  \cref{fig:n_croix_n}.
 	\begin{figure}[htb]
 		\centering
@@ -552,23 +556,23 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 		\caption{Dénombrabilité de $\NN^2$}
 		\label{fig:n_croix_n}
 	\end{figure}
-	
+
 	On obtient la séquence suivante~:
-	
+
 	\[\begin{array}{l}
 		(0,0) \\
-		(1,0), (0,1) \\ %ce sont des couples, pas des intervalles ouverts. 
+		(1,0), (0,1) \\ %ce sont des couples, pas des intervalles ouverts.
 		(0,2), (1,1), (2,0) \\
 		(3,0), (1,2), (2,1), (0,3) \\
 		\cdots
 	\end{array}.\]
-	Plus formellement, l'application qui range les couples de cette manière est 
+	Plus formellement, l'application qui range les couples de cette manière est
 	\[\begin{array}{cccc}
 		\ & \NN \times \NN & \to & \NN \\
 		\phi~: & (n,m) & \mapsto & {\underbrace{\frac{(n+m)(n+m+1)}{2}}_{\text{la place du couple dans la ligne}}} +  {\underbrace{\vphantom{\frac{(n+m)(n+m+1)}{2}} m}_{\text{la place du couple dans la colonne}}}
 	\end{array}.\]
-	
-	
+
+
 	$\phi$ est bien bijective. $\NN^2$ est bien dénombrable.
 \end{proof}
 
@@ -586,11 +590,11 @@ Par récurrence sur $k \in \NN$, on peut montrer le théorème suivant :
 
   On a ainsi établi une bijection entre $\NN^{k+1}$ et $\NN^2$. Or $\NN^2$ est dénombrable. Donc $\NN^k$ est dénombrable. Par récurrence, $\forall k \in \NN, \NN^k$ est dénombrable.
 \end{proof}
-De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :. 
+De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :.
 \begin{theoremb}{Produit cartésien d'ensembles dénombrables}{cartesien}
-	Soient $A, B, A_1, \dots, A_i, \dots, A_n$ des ensembles dénombrables. 
+	Soient $A, B, A_1, \dots, A_i, \dots, A_n$ des ensembles dénombrables.
 	\begin{enumerate}
-		\item Le produit cartésien $A \times B$ est dénombrable. 
+		\item Le produit cartésien $A \times B$ est dénombrable.
 		\item Plus généralement, tout produit \textbf{fini} $\prod_{i=1}^{n} A_i $ est dénombrable.
 	\end{enumerate}
 \end{theoremb}
@@ -599,34 +603,34 @@ De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :.
 	\ & A \times B & \to & \NN^2 \\
 	f~: & (x,y) & \mapsto & (\phi(x), \psi(y))
 	\end{array}.\]
-	
+
 \end{proof}
 
-$f $ est bien bijective. Donc $A \times B$ est bien dénombrable. On procède par récurrence immédiate pour $k$ ensembles. 
+$f $ est bien bijective. Donc $A \times B$ est bien dénombrable. On procède par récurrence immédiate pour $k$ ensembles.
 
 Soit $\prod_{i =1}^k A_i$ le produit cartésien de $k$ ensembles dénombrables. Si $\forall i \in \{1,\dots,k\}, \phi_i : A_i \to \NN$ est une bijection, alors on peut construire l'application \[ \begin{array}{cccc}
 	\ & \prod_{i=1}^k A_i & \to & \NN^k\\
 	f~: & (x_1,\dots,x_k) & \mapsto & (\phi_1(x_1),\dots, \phi_k(x_k))
-	\end{array}.\] 
+	\end{array}.\]
 C'est une bijection de $\prod_{i=1}^k A_i $ vers $\NN^k$ qui est dénombrable. Donc $\prod_{i=1}^kA_i$ est dénombrable.
 
 
-On peut encore montrer le résultat suivant : 
+On peut encore montrer le résultat suivant :
 \begin{theoremb}{Union dénombrable d'ensembles dénombrables}{union}
-    Soit $(A_i)_{i \in I}$ une famille dénombrable d'ensembles dénombrables. 
-	Alors $A= \bigcup_{i \in I} A_i$ est dénombrable. 
-\end{theoremb} 
+    Soit $(A_i)_{i \in I}$ une famille dénombrable d'ensembles dénombrables.
+	Alors $A= \bigcup_{i \in I} A_i$ est dénombrable.
+\end{theoremb}
 \begin{proof}
-	En effet, on peut écrire $\forall i \in I, A_i = \{x_{n,i}, n \in \NN\}$. Chaque élement $x_{n, i}$ est indéxé par sa position $n$ dans $A_i$ et la position $i$ de $(A_i)$ dans $I$. 
-	
+	En effet, on peut écrire $\forall i \in I, A_i = \{x_{n,i}, n \in \NN\}$. Chaque élement $x_{n, i}$ est indéxé par sa position $n$ dans $A_i$ et la position $i$ de $(A_i)$ dans $I$.
+
 	Ainsi $A = \bigcup_{i \in I} A_i = \{x_{n, i}, (n,i) \in \NN \times I\}$. Les élements $x_{n,i}$ sont indéxés par $\NN \times I$ qui est un produit cartésien d'ensembles dénombrables ($I$ est une famille indéxée par $\NN$, elle est bien dénombrable). Donc $A$ est dénombrable.
 \end{proof}
 \section{\texorpdfstring{Dénombrabilité de $\ZZ$ et de $\QQ$}{Dénombrabilité de Z et Q}}
 
-Intuitivement on pourrait penser que l'ensemble des entiers $\ZZ$ a un cardinal supérieur à $\NN$ étant donné qu'il contient ``deux fois plus" d'élements~: les entiers naturels et les entiers négatifs. 
+Intuitivement on pourrait penser que l'ensemble des entiers $\ZZ$ a un cardinal supérieur à $\NN$ étant donné qu'il contient ``deux fois plus" d'élements~: les entiers naturels et les entiers négatifs.
 
 \begin{theoremb}{Dénombrabilité de $\ZZ$}{denz}
-	L'ensemble $\ZZ$ des entiers est dénombrable. 
+	L'ensemble $\ZZ$ des entiers est dénombrable.
 \end{theoremb}
 
 \begin{proof}
@@ -638,20 +642,20 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 	\phi(2k + 1)& = k+1
 	\end{dcases}
 \]
-	C'est bien une bijection. Donc $\ZZ$ est dénombrable. 
+	C'est bien une bijection. Donc $\ZZ$ est dénombrable.
 \end{proof}
 \begin{theoremb}{Dénombrabilité de $\QQ$}{denq}
 	$\QQ$ est dénombrable.
 \end{theoremb}
 \begin{proof}
-	Tout $x \in \QQ$ a un unique représentant irréductible $\frac{p}{q}$ où $p \wedge q = 1$. 
-	
-	Pour établir une bijection entre $\QQ$ et $\NN$, on commence par écrire un tableau où on range $\frac{p}{q}$ à la colonne $q$ et à la ligne $p$.  
-	
-	On parcourt le tableau comme c'est indiqué par les flèches dans la \cref{fig:denombQ}. 
-	
+	Tout $x \in \QQ$ a un unique représentant irréductible $\frac{p}{q}$ où $p \wedge q = 1$.
+
+	Pour établir une bijection entre $\QQ$ et $\NN$, on commence par écrire un tableau où on range $\frac{p}{q}$ à la colonne $q$ et à la ligne $p$.
+
+	On parcourt le tableau comme c'est indiqué par les flèches dans la \cref{fig:denombQ}.
+
 	\noindent On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau en diagonale vers le haut jusqu'à atteindre $\frac{1}{3}$, etc.
-	
+
 	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L'application $\phi$ qui range les rationnels $x \in \QQ$ dans le tableau \cref{fig:denombQ} est donc une bijection.
 \end{proof}
 \begin{figure}[!htb]
@@ -706,7 +710,7 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 \draw [-latex, red, thick] (13) -- (14);
 \draw [-latex, red, thick] (14) -- (23);
 \draw [-latex, red, thick] (23) -- (32);
-\draw [-latex, red, thick] (32) -- (41);    
+\draw [-latex, red, thick] (32) -- (41);
 \draw [-latex, red, thick] (41) -- (51);
 \draw [-latex, red, thick] (51) -- (15);
 \draw [-latex, red, thick] (15) -- (16);
@@ -737,7 +741,7 @@ Nous allons appliquer les concepts vu récemment pour répondre à la question s
 
 \[X = \QQ \cap [0,1] \text{ est-il plus grand que } Y = \QQ \cap \left]0,1\right[ \text{ ?}\]
 
-Naturellement, on peut penser que, comme 0 et 1 sont des rationnels, ils sont dans $X$ et qu'$X$ contient deux éléments de plus que $Y$. 
+Naturellement, on peut penser que, comme 0 et 1 sont des rationnels, ils sont dans $X$ et qu'$X$ contient deux éléments de plus que $Y$.
 
 Montrons que $ X = \QQ \cap [0,1]$ et $ Y = \QQ \cap \left]0,1\right[$ sont en bijection.
 \begin{proof}
@@ -759,12 +763,12 @@ Pour mener à bin la démonstration, on aura besoin d'un lemme.
   Soit $n$ un entier naturel. Alors $n$ est premier avec $n+1$ .
 \end{lemmab}
 \begin{proof}
-La remarque précédente montre le résultat pour $n=0$. Comme 2 est premier, le résultat est vrai pour $n=1$. Supposons donc $n>1$. Soit  $k$ un entier non-nul qui divise à la fois $n~\&~n+1$, il existe alors deux entiers $l_1$ et $l_2$ tels que :  
+La remarque précédente montre le résultat pour $n=0$. Comme 2 est premier, le résultat est vrai pour $n=1$. Supposons donc $n>1$. Soit  $k$ un entier non-nul qui divise à la fois $n~\&~n+1$, il existe alors deux entiers $l_1$ et $l_2$ tels que :
 \begin{align*}
   n+1& =kl_2=kl_{1}+1\\
-\shortintertext{Soit~:} 
+\shortintertext{Soit~:}
 \cancel{k}l_2& >\cancel{k}l_1\\
-\shortintertext{On a alors~:} 
+\shortintertext{On a alors~:}
 1& =k(l_2-l_1)\\
 \intertext{Donc $k \mid 1$, et : }
 k& =1
@@ -792,7 +796,7 @@ $a$
 \proofpart*{test}
 \[BIDULE\]
 \end{proof}
-\Cref{thm:exem}, \cref{rem:rema}, \cref{note:not} \cref{def:def} 
+\Cref{thm:exem}, \cref{rem:rema}, \cref{note:not} \cref{def:def}
 \deffunct{f}{E}{F}{x}{f(x)}
 \backmatter
 \end{document}
