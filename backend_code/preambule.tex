@@ -1,4 +1,3 @@
-\usepackage{luacode}
 \usepackage{shellesc}
 \usepackage[german,main=french]{babel}
 \usepackage[autostyle=true,maxlevel=3]{csquotes}
@@ -57,7 +56,14 @@
   \mathop{\Uhextensible width \wd\z@ 0 "027FA}_{#2}^{#3}% 027FA code for long left right double arrow in unicode-math-table.tex 
   \endgroup
 }
-
+\renewcommand{\xrightarrow}[2][]{\mathrel{\mathpalette\xrightarrow@{{#1}{#2}}}}
+\newcommand{\xrightarrow@}[2]{\xrightarrow@@{#1}#2}
+\newcommand{\xrightarrow@@}[3]{%
+  \begingroup
+  \sbox\z@{$\m@th#1\mathop{}\limits_{\;#2\;}^{\;#3\;}$}%
+  \mathop{\Uhextensible width \wd\z@ 0 "027F6}_{#2}^{#3}% 027F6 code for long left right  arrow in unicode-math-table.tex
+  \endgroup
+}
 \newcounter{proofpart}
 \newcommand{\proofpart}{\@ifstar{\@proofpart}{\@@proofpart}}
 

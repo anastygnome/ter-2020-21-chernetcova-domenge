@@ -68,13 +68,43 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 % Avec une étoile, on obtient 
 %[titre en italique : ] 
 
-\newcommand{\deffunct}[5]{%
-\begin{align*}%
-      #1 \colon & #2 \to #3\\
-       &#4\xmapsto{\hphantom{#1}} #5
-\end{align*}%
+\newcommand{\deffunctline}[5]{{{#1}\colon {#2}\ni{#4}\to{#5}\in{#3}}}
+\newcommand{\deffunctdisp}[5]{%
+\begin{aligned}%
+      {#1}\colon & #2\xmapsto{\phantom{#5}}#3\\
+       &{#4}\longrightarrow{#5}
+\end{aligned}%
 }
-
+\newcommand{\deffunct}[5]{%
+  \ifcase\mathstyle
+% 0 : displaystyle (entre \[ \])
+    \deffunctdisp{#1}{#2}{#3}{#4}{#5}
+  \else
+    \deffunctline{#1}{#2}{#3}{#4}{#5}
+\fi}
+\makeatletter
+\newcommand*{\restriction}[2]{\mathchoice
+              {\setbox1\hbox{$\m@th {\displaystyle #1}_{\scriptstyle #2}$}
+              \restrictionaux{#1}{#2}}
+              {\setbox1\hbox{$\m@th {\textstyle #1}_{\scriptstyle #2}$}
+              \restrictionaux{#1}{#2}}
+              {\setbox1\hbox{$\m@th {\scriptstyle #1}_{\scriptscriptstyle #2}$}
+              \restrictionaux{#1}{#2}}
+              {\setbox1\hbox{$\m@th {\scriptscriptstyle #1}_{\scriptscriptstyle #2}$}
+                \restrictionaux{#1}{#2}}}
+\newcommand*{\restrictionaux}[2]{{#1\,\smash{\vrule height .8\ht1 depth .85\dp1}}_{\,#2}}
+ \newcommand*{\corestriction}[2]{\mathchoice
+              {\setbox1\hbox{$\m@th {\displaystyle #1}^{\scriptstyle #2}$}
+              \corestrictionaux{#1}{#2}}
+              {\setbox1\hbox{$\m@th {\textstyle #1}^{\scriptstyle #2}$}
+              \corestrictionaux{#1}{#2}}
+              {\setbox1\hbox{$\m@th {\scriptstyle #1}^{\scriptscriptstyle #2}$}
+              \corestrictionaux{#1}{#2}}
+            {\setbox1\hbox{$\m@th {\scriptscriptstyle #1}^{\scriptscriptstyle #2}$}
+              \corestrictionaux{#1}{H2}}}
+  \newcommand*{\corestrictionaux}[2]{#1^{\,\smash{\vrule height .8\ht1 depth .85\dp1\,#2}}}
+  \newcommand*{\transp}[1]{\prescript{\mathrm t}{}{#1}}
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %               Ensembles.                   %
