@@ -1,4 +1,4 @@
-%+ !TeX encoding = UTF-8
+ %+ !TeX encoding = UTF-8
 % !TeX spellcheck = fr-FR
 \documentclass[a4paper,french,final]{memoir}
 \input{backend_code/preambule}
@@ -397,8 +397,13 @@ Une remarque importante pour la suite :
     \[\boxed{\forall (x,x') \in X², f(x)=f(x')\implies x=x'}\]
   \end{defb}
   On trouvera un exemple en \cref{fig:appsurj}. Le théorème suivant justifie l'étude à suivre : 
-  \begin{theoremb}{injectivité et surjection canonique}
-  
+  \begin{theoremb}{injectivité et surjection canonique}{}
+    a
+  \end{theoremb}
+  On trouvera un exemple en \cref{fig:appsurj}.
+  Le résultat suivant est fondamental :
+  \begin{theoremb}{Injectivité de la surjection canonique}{surjcaninj}
+La surjection canonique associée à une injection est encore injective
   \end{theoremb}
   	\begin{figure}[htbp]
   	  \sidepar{\vspace*{-5\onelineskip}Comme tout élément de $Y$ a un antécédent, $f(X)=Y$, $X$ a au plus \enquote{autant d'éléments} que $Y$}
@@ -423,19 +428,23 @@ Une remarque importante pour la suite :
 	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%
 %
-	\caption[Diagramme sagittal d'une application injective]{Diagramme sagittal d'une application surjective.\\ Les éléments de $Y$ sont atteints par au plus une flèche.}
+	\caption[Diagramme sagittal d'une application injective]{Diagramme sagittal d'une application insurjective.\\ Les éléments de $Y$ sont atteints par au plus une flèche.}
 	\label{fig:appinj}
 \end{figure}
 \section{Applications bijectives}
-D'après le \cref{thm:surjcanapp}, toute injection peut aussi être restreinte pour obtenir une fonction 
-\begin{defb}{Application bijective, bijectivité}{}
+D'après le \cref{thm:surjcaninj}, toute injection peut aussi être restreinte pour obtenir une fonction
+\begin{defb}{Application bijective, bijectivité}{appbij}
 On dit que $f$ est bijective, ou que $f$ est une bijection si $f$ est à la fois injective et surjective.
 \end{defb}
+
 La pierre angulaire de la dénombrabilité est désormais posée. Les définitions suivantes, plus techniques, vont maintenant permettre d'agencer tous les éléments.
 \begin{defb}{Application identité}{appid}
-  Soit $X$ un ensemble quelconque. L'application : \[\deffunct{\operatorname{Id}_X}{X}{X}{x}{x}\] est appelée \emph{application identité} (de $X$).
-C'est une bijection, par définition.
+  Soit $X$ un ensemble quelconque. L'application :
+  \[\deffunct{\operatorname{Id}_X}{X}{X}{x}{x}\] est appelée \emph{application identité} (de $X$).
+
+  C'est une bijection, par définition. On pourra la noter $\Id$ s'il n'y a pas d'ambuiguïté.
 \end{defb}
+\section{Composition d'applications}
   \chapter{Définition de la cardinalité}
 \section{Ensembles finis et infinis}
 \begin{defb}{Finitude}{fini}
@@ -485,9 +494,9 @@ Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met do
 	On dit que $E$ est infini si $E$ n'est pas fini.
 \end{defb}
 
-\begin{theoremb}{}{partn}
+\begin{lemmab}{Condition d'existence d'un plus grand élémenttheoremb}{partn}
 	Toute partie de $\NN$ majorée si et seulement si elle admet un plus grand élément.
-\end{theoremb}
+\end{lemmab}
 \begin{proof}
 Soit $E$ une partie de $\NN$. On peut supposer $E\neq\emptyset$.
   \proofpart*{$(\Leftarrow)$}
@@ -508,7 +517,13 @@ Soit $E$ une partie de $\NN$. On peut supposer $E\neq\emptyset$.
   On pose alors :
   \[p\eqdef \sum_{i=1}^{n} k_{i}=k_{1}+k_{2}+k_{3}+\dots+k_{n-1}+k_{n} \]
   Par définition de la sommation \emph{finie}, on a : \[\forall i\in\left\lBrack 1;n\right\rBrack, k_{i}\leq p\]
- Et $E$ est majorée par $p$.
+  Et $E$ est majorée par $p$.
+  \end{proof}
+  \begin{theoremb}{Caractérisation des parties finies de $\NN$}{cnspartnfinie}
+    Toute partie de $\NN$ est finie si et seulement si elle admet un plus grand élément
+  \end{theoremb}
+  \begin{proof}
+    Si une partie $P$ de $\NN$ est finie de cardinal $p$, alors $P\subseteq \left\lBrack 1;p\right\rBrack$ et $P$ est majorée par $p$. Si,~réciproquement, elle est majorée, alors le \cref{lem:partn} nous donne un plus grand élément, disons $n$ et $P \subseteq\left\lBrack 1;n\right\rBrack $ d'où  $P$ est finie.
 \end{proof}
 \begin{theoremb}{}{ninfini}
 	$\NN$ est infini.
@@ -880,7 +895,7 @@ Ce problème est une illustration du paradoxe de \bsc{Hilbert} : si $A$ et $B$ s
 
 Nous l'avons vu, les propriétés de l'infini dénombrable défient l'intuition. Même les plus grands mathématiciens furent étonnés lorsqu'ils découvrèrent ces résultats. Cantor écrivit dans sa lettre à Dedekind à ce propos : \emph{<< Je le vois, mais je ne le crois pas. >>} Pourtant ces propriétés bizarres et illogiques à premier abord sont révélatrices de la complexité et de la beauté des mathématiques. 
 
-
+L'étude de la dénombrabilité a été notre première (modeste) contribution à la Science. Il nous a permis d'appliquer les connaissances emmagasinées durant notre cursus universitaire et de développer notre autonomie et notre curiosité. 
 
 Comme ce sera indiqué dans la prochaine présentation, l'ensemble des réels n'est pas dénombrable. L'argument de la diagonale de Cantor qui construit la démonstration de cette propriété peut être appliqué dans le domaine de l'informatique, notamment pour montrer l'indécidabilité du problème de l'arrêt.
 
