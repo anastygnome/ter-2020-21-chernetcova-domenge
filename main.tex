@@ -7,19 +7,21 @@
 <<<<<<< HEAD
 =======
 \input{figures/figures}
+<<<<<<< HEAD
 \tikzexternalize[prefix=figures/,shell escape=-enable-write18]
 \tikzset{external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --interaction=errorstopmode -jobname "\image" "\texsource"}}
 \tikzset{external/mode=list and make}
 \tikzexternaldisable
 >>>>>>> 5c66dc7 (Ajout démo partie finie ssi maj, diverses corr)
+=======
+>>>>>>> 375f59e (Nettoyage & ajout licence)
 \begin{document}
 \begin{titlingpage}
-\input{backend_code/page_de_garde}
+\hypersetup{pageanchor=false}
+  \input{backend_code/page_de_garde}
 \end{titlingpage}
-\hypersetup{pageanchor=true}
 \frontmatter
 \tableofcontents
-\part{Introduction}
 \chapter{Avant-propos}
 
 La notion de l'infini (noté $\infty$) apparaît pour la première fois lorsqu'on étudie l'ensemble des entiers naturels. C'est une définition intuitive de l'infini. L'infini n'est pas un nombre, il n'obéit pas aux lois usuelles $+$ et $\times$ de la même manière que les nombres réels. En mathématiques, l'une des manières les plus simples de caractériser l'infini est celle de la théorie des ensembles. L'une des propriétés principales d'un ensemble est sa taille. Comme nous allons le voir, les ensembles mathématiques peuvent être finis ou infinis. : L'étude des ensembles infinis est révélatrice de paradoxes, l'un des plus célèbres  énonce qu'une partie stricte d'un ensemble infini peut contenir autant d'éléments que l'ensemble lui-même. C'est le paradoxe de l'hôtel de \bsc{Hilbert} (1924).
@@ -29,13 +31,18 @@ On peut alors se poser des questions fondamentales à l'étude de l'infini~: com
 Dans la première partie, nous allons introduire la notion de l'ensemble et des applications et définir ce que sont les ensembles finis et infinis. rappeler ce que sont les ensembles, cruciaux pour l'étude de l'infini du point de vue ensembliste.
 Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d'ensembles usuels et aux propriétés d'ensembles dénombrables.
 
-Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter}. Nous avons choisi une approche différente : nous voulions insister davantage sur l'aspect formel de la dénombrabilité, c'est pourquoi nous avons introduit des définitions, des notations, des propositions démontrées pour souligner notre propos. \`A notre avis, ce travail est nécessaire pour bien aborder la notion de la dénombrabilité et pour ne pas se perdre dans les différentes notions. Ainsi, nous avons choisi d'en donner une définition rigoureuse. Bien que cette notion soit intuitive, il s'avère difficile de l'expliquer rigoureusement avec des mots du langage << courant >> (non mathématique). En ce sens, le langage mathématique offre une exactitude que la langue naturelle n'a pas.
+Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter}. Nous avons choisi une approche différente : nous voulions insister davantage sur l'aspect formel de la dénombrabilité, c'est pourquoi nous avons introduit des définitions, des notations, des propositions démontrées pour souligner notre propos. \`A notre avis, ce travail est nécessaire pour bien aborder la notion de la dénombrabilité et pour ne pas se perdre dans les différentes notions. Ainsi, nous avons choisi d'en donner une définition rigoureuse. Bien que cette notion soit intuitive, il s'avère difficile de l'expliquer rigoureusement avec des mots du langage << courant >> (non mathématique). En ce sens, le langage mathématique offre une exactitude que la langue naturelle n'a pas. Cependant, afin de rester dans l'esprit de l'ouvrage, le formalisme est dûment introduit et motivé en première partie.
 
-\epigraph{\foreignlanguage{german}{\enquote{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}}\newline\newline
-\enquote{Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et de les comparer entre elles}
-}{Carl~Friedrich~\bsc{Gauß}~\cite{gauss_cite}}
+\epigraph{\foreignlanguage{german}{\enquote{\footnotesize\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}}\newline\newline
+\enquote{\footnotesize Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et de les comparer entre elles}
+}{\footnotesize Carl~Friedrich~\bsc{Gauß}~\cite{gauss_cite}}
+\vspace*{\fill}
+Ce document à été compilé à de Lua\kern-.025em\LaTeX{}, de la classe \textsf{memoir} et des polices \TeX{} Gyre Termes et $Neo~Euler$. La bibliographie a été réalisée en utilisant le logiciel biber et le paquet \bsc{B\kern-.025em ib}\LaTeX{}.
+\chapter{Notations}
+Dans la suite, on notera $\NN$ l'ensemble des entiers naturels (c-.à.d positifs). On considèrera que 0 est positif \sidepar{Des notes en marges donneront des compléments au lecteur.}On notera $\left\lBrack m;n\right\rBrack$ l'ensemble des entiers compris entre $m$ et $n$. Si $n<m$, cet ensemble sera vide.
 \mainmatter
-\part{Préliminaires au dénombrement~: Comptage, applications, bijection}
+
+\part{Préliminaires au dénombrement~: Comptage,~applications,~bijection}
 \chapter{Ensembles \& applications}
 \section{\'Enumération et comptage}
 Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser cette notion

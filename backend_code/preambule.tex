@@ -12,11 +12,18 @@
 \usepackage{ragged2e}  % Permet la césure dans les marges
 \usepackage{tikz}
 \usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc}
+<<<<<<< HEAD
 \usepackage{caption}
+=======
+\usepackage[justification=centering]{caption}
+>>>>>>> 375f59e (Nettoyage & ajout licence)
 \usepackage{float}
 \usepackage[section]{placeins}
 \usepackage{lualatex-math}
-%\usepackage{lua-typo}
+% \usepackage{lua-typo}
+%\usepackage[xindy]{imakeidx}
+%\makeindex[options= -M index -C utf8 -L french]
+%\usepackage[totoc]{idxlayout}
 \usepackage[unicode,naturalnames]{hyperref}
 \usepackage{cleveref}
 \AtBeginDocument{\let\savedemptyset\emptyset} % 
@@ -76,6 +83,7 @@
   \normalfont
   \@afterheading
 }
+\makeatother
 % 2 lignes pour localiser les overfull hbox et vbox dans le log
 \showboxdepth=\maxdimen
 \showboxbreadth=\maxdimen
