@@ -3,27 +3,25 @@
 \usepackage[autostyle=true,maxlevel=3]{csquotes}
 \usepackage{fontspec}
 \usepackage{geometry}
-\usepackage{mathtools} 
+\usepackage{mathtools}
 \usepackage[math-style=french,warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
-\defaultfontfeatures{Ligatures={TeX},Scale={MatchLowercase}}
+\defaultfontfeatures{,Ligatures={TeX},Scale={MatchLowercase}}
 \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
 \usepackage[most]{tcolorbox}
 \usepackage{ragged2e}  % Permet la césure dans les marges
 \usepackage{tikz}
 \usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc}
-<<<<<<< HEAD
-\usepackage{caption}
-=======
 \usepackage[justification=centering]{caption}
->>>>>>> 375f59e (Nettoyage & ajout licence)
 \usepackage{float}
 \usepackage[section]{placeins}
 \usepackage{lualatex-math}
+\usepackage{graphicx}
 % \usepackage{lua-typo}
 %\usepackage[xindy]{imakeidx}
 %\makeindex[options= -M index -C utf8 -L french]
 %\usepackage[totoc]{idxlayout}
 \usepackage[unicode,naturalnames]{hyperref}
+\hypersetup{pdfprintscaling=None}
 \usepackage{cleveref}
 \AtBeginDocument{\let\savedemptyset\emptyset} % 
 \AtBeginDocument{\let\emptyset\varnothing} % 
@@ -64,6 +62,13 @@
   \mathop{\Uhextensible width \wd\z@ 0 "027F6}_{#2}^{#3}% 027F6 code for long left right  arrow in unicode-math-table.tex
   \endgroup
 }
+\AtBeginDocument{%
+  \check@mathfonts
+  \iffontchar\textfont\tw@\string"23AF
+    \renewcommand{\relbar}{\mathrel\harrowextender}%
+  \else
+    \Umathcharnumdef\std@minus\Umathcodenum`-
+  \fi}
 \newcounter{proofpart}
 \newcommand{\proofpart}{\@ifstar{\@proofpart}{\@@proofpart}}
 

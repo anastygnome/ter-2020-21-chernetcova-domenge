@@ -4,17 +4,7 @@
 \input{backend_code/preambule}
 \input{backend_code/bibliographie}
 \input{personalisation}
-<<<<<<< HEAD
-=======
 \input{figures/figures}
-<<<<<<< HEAD
-\tikzexternalize[prefix=figures/,shell escape=-enable-write18]
-\tikzset{external/system call={lualatex \tikzexternalcheckshellescape --halt-on-error --interaction=errorstopmode -jobname "\image" "\texsource"}}
-\tikzset{external/mode=list and make}
-\tikzexternaldisable
->>>>>>> 5c66dc7 (Ajout démo partie finie ssi maj, diverses corr)
-=======
->>>>>>> 375f59e (Nettoyage & ajout licence)
 \begin{document}
 \begin{titlingpage}
 \hypersetup{pageanchor=false}
@@ -33,11 +23,11 @@ Dans la seconde partie, nous nous consacrerons à l'étude de dénombrabilité d
 
 Notre projet devait initialement s'articuler autour de l'ouvrage~\cite{livre_ter}. Nous avons choisi une approche différente : nous voulions insister davantage sur l'aspect formel de la dénombrabilité, c'est pourquoi nous avons introduit des définitions, des notations, des propositions démontrées pour souligner notre propos. \`A notre avis, ce travail est nécessaire pour bien aborder la notion de la dénombrabilité et pour ne pas se perdre dans les différentes notions. Ainsi, nous avons choisi d'en donner une définition rigoureuse. Bien que cette notion soit intuitive, il s'avère difficile de l'expliquer rigoureusement avec des mots du langage << courant >> (non mathématique). En ce sens, le langage mathématique offre une exactitude que la langue naturelle n'a pas. Cependant, afin de rester dans l'esprit de l'ouvrage, le formalisme est dûment introduit et motivé en première partie.
 
-\epigraph{\foreignlanguage{german}{\enquote{\footnotesize\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun}}\newline\newline
-\enquote{\footnotesize Le mathématicien fait abstraction de la nature des objets qu'il manipule, et des relations qu'ils entretiennent ; il lui suffit de les passer en revue et de les comparer entre elles}
-}{\footnotesize Carl~Friedrich~\bsc{Gauß}~\cite{gauss_cite}}
-\vspace*{\fill}
 Ce document à été compilé à de Lua\kern-.025em\LaTeX{}, de la classe \textsf{memoir} et des polices \TeX{} Gyre Termes et $Neo~Euler$. La bibliographie a été réalisée en utilisant le logiciel biber et les diagrammes avec \bsc{TikZ}.
+\begin{epigraphs}
+\qitem{\foreignlanguage{german}{\itshape Der Mathematiker abstrahiert gänzlich von der Beschaffenheit der Gegenstände und dem Inhalt ihrer Relationen; er hat es bloß mit der Abzählung und Vergleichung der Relationen unter sich zu tun.}}{\bsc{Carl Friedrich Gau\ss}~\cite{gauss_cite}}\unskip\medskip
+\qitem{\itshape Le mathématicien fait abstraction de la nature des objets qu’il manipule, et des relations qu’ils entretiennent; il lui suffit de les passer en revue et de les comparer entre elles.}{Traduction par \bsc{Tom Domenge}}
+\end{epigraphs}
 \chapter{Notations}
 Dans la suite, on notera $\NN$ l'ensemble des entiers naturels (c-.à.d positifs). On considèrera que 0 est positif \sidepar{Des notes en marges donneront des compléments au lecteur.}On notera $\left\lBrack m;n\right\rBrack$ l'ensemble des entiers compris entre $m$ et $n$. Si $n<m$, cet ensemble sera vide.
 \mainmatter
@@ -45,7 +35,7 @@ Dans la suite, on notera $\NN$ l'ensemble des entiers naturels (c-.à.d positifs
 \part{Préliminaires au dénombrement~: Comptage,~applications,~bijection}
 \chapter{Ensembles \& applications}
 \section{\'Enumération et comptage}
-Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser cette notion
+Avant de parler de dénombrement, il nous faut introduire la notion de comptage, car si cette notion à l'air banale et sans intérêt, elle s'avère instructive, lorsqu'il s'agit de formaliser.
 Si on veut compter, à voix haute, une par une, les lettres du mot~:\[\text{cbda}\]
 
 On le numérotera comme suit :
@@ -74,12 +64,12 @@ Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a4) to[out=20, in=150] (b3);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{comptage} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{comptage} (Y.north);
 %	\node[below] at (X.south) {t};
 	\end{tikzpicture}%
 %
@@ -91,8 +81,8 @@ Ce qu'un mathématicien représentera par un \emph{diagramme sagittal,} ou \emph
 %\diagfonctsurj
 
 %\diagcompfonct
-Si cet exemple a l'air simple, il n'est pas simpliste pour autant :  ce procédé, qui consiste à associer à chaque lettre un nombre est omniprésent en mathématiques et il porte le nom \emph{d\index{application}'application}.
-Plus remarquable encore, ce diagramme permet même de donner une première définition quasi-formelle de ce qu'est une \index{application}application. Une chose est \emph{cruciale} : chaque lettre ne doit être comptabilisée une seule et unique fois, sinon, le résultat final est faussé !
+Si cet exemple a l'air simple, il n'est pas simpliste pour autant :  ce procédé, qui consiste à associer à chaque lettre un nombre est omniprésent en mathématiques et il porte le nom \emph{d'application}.
+Plus remarquable encore, ce diagramme permet même d'en donner une première définition quasi-formelle. Une chose est \emph{cruciale} : chaque lettre ne doit être comptabilisée une seule et unique fois, sinon, le résultat final est faussé !
 
 Pour fixer les idées voici deux nouvelles applications.
 
@@ -110,16 +100,16 @@ Pour fixer les idées voici deux nouvelles applications.
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2),minimum width=3.2cm] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=140] (b2);
-	\draw[->,projection] (a2) to[out=20, in=160] (b1);
-	\draw[->,projection] (a3) to[out=20, in=140] (b2);
-	\draw[->,projection] (a4) to[out=20, in=160] (b1);
+	\draw[|->,projection] (a1) to[out=20, in=140] (b2);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b1);
+	\draw[|->,projection] (a3) to[out=20, in=140] (b2);
+	\draw[|->,projection] (a4) to[out=20, in=160] (b1);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{parité} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{parité} (Y.north);
 %	\node[below] at (X.south) {t};
 	\end{tikzpicture}%
 %
-	\caption{\index{application}Application parité.}
+	\caption{Application parité.}
 	\label{fig:parité}
 \end{figure}
 
@@ -150,19 +140,19 @@ Cet exemple simple est très utilisé, notamment en informatique, en remplaçant
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4) (a5) (a6) (a7),minimum width=4.6cm] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4) (b5) (b6) (b7),minimum width=2cm] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b7);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b3);
-	\draw[->,projection] (a4) to[out=20, in=150] (b4);
-	\draw[->,projection] (a5) to[out=20, in=150] (b5);
-	\draw[->,projection] (a6) to[out=20, in=150] (b6);
-	\draw[->,projection] (a7) to[out=20, in=150] (b1);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b7);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b3);
+	\draw[|->,projection] (a4) to[out=20, in=150] (b4);
+	\draw[|->,projection] (a5) to[out=20, in=150] (b5);
+	\draw[|->,projection] (a6) to[out=20, in=150] (b6);
+	\draw[|->,projection] (a7) to[out=20, in=150] (b1);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{jour n\textsuperscript{o}} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{jour n\textsuperscript{o}} (Y.north);
 %	\node[below] at (X.south) {t};
 	\end{tikzpicture}%
 %
-	\caption{ \index{application}Application \enquote{jours de la semaine} (convention anglo-saxonne).}
+	\caption{ Application \enquote{jours de la semaine} (convention anglo-saxonne).}
 	\label{fig:jourssem}
 \end{figure}
 \sidepar{ En 1990, \bsc{Keith} a trouvé le jour correspondant à une date grâce à l'expression suivante (en  langage \textup{\textsf{C}) :\\\texttt{int weekday  = (d~+=~m~<~3~? y-\/-~: y - 2, 23*m/9 + d + 4 + y/4- y/100 + y/400)\%7;
@@ -188,16 +178,16 @@ Il y a cependant un détail à régler : Comment considère-t-on les points qui 
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4) (a5),minimum width=2cm] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a4) to[out=20, in=150] (b3);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{1\ier~cas} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [sloped, anchor=center, midway,above,align=center]{1\ier~cas} (Y.north);
 %	\node[below] at (X.south) {t};
 	\end{tikzpicture}%
 %
-	\caption{Un point n'est pas relié à gauche. Est-ce une \index{application}application ?}
+	\caption{Un point n'est pas relié à gauche. Est-ce une application ?}
 	\label{fig:comptinj}
   \end{figure}
   %\clearpage
@@ -212,7 +202,7 @@ c & b & d & a & e \\
 \end{tabular}
 On a oublié la lettre e !
 
-Le cas de la~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une \index{application}application.
+Le cas de la~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une application.
 
 \hrulefill
 \end{table}
@@ -233,16 +223,16 @@ Le cas de la~\cref{fig:comptinj} n'est pas satisfaisant. Ce n'est pas une \index
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4) (b5),minimum width=2cm] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a4) to[out=20, in=150] (b3);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) --node [sloped, anchor=center, midway,above,align=center]{2\ieme~cas} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) --node [sloped, anchor=center, midway,above,align=center]{2\ieme~cas} (Y.north);
 %	\node[below] at (X.south) {t};
 	\end{tikzpicture}%
 %
-	\caption{Un point n'est pas relié à droite. Est-ce une \index{application}application ?}
+	\caption{Un point n'est pas relié à droite. Est-ce une application ?}
 	\label{fig:fonctcomp}
   \end{figure}
 \clearpage
@@ -256,9 +246,9 @@ c & b & d & a & \texttt{\backslash0} \\
 \end{table}
 \sidepar{\vspace*{-3\onelineskip}Le \textup{\texttt{\backslash0}} signale la fin d'un mot ou d'une chaîne de caractères.}
 
-Contrairement au cas précédent, nous avions correctement compté le nombre de lettre du mot. On a simplement une valeur surnuméraire.  On peut donc sans risque accepter ce cas particulier. Comme toutes les valeurs ne sont pas atteintes, on dira que l\index{application}'application est \emph{non-surjective}
-\section{Formalisation du concept d\index{application}'application}
-Maintenant que l'on dispose d'une idée claire du concept d\index{application}'application, on va essayer de le formaliser. En fait, une fonction se décrit à l'aide de 3 éléments :
+Contrairement au cas précédent, nous avions correctement compté le nombre de lettre du mot. On a simplement une valeur surnuméraire.  On peut donc sans risque accepter ce cas particulier. Comme toutes les valeurs ne sont pas atteintes, on dira que l'application est \emph{non-surjective}.
+\section{Formalisation du concept d'application}
+Maintenant que l'on dispose d'une idée claire du concept d'application, on va essayer de le formaliser. En fait, une fonction se décrit à l'aide de 3 éléments :
 \begin{enumerate}
   \item
 		Un ensemble dit \emph{de départ}, en \textcolor{bleu}{bleu} dans nos diagrammes.
@@ -275,24 +265,24 @@ La \cref{fig:comptinj} nous a apporté une précision supplémentaire :
   {\centering \textbf{Tout} élément de l'ensemble de départ est relié à \textbf{un seul} élément de l'ensemble d'arrivée.}%
   } %Creates the text, centered with centering
 \end{center}
-Pour formaliser la fonction de flèche, on utilise les couples : ce sont des \emph{paires ordonnées} d'objets. Ainsi, par exemple, dans la \cref{fig:fonctcomp}, la flèche $b\to 2$ peut être réprésentée par le couple $(b;2)$.
+Pour formaliser la notion de flèche, on utilise les couples : ce sont des \emph{paires ordonnées} d'objets. Ainsi, par exemple, dans la \cref{fig:fonctcomp}, la flèche $b\to 2$ peut être réprésentée par le couple $(b;2)$.
 \noindent On choisit par la suite de représenter une flèche $\text{départ}\to \text{arrivée}$ par le couple $(\text{départ};\text{arrivée})$.
 
-Nous sommes désormais en capacité de formaliser la notion d\index{application}'application :
-\begin{defb}{\index{application}Application, graphe}{app}
+Nous sommes désormais en capacité de formaliser la notion d'application :
+\begin{defb}{Application, graphe}{app}
   Soit $X$ et $Y$ deux ensembles quelconques.
 
   On appelle \emph{\index{application}application de $X$ dans $Y$} le triplet $f\eqdef(X,Y,F)$, où $F\subseteq (X\times Y)$ \footnote{ \textit{litt.} $F$, un ensemble de couples} vérifie : \[ \boxed{\forall x \in X, \exists!\,y \in Y \mid (x,y) \in F.\,}\footnote{C'est la condition encadrée plus haut.}\]
 
-  Par convention existe une seule application de l'ensemble vide vers un ensemble $E$, on l'appelle \emph{application vide}.
+  Par convention il existe une seule application de l'ensemble vide vers un ensemble $E$, on l'appelle \emph{application vide}.
 
-  L'ensemble $F$ est appelé \emph{\index{graphe}graphe de l\index{application}'application} $f$, On le notera $\mathscr{G}_{f}$.
+  L'ensemble $F$ est appelé \emph{graphe de l'application} $f$, On le notera $\mathscr{G}_{f}$.
 \end{defb}
 
 En gardant ces notations, on introduit aussi les  définitions suivantes (que l'on illustrera ensuite) :
 
 \begin{defb}{Image d'un élément, antécédent}{imagefonct}
-  Soit $X$ et $Y$ deux ensembles et $f$ une \index{application}application de $X$ dans $Y$.
+  Soit $X$ et $Y$ deux ensembles et $f$ une application de $X$ dans $Y$.
   on dit que $f$ \emph{applique} ou \emph{associe} $y \in Y $ à $x \in X$
   si :
   \[\boxed{(x,y) \in \mathscr{G}_{f}}\]
@@ -307,14 +297,14 @@ On notera cette application : $\deffunct{f}{X}{Y}{x}{f(x)}\, \text{ ou  }\; \dis
 \end{defb}
 On a aussi la notion duale pour l'ensemble d'arrivée : \sidepar{dual algébrique ou topologique ?}
 \begin{defb}{Image réciproque}{imrec}
-Soit $K$ une partie non-vide de $Y$, on note $f^\leftarrow(K)$ ou $f^{-1}(E)$ l'ensemble des antécédents des éléments de $K$. C'est l'\emph{image réciproque} de $K$ par $f$.
+Soit $K$ une partie non-vide de $Y$, on note $f^\leftarrow(K)$ ou $f^{-1}(K)$ l'ensemble des antécédents des éléments de $K$. C'est l'\emph{image réciproque} de $K$ par $f$.
 
 L'image réciproque du vide est vide par convention.
 \end{defb}\sidepar{\vspace*{-5\onelineskip}Attention, la notation~$f^{-1}$ est aussi utilisée pour une notion ultérieure. On la réserve pour ce cas.}
 Une remarque importante pour la suite :
 \begin{remarkb}{Inclusions des images}{iminc}
-  Pour l'image directe, on a :\[f(E)\subseteq Y\].
-  De même pour l'image réciproque : \[f^\leftarrow(K) \subseteq X\]
+  Pour l'image directe, on a :\[f(E)\subseteq Y.\]
+  De même pour l'image réciproque : \[f^\leftarrow(K) \subseteq X.\]
 \end{remarkb}
   Revenons au premier diagramme avec ce nouveau formalisme :
  \begin{figure}[htb]
@@ -333,36 +323,38 @@ Une remarque importante pour la suite :
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
 
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a4) to[out=20, in=150] (b3);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%
 %
 	\caption{Diagramme du premier comptage.}
 	\label{fig:appcompt}
   \end{figure}
 
-  Sur ce diagramme, on a fait figurer nos ensembles de départ, $X$ et $Y$. Cette \index{application}application s'écrit donc : \[\boxed{f\eqdef \left(X,Y,\left\lbrace(a,4);(b,2);(c,1);(d;3)\right\rbrace\right)}\]
+  Sur ce diagramme, on a fait figurer nos ensembles de départ, $X$ et $Y$. Cette application s'écrit donc : \[\boxed{f\eqdef \left(X,Y,\left\lbrace(a,4);(b,2);(c,1);(d;3)\right\rbrace\right)}\]
+
 \chapter{Injectivité, surjectivité, composition}
+ \section{Restriction d'application}
+ Parfois, on pourra avoir besoin de se restreindre à un \enquote{bout} de l'ensemble de départ, ou de l'ensemble d'arrivée. On peut par exemple voir la parité (\cref{fig:parité}) des entiers naturels (positifs) comme restriction de celle des entiers relatifs. On a donc besoin de définir la restriction d'une application. Comme on l'a vu ci-avant, il peut être judicieux de considérer indépendemment les ensembles de départ et d'arrivée : on introduira donc la notion de \emph{restriction} et de \emph{corestriction}, respectivement. 
+ 
 \section{Applications surjectives}
   Comme on l'a vu dans le cas de la~\cref{fig:fonctcomp}, on peut parfois avoir une image plus grande que l'ensemble d'arrivée. Pour décrire le cas où l'ensemble d'arrivée n'est \enquote{pas trop gros}, on dit que notre application est surjective :
   \begin{defb}{Application surjective, surjection}{appsurj}
     Soit $f$ une application de $X$ dans $Y$.
-    On dit que $f$ est \emph{surjective} ou que $f$ est une \emph{surjection} si  : \[\boxed{f(X)=Y}\]
+    On dit que $f$ est \emph{surjective} ou que $f$ est une \emph{surjection} si  : \[\boxed{Y=F(X)}\]
     C'est à dire si tout élément de $Y$ est l'image d'un élément de $X$, soit :  \[\boxed{\forall y \in Y, \exists x \in X, f(x)=y} \]
   \end{defb}
   Au vu de la \cref{rem:iminc}, on peut affirmer  :
 \begin{theoremb}{Surjection canonique associée à une application}{appsurjcan}
-  Toute application $f$ de $X$ dans $Y$ est surjective sur l'image de son ensemble de départ :
-
-  l'application : \[\deffunct{f'}{X}{f(X)}{x}{f(x)}\]
+  Toute application $f$ de $X$ dans $Y$ est surjective sur l'image de son ensemble de départ ainsi, l'application : \[\deffunct{f_{\mathrm{surj}}}{X}{f^{\leftarrow}(X)}{x}{f(x)}\]
   est surjective, c'est la surjection canonique associée à $f$ (de $X$ dans $f(X)$)
     \end{theoremb}
   \clearpage
-  \sidepar{\vspace*{5\onelineskip}Comme tout élément de $X$ a une image, si $f(X)=Y$, $X$ a au moins \enquote{autant d'éléments} que $Y$}
+  \sidepar{\vspace*{5\onelineskip}Comme tout élément de $X$ a une image, si $Y=f(X)\kern-1pt$, $X$ a au moins \enquote{autant d'éléments} que $Y$}
   \begin{figure}[htbp]
 	\centering
     \begin{tikzpicture}
@@ -378,12 +370,12 @@ Une remarque importante pour la suite :
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b3);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a4) to[out=20, in=170] (b1);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%%
 	\caption{Diagramme sagittal d'une application surjective.\\ Tous les éléments de $Y$ sont atteints par une flèche.}
 	\label{fig:appsurj}
@@ -392,21 +384,16 @@ Une remarque importante pour la suite :
   Quand on a posé le problème de comptage, il était apparu que chaque lettre devait être comptabilisée une seule et unique fois ; nous avions implicitement admis que l'on ne pouvait pas réutiliser un numéro. Ce concept est capturé par la notion d'injectivité :
   \begin{defb}{Application injective, injectivité}{appinj}
     Soit $f$ une application de $X$ dans $Y$.
-    On dit que $f$ est \emph{injective} ou que $f$ est une \emph{injection} si  : \[\boxed{\forall (x,x') \in X², x\neq x'\implies f(x)\neq f(x')}\]
+    On dit que $f$ est \emph{injective} ou que $f$ est une \emph{injection} si  : \[\boxed{\forall (x,x') \in X²,\, x\neq x'\implies f(x)\neq f(x')}\]
     Autrement dit, Deux éléments différents donnent deux images différentes. On démontre plus aisément la contraposée :
-    \[\boxed{\forall (x,x') \in X², f(x)=f(x')\implies x=x'}\]
+    \[\boxed{\forall (x,x') \in X²,\, f(x)=f(x')\implies x=x'}\]
   \end{defb}
-  On trouvera un exemple en \cref{fig:appsurj}. Le théorème suivant justifie l'étude à suivre : 
-  \begin{theoremb}{injectivité et surjection canonique}{}
-    a
-  \end{theoremb}
-  On trouvera un exemple en \cref{fig:appsurj}.
-  Le résultat suivant est fondamental :
+  On trouvera un exemple en \cref{fig:appsurj}. Le théorème suivant justifie l'étude à suivre :
   \begin{theoremb}{Injectivité de la surjection canonique}{surjcaninj}
 La surjection canonique associée à une injection est encore injective
   \end{theoremb}
   	\begin{figure}[htbp]
-  	  \sidepar{\vspace*{-5\onelineskip}Comme tout élément de $Y$ a un antécédent, $f(X)=Y$, $X$ a au plus \enquote{autant d'éléments} que $Y$}
+  	  \sidepar{\vspace*{-5\onelineskip}Comme tout élément de $Y$ a un antécédent, ${f(X)=Y}$, $X$ a au plus \enquote{autant d'éléments} que $Y$}
 	\centering
     \begin{tikzpicture}
 	\node[bullet,fill=bleu,label=left:$a$] (a1) at (0,4) {};
@@ -421,18 +408,18 @@ La surjection canonique associée à une injection est encore injective
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3),minimum width=2cm, label=above:$X$] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b3);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%
 %
-	\caption[Diagramme sagittal d'une application injective]{Diagramme sagittal d'une application insurjective.\\ Les éléments de $Y$ sont atteints par au plus une flèche.}
+	\caption[Diagramme sagittal d'une application injective]{Diagramme sagittal d'une application injective.\\ Les éléments de $Y$ sont atteints par au plus une flèche.}
 	\label{fig:appinj}
 \end{figure}
 \section{Applications bijectives}
-D'après le \cref{thm:surjcaninj}, toute injection peut aussi être restreinte pour obtenir une fonction
+D'après le \cref{thm:surjcaninj}, toute injection peut aussi être restreinte pour obtenir une application à la fois injective et surjective. Cela motive la définition suivante :
 \begin{defb}{Application bijective, bijectivité}{appbij}
 On dit que $f$ est bijective, ou que $f$ est une bijection si $f$ est à la fois injective et surjective.
 \end{defb}
@@ -442,59 +429,19 @@ La pierre angulaire de la dénombrabilité est désormais posée. Les définitio
   Soit $X$ un ensemble quelconque. L'application :
   \[\deffunct{\operatorname{Id}_X}{X}{X}{x}{x}\] est appelée \emph{application identité} (de $X$).
 
-  C'est une bijection, par définition. On pourra la noter $\Id$ s'il n'y a pas d'ambuiguïté.
+  C'est une bijection, par définition. 
+  
+  On pourra la noter $\Id$ s'il n'y a pas d'ambuigüité.
 \end{defb}
 \section{Composition d'applications}
+Dans la section suivante, on abordera la notion de composée. Les résultats seront énoncés sans démonstration, et on pourra se référer à~\cite{LTA} au besoin. 
+Dans ce qui suit, $A$, $B$, et $C$ sont des ensembles quelconques,
+$f$ et $g$ sont 3 applications, de $A$ dans $B$ et de $B$ dans $C$, respectivement. 
+\diagcompfonct
   \chapter{Définition de la cardinalité}
-\section{Ensembles finis et infinis}
-\begin{defb}{Finitude}{fini}
-  Soit $E$ un ensemble.
+\section{Résultats préliminaires}
 
-	On dit que $E$ est fini si $E = \emptyset$ ou s'il existe une bijection $\phi~: \{1,\dots,n \} \to E$, avec $n \in \NN$.
-
-	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$.
-\end{defb}
-
-%\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -Deux ouate s.}
-
-\begin{defb}{\'Equipotence}{equip}
-    On dit que $E$ et $F$ sont équipotents s' il existe $\phi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$.
-\end{defb}
-\begin{theoremb}{}{mmpuiss}
-    $ \mathrel{\approx}$ est une relation d'équivalence.
-\end{theoremb}
-\begin{proof}\sidepar{Une relation d'équivalence est un \enquote{prisme de lecture} mathématique.
-\\[\onelineskip]
-Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met donc dans le même panier, ou plutôt, dans la même classe, voir~\cite{GBMac}.}
-    Soient $E, F, G$, trois ensembles.
-	\begin{enumerate}
-		\item $E \mathrel{\approx} E$, car l\index{application}'application identité est une bijection. $\mathrel{\approx}$ est réflexive.
-		\item Si $E \mathrel{\approx} F$, alors il existe une bijection de E dans F. Son inverse est une bijection de~F~dans~E, d'où~${F \mathrel{\approx} E}$, et $\mathrel{\approx}$ est symétrique.
-		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx}+ G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par~composition, $\psi\circ\phi$ est une bijection de E dans G, c.-à-d. $E \mathrel{\approx} G$, et  $\mathrel{\approx}$ est transitive.
-	\end{enumerate}
-	$\mathrel{\approx}$ est bien une relation d'équivalence.
-\end{proof}
-
-\begin{theoremb}{}{assequiv}
-	Soient $E, F$ deux ensembles \textbf{finis} et $\phi~: E \to F$ une \index{application}application. Si $E \mathrel{\approx} F$ alors les 3 assertions suivantes sont équivalentes~:
-
-	\begin{enumerate}
-		\item $\phi$ est injective ;
-		\item $\phi$ est surjective ;
-		\item $\phi$ est bijective.
-	\end{enumerate}
-  \end{theoremb}
-
-\begin{proof}
-\textellipsis
-\end{proof}
-\begin{defb}{Ensemble infini}{ifini}
-	Soit $E$ un ensemble.
-
-	On dit que $E$ est infini si $E$ n'est pas fini.
-\end{defb}
-
-\begin{lemmab}{Condition d'existence d'un plus grand élémenttheoremb}{partn}
+\begin{lemmab}{Condition d'existence d'un plus grand élément}{partn}
 	Toute partie de $\NN$ majorée si et seulement si elle admet un plus grand élément.
 \end{lemmab}
 \begin{proof}
@@ -511,25 +458,128 @@ Soit $E$ une partie de $\NN$. On peut supposer $E\neq\emptyset$.
   Si $n+1 \in E$, c'est le plus grand élément possible. La propriété est vraie au rang $n+1$
   \stepcounter{proofpart}\proofpart*{Cas n\textsuperscript{o}\theproofpart}
   Si $n+1 \notin E$ alors $E\subseteq \left\lBrack 1; n \right\rBrack$, et, par hypothèse de récurrence, la propriété est vraie au rang $n+1$.
-\proofpart*{Conclusion} Toute partie de $n$ majorée admet un plus grand élément.\hfill$\square$
+  \proofpart*{Conclusion} Toute partie de $n$ majorée admet un plus grand élément.\hfill$\square$
   \proofpart*{$(\Rightarrow)$}
-  Si $E$ est finie, disons à $n$ éléments, on peut numéroter chacun de ses éléments $(k_{i})_{i \in \left\lBrack 1;n\right\rBrack}$. (cf. supra)
-  On pose alors :
-  \[p\eqdef \sum_{i=1}^{n} k_{i}=k_{1}+k_{2}+k_{3}+\dots+k_{n-1}+k_{n} \]
-  Par définition de la sommation \emph{finie}, on a : \[\forall i\in\left\lBrack 1;n\right\rBrack, k_{i}\leq p\]
-  Et $E$ est majorée par $p$.
+  Si $E$ admet un plus grand élément, alors elle est majorée par celui-ci.
   \end{proof}
+\begin{lemmab}{Lemme du cardinal}{card}
+  Soit $n$ et $p$ deux entiers naturels
+  \begin{enumerate}
+    \item Il existe une injection de $\left\lBrack 1;n\right\rBrack$ dans $\left\lBrack 1;p\right\rBrack\iff n\leq p$
+    \item Il existe une surjection de $\left\lBrack 1;n\right\rBrack$ dans $\left\lBrack 1;p\right\rBrack \iff n\geq p$
+    \item Il existe une bijection de $\left\lBrack 1;n\right\rBrack$ dans $\left\lBrack 1;p \right\rBrack\iff n=p$
+\end{enumerate}
+\end{lemmab}
+\begin{proof} \leavevmode % pour passer en mode paragraphe pour l'énumération
+  Si $n$ ou $p$ sont nuls, les propriétés sont vraies. Soient donc $n$ et $p$ des entiers naturels non-nuls.\unskip\medskip
+\begin{enumerate}
+\item\label{it:1} \underline{Il existe une injection de $\left\lBrack1;n\right\rBrack$ dans $\left\lBrack1;p\right\rBrack \iff n\leqslant p$.}
+  \proofpart*{$(\Leftarrow)$}
+ Si $n\leq p$,  
+ \[\deffunct{f}{\left\lBrack1;n\right\rBrack}{\left\lBrack1;p\right\rBrack}{i}{i}\]
+est injective,  (par définition.\hfill$\square$)
+\proofpart*{$(\Rightarrow)$}
+Il suffit de montrer, par récurrence sur $n$ :
+$$P(n) : \forall p \in \mathbf{N}, \exists \varphi \in \mathscr{A}_{\mathrm{inj}}( \left\lBrack1;n\right\rBrack, \left\lBrack1;p\right\rBrack) \implies n \leqslant p$$
+On sait que  $p \geq 1$ donc l'implication est vraie si $n=1$.
+Supposons donc  $n\geq 2$. Soit $\varphi$ l'injection considérée.  Si $\varphi(n)=p$, alors en considérant sa restriction $\dot{\varphi}$ sur $\left\lBrack1;n-1\right\rBrack$ est injective et coïncide avec $\varphi$ sur $\left\lBrack1;p-1\right\rBrack$. Donc on a ${n-1 \leq p-1}$,~par~récurrence, et le résultat suit immédiatement.
+
+Dans le cas contraire, il suffit de considérer l'application $g=\tau\circ \varphi$, où $\tau$ est la transpositon telle que $\tau(p)={\varphi}(n)$, bijective en tant qu'élément de $\mathfrak{S}_p$.
+
+Il suit alors $g$ est une injection, et on s'est ramené au cas précédent.\hfill$\square$
+\unskip\medskip
+\item\label{it:2} Il existe une surjection de  $\left\lBrack1;n\right\rBrack$ dans $\left\lBrack1;p\right\rBrack \iff n\geqslant p$
+
+\proofpart*{$(\Leftarrow)$}
+Si $n\geq p$, l'application $g$ définie par :
+\[ \forall i \in \left\lBrack 1;n\right\rBrack, g\,\colon
+	\begin{dcases}
+    g(i)= i & \text{ Si } i \in \left\lBrack 1;p\right\rBrack \\
+    g(i)= p & \text{Sinon }
+  \end{dcases}\]
+    est surjective.\hfill$\square$
+  \proofpart*{$(\Rightarrow)$}
+Soit $\Xi $ la surjection considérée, alors la fonction : \[ \deffunct{\phi}{\left\lBrack1;p\right\rBrack}{\left\lBrack1;n\right\rBrack}{i}{\min_{i \in \left\lBrack1;p\right\rBrack} \Xi^{\leftarrow}(\{i\})}\] est définie par existence d'un plus petit élément. Elle est aussi injective, par unicité de l'image d'un~ élément par une application.
+le résultat du 1. donne alors $p \leq n$.\hfill$\square$
+\unskip\medskip
+  \item Il existe une bijection de $\left\lBrack1;n\right\rBrack$ dans $\left\lBrack1;p\right\rBrack \iff n=p$.
+
+\unskip\medskip
+Voir \cref{it:1,it:2} ci-dessus.
+\end{enumerate}
+\end{proof}
+\begin{theoremb}{Unicité du cardinal}{}
+  Soit $E$ un ensemble quelconque. S'il existe un entier $n$ tel que $E$ est en bijection avec $\left\lBrack 1;n \right\rBrack$, cet entier est unique.
+\end{theoremb}
+      \begin{proof}
+      S'il existe deux bijections $\phi,\phi'$ de $E$ dans $\left\lBrack 1;n \right\rBrack$ et $\left\lBrack 1;p \right\rBrack$ respectivement, alors $\phi^{-1}\circ\phi'$ est une bijection de $\left\lBrack 1;n \right\rBrack$ dans $\left\lBrack 1;n \right\rBrack$ et $n=p$, d'après le lemme précédent.
+%\sidepar{\vspace{-6\baselineskip}Quelle est la puissance d'un coton-tige ? \\ -Deux ouates.}
+    \end{proof}
+
+\section{Ensembles finis et infinis}
+\begin{defb}{Cardinal}{card} 
+  Soit $E$ un ensemble.
+	On dit que $E$ est fini s'il existe une bijection $\phi~: \left\lBrack 1;n \right\rBrack \to E$, avec~$n \in \NN$.
+
+	Dans ce cas, on dit que $E$ est de cardinal $n$ (ou de puissance $n$), et on note le cardinal $\Card(E)$. 
+	
+	Dans le cas contraire, on dit que $E$ est \emph{infini}.
+\end{defb}  \sidepar{\vspace*{-3\onelineskip}Comme $\left\lBrack 1;0\right\rBrack=\emptyset$, $\Card(\emptyset)=0$.\label{rem:cardvide}}
+  On en tire immédiatement :
+  \begin{theoremb}{}{}
+    Soient $E$ un ensemble de cardinal $n$, entier, et $F$ un ensemble en bijection avec $E$.
+    Alors, $F$ est aussi de cardinal $n$.
+
+    Autrement dit, le cardinal est conservé par bijection.
+  \end{theoremb}
+  D'où la définition suivante :
+\begin{defb}{\'Equipotence}{equip}
+    On dit que $E$ et $F$ sont équipotents s' il existe $\phi~: E \to F$ bijective. Dans ce cas, on note $E \mathrel{\approx} F$.
+\end{defb}
+  Le résultat suivant nous dit que l'on peut considérer \emph{équivalents} deux ensembles de même cardinal.
+\begin{theoremb}{Cardinalité et équivalence}{mmpuiss}
+    $ \mathrel{\approx}$ est une relation d'équivalence.
+\end{theoremb}
+\begin{proof}\sidepar{Une relation d'équivalence est un \enquote{prisme de lecture} mathématique.
+\\[\onelineskip]
+Deux ensembles de même cardinalité ont même valeur à nos yeux, on les met donc dans le même panier, ou plutôt, dans la même classe, voir~\cite{GBMac}.}
+    Soient $E, F, G$, trois ensembles.
+	\begin{enumerate}
+		\item $E \mathrel{\approx} E$, car l'application identité est une bijection. $\mathrel{\approx}$ est réflexive.\hfill$\square$
+		\item Si $E \mathrel{\approx} F$, alors il existe une bijection de E dans F. Son inverse est une bijection de~F~dans~E, d'où~${F \mathrel{\approx} E}$, et $\mathrel{\approx}$ est symétrique.\hfill$\square$
+		\item Si $E \mathrel{\approx} F$ et $F \mathrel{\approx} G$ alors il existe une bijection de E dans F, $\phi$, et une bijection de F dans G, $\psi$. Par~composition, $\psi\circ\phi$ est une bijection de E dans G, ainsi, $E \mathrel{\approx} G$, et  $\mathrel{\approx}$ est transitive.\hfill$\square$
+	\end{enumerate}
+	$\mathrel{\approx}$ est bien une relation d'équivalence.
+\end{proof}
+
+\begin{theoremb}{}{assequiv}
+	Soient $E, F$ deux ensembles \textbf{finis} de même cardinal, et $\phi~: E \to F$ une application. Si $E \mathrel{\approx} F$ alors les 3 assertions suivantes sont équivalentes~:
+
+	\begin{enumerate}
+		\item $\phi$ est injective ;
+		\item $\phi$ est surjective ;
+		\item $\phi$ est bijective.
+	\end{enumerate}
+  \end{theoremb}
   \begin{theoremb}{Caractérisation des parties finies de $\NN$}{cnspartnfinie}
     Toute partie de $\NN$ est finie si et seulement si elle admet un plus grand élément
   \end{theoremb}
   \begin{proof}
-    Si une partie $P$ de $\NN$ est finie de cardinal $p$, alors $P\subseteq \left\lBrack 1;p\right\rBrack$ et $P$ est majorée par $p$. Si,~réciproquement, elle est majorée, alors le \cref{lem:partn} nous donne un plus grand élément, disons $n$ et $P \subseteq\left\lBrack 1;n\right\rBrack $ d'où  $P$ est finie.
+\proofpart*{$(\Rightarrow)$}
+  Si $E$ est finie, disons à $n$ éléments, on peut numéroter chacun de ses éléments $(k_{i})_{i \in \left\lBrack 1;n\right\rBrack}$.
+
+  On pose alors :
+  \[p\eqdef \sum_{i=1}^{n} k_{i}=k_{1}+k_{2}+k_{3}+\dots+k_{n-1}+k_{n} \]
+  Par définition de la sommation \emph{finie}, on a : \[\forall i\in\left\lBrack 1;n\right\rBrack, k_{i}\leq p\]
+  Et $E$ est majorée par $p$. \hfill$\square$
+  \proofpart*{$(\Leftarrow)$}
+    Si,~réciproquement, elle est majorée, alors le \cref{lem:partn} nous donne un plus grand élément, disons $n$ et $P \subseteq\left\lBrack 1;n\right\rBrack$, d'où  $P$ est finie.
 \end{proof}
 \begin{theoremb}{}{ninfini}
 	$\NN$ est infini.
 \end{theoremb}
 \begin{proof}
-  L\index{application}'application $f$ définie par : \[\deffunct{f}{\NN}{\NN}{n}{n+1}\] est injective, en effet, on a : \[\forall (m,n) \in \NN, m+1=n+1 \iff m=n\] pourtant, elle n'est pas surjective  : 0 n'est jamais atteint.
+  L'application $f$ définie par : \[\deffunct{f}{\NN}{\NN}{n}{n+1}\] est injective, en effet, on a : \[\forall (m,n) \in \NN, m+1=n+1 \iff m=n\] pourtant, elle n'est pas surjective  : 0 n'est jamais atteint.
 
 \noindent La contraposée du \cref{thm:assequiv} donne le résultat.
 \end{proof}
@@ -538,7 +588,7 @@ L'intuition nous pousse à croire que, comme dans le cas fini, toute partie de $
 
 On se propose donc ici de reformuler sa démonstration en terme modernes. Le lecteur désireux d'étudier l'arithmétique pourra consulter~\cite{GBMac}.
 \begin{defb}{Divisibilité}{div}
-Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : \[b=ka \xLeftrightarrow{ a \mathrel{\neq} 0 } \frac{b}{a}=k.\]
+Soit $a,b$ deux entiers naturels. On dit que $a$ \emph{divise} $b$ ou que $b$ est un \emph{multiple} de $a$, et on note $a\mid b$, s'il existe un entier naturel $k$ tel que : \[b=ka \xLeftrightarrow{ a \neq 0  } \frac{b}{a}=k.\]
 \end{defb}
 \begin{remarkb}{}{divinf}
 0 ne divise que 0. De plus, si $a$ divise $b$, alors $a\leq b$. Par conséquent, 1 est le seul entier naturel qui divise 1.
@@ -554,7 +604,7 @@ Par convention\footnotemark, 1 n'est ni premier ni composé.
  \footnotetext{Cette convention est récente dans l'histoire des mathématiques : 1 était considéré premier jusqu'à la fin du XIX\ieme~siècle, voire au début du XX\ieme.}
 La remarque suivante justifie l'emploi du même vocabulaire :
 \begin{remarkb}{}{prem-equiv}
-Un nombre est premier si et seulement s'il est copremier avecx tous ceux qui le précèdent, c'est-à-dire s'il n'a aucun diviseur commun avec un entier qui lui est inférieur.
+Un nombre est premier si et seulement s'il est copremier avec tous ceux qui le précèdent, c'est-à-dire s'il n'a aucun diviseur commun avec un entier qui lui est inférieur.
 \end{remarkb}
 \begin{lemmab}{}{ncopremsn}
   Soit $n$ un entier naturel. Alors $n$ est premier avec $n+1$ .
@@ -573,18 +623,16 @@ k& =1
 Le seul entier qui puisse diviser à la fois $n$ et $n+1$ est donc $1$.
 \end{proof}
 \begin{lemmab}{}{divprod}
-Si $n$ divise deux entiers $a$ et $b$, il divise aussi leur produit $ab$.
+Si $n$ divise un entier $a$, il divise tout produit $ab$, avec $b$ entier.
 \end{lemmab}
 \begin{proof}
-Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$, de même, comme $n$ divise $b$, il existe un entier $k'$ tel que $b=k'n$. Ainsi, \[ab=\underbrace{\phantom{k}knk'}_{\eqdef k_2\in \NN}\times{} n.\]
+Comme $n$ divise $a$, il existe un entier $k$ tel que $a=kn$,Ainsi, \[ab=knb=\underbrace{kb}_{\eqdef k_2\in \NN}\times{} n.\]
 \end{proof}
 Le résultat suivant est \textbf{fondamental} dans ce qui suit :
 
 \begin{theoremb}{Théorème fondamental de l'arithmétique}{FondArith}
   Tout entier naturel non-nul peut être écrit comme un produit de nombres premiers d'une unique façon, à l'ordre près des facteurs.
 \end{theoremb}
-
-Sa démonstration est rejetée en~\cref{annexe:thmfondarith}.
 
 Ces rappels balayés, on peut démontrer le résultat d'Euclide :
 
@@ -595,11 +643,11 @@ Autrement dit, il existe une infinité de nombres premiers.
 \end{theoremb}
 \begin{proof}
 On démontre le résultat par récurrence. Une liste vide (à 0 éléments) ne contient aucun nombre premier, elle est donc incomplète car 2 est premier.
-Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : \[ N=\prod_{i=1}^{n} p_i\]\sidepar{\vspace*{-3.5\baselineskip}\itshape \footnotesize Donc $N$ est égal à Pi de 1 à $n$ de $p_i$}
+Supposons que l'on dispose d'une liste finie de $n$ nombres premiers, pour $n$ un entier naturel quelconque. En triant notre liste dans l'ordre croissant, on obtient une suite de $n$ entiers, que l'on note $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$. Alors,on peut considérer, l'entier $N$ défini par : \[ N=\prod_{i=1}^{n} p_i\]\sidepar{\vspace*{-3.5\baselineskip}Donc $N$ est égal à Pi de 1 à $n$ de $p_i$}
 Si notre suite est vide, on pose $N=2$.
 
 Les termes $(p_i)_{i\in \left\lBrack1;n\right\rBrack}$ sont les facteurs premiers de $N$, par le \cref{thm:FondArith}.
-\sidepar{\itshape \footnotesize $2$ est le plus petit nombre premier.}
+\sidepar{$2$ est le plus petit nombre premier.}
 Si $N+1$ est premier, alors notre liste est incomplète. Dans le cas contraire, on est assuré de l'existence d'un facteur premier $p$ pour $N+1$. Mais, d'après le \cref{lem:ncopremsn}, ce facteur premier n'est pas dans la décomposition de $N$, il n'est donc pas dans notre liste. Dans les deux cas, notre liste est incomplète.
 \end{proof}
 Comme on l'a vu ci-avant, l'infini nous réserve quelques surprises. Il est donc judicieux de considérer une famille plus large d'ensemble : les ensembles \emph{dénombrables} et \emph{au plus dénombrables}.
@@ -628,7 +676,7 @@ Commençons par une définition précise de ce que l'on vient de constater :
 
 	 Soit $E$ un ensemble infini.
 
-	 On dit que $E$ est dénombrable ssi il existe une \index{application}application $\phi~: \NN \to E $ bijective.
+	 On dit que $E$ est dénombrable ssi il existe une application $\phi~: \NN \to E $ bijective.
 
 	 Un ensemble fini ou dénombrable est dit au plus dénombrable. \newline
 	 On note par la suite $\aleph_0$, lire \emph{alèf zéro}\footnotemark, le cardinal de $\NN$.
@@ -638,24 +686,18 @@ Commençons par une définition précise de ce que l'on vient de constater :
 
 \section{\texorpdfstring{Dénombrabilité de 2$\NN$}{Dénombrabilité de 2N}}
 \label{sec:denombrabilite_usuelle}
-Il semble que l'ensemble des nombre premier n'est pas le seul à défier notre intuition :  voici un résultat sur la dénombrabilité de  $2\NN$, l'ensemble des entiers naturels pairs.
+Il semble que l'ensemble des nombre premiers n'est pas le seul à défier notre intuition :  voici un résultat sur la dénombrabilité de  $2\NN$, l'ensemble des entiers naturels pairs.
 
 \begin{theoremb}{Dénombrabilité de 2$\NN$}{}
 	L'ensemble 2$\NN$ des entiers naturels pairs est dénombrable.
 \end{theoremb}
 
 \begin{proof}
-	On construit l\index{application}'application \[ \begin{array}{cccc}
-	\ & \NN& \to& 2\NN \\
-	\phi~: & n & \mapsto & 2n
-	\end{array}.\]
+	On construit l'application :
+  \[ \deffunct{\phi}{\NN}{2\NN}{n}{2n}\]
 
-  Cette \index{application}application $\phi $ est bijective car sa réciproque est donnée par :
-  \[ \phi^{-1}~: \begin{array}{ccc}
-	2\NN & \to & \NN\\
-	k & \mapsto & \frac{k}{2}
-	\end{array}\]
-
+  Cette application $\phi $ est bijective car sa réciproque est donnée par :
+\[\deffunct{\phi^{-1}}{2\NN}{\NN}{k}{\frac{k}{2}}\]
 	2$\NN$ est en bijection avec $\NN$, donc dénombrable de cardinal $\aleph_0$.
 \end{proof}
 
@@ -706,7 +748,7 @@ Pour un ensemble $E$ fini de cardinal $n$, à moins que $\Card(E) = 1$, $\Card(E
 		(3,0), (1,2), (2,1), (0,3) \\
 		\cdots
 	\end{array}.\]
-	Plus formellement, l\index{application}'application qui range les couples de cette manière est
+	Plus formellement, l'application qui range les couples de cette manière est
 	\[\begin{array}{cccc}
 		\ & \NN \times \NN & \to & \NN \\
 		\phi~: & (n,m) & \mapsto & {\underbrace{\frac{(n+m)(n+m+1)}{2}}_{\text{la place du couple dans la ligne}}} +  {\underbrace{\vphantom{\frac{(n+m)(n+m+1)}{2}} m}_{\text{la place du couple dans la colonne}}}
@@ -731,7 +773,7 @@ Par récurrence sur $k \in \NN$, on peut montrer le théorème suivant :
   On a ainsi établi une bijection entre $\NN^{k+1}$ et $\NN^2$. Or $\NN^2$ est dénombrable. Donc $\NN^k$ est dénombrable. Par récurrence, $\forall k \in \NN, \NN^k$ est dénombrable et $h_k$ est une bijection $\NN^k \to \NN$.
 
 \end{proof}
-De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :.
+De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :
 \begin{theoremb}{Produit cartésien d'ensembles dénombrables}{cartesien}
 	Soient $A, B, A_1, \dots, A_i, \dots, A_n$ des ensembles dénombrables.
 	\begin{enumerate}
@@ -740,19 +782,14 @@ De la dénombrabilité de $\NN^2$, on peut démontrer le théorème suivant :.
 	\end{enumerate}
 \end{theoremb}
 \begin{proof}
-	Si $E$ et $F$ sont dénombrables, il existe $\phi~: E \to \NN$ et $\psi~: F \to \NN$ bijectives. On peut alors définir \[ \begin{array}{cccc}
-	\ & A \times B & \to & \NN^2 \\
-	f~: & (x,y) & \mapsto & (\phi(x), \psi(y))
-	\end{array}.\]
+	Si $A$ et $B$ sont dénombrables, il existe $\phi~: A \to \NN$ et $\psi~: B \to \NN$ bijectives. On peut alors définir :
+  \[ \deffunct{f}{A \times B}{\NN^{2}}{(x,y)}{(\phi(x,y),\psi(x,y))} \]
 
 \end{proof}
 
 $f $ est bien bijective. Donc $A \times B$ est bien dénombrable. On procède par récurrence immédiate pour $k$ ensembles.
 
-Soit $\prod_{i =1}^k A_i$ le produit cartésien de $k$ ensembles dénombrables. Si $\forall i \in \{1,\dots,k\}, \phi_i : A_i \to \NN$ est une bijection, alors on peut construire l\index{application}'application \[ \begin{array}{cccc}
-	\ & \prod_{i=1}^k A_i & \to & \NN^k\\
-	f~: & (x_1,\dots,x_k) & \mapsto & (\phi_1(x_1),\dots, \phi_k(x_k))
-	\end{array}.\]
+Soit $\prod_{i =1}^k A_i$ le produit cartésien de $k$ ensembles dénombrables. Si $\forall i \in \{1,\dots,k\}, \phi_i : A_i \to \NN$ est une bijection, alors on peut construire l'application :\[ \deffunct{f} {\prod_{i=1}^k A_i}{\NN^k}{(x_1,\dots,x_k)}{(\phi_1(x_1),\dots, \phi_k(x_k))}\]
 C'est une bijection de $\prod_{i=1}^k A_i $ vers $\NN^k$ qui est dénombrable. Donc $\prod_{i=1}^kA_i$ est dénombrable.
 
 
@@ -768,7 +805,7 @@ On peut encore montrer le résultat suivant :
 \end{proof}
 \section{\texorpdfstring{Dénombrabilité de $\ZZ$ et de $\QQ$}{Dénombrabilité de Z et Q}}
 
-Intuitivement on pourrait penser que l'ensemble des entiers $\ZZ$ a un cardinal supérieur à $\NN$ étant donné qu'il contient ``deux fois plus" d'élements~: les entiers naturels et les entiers négatifs.
+Intuitivement on pourrait penser que l'ensemble des entiers $\ZZ$ a un cardinal supérieur à $\NN$ étant donné qu'il contient \enquote{deux fois plus} d'élements~: les entiers naturels et les entiers négatifs.
 
 \begin{theoremb}{Dénombrabilité de $\ZZ$}{denz}
 	L'ensemble $\ZZ$ des entiers est dénombrable.
@@ -777,12 +814,12 @@ Intuitivement on pourrait penser que l'ensemble des entiers $\ZZ$ a un cardinal 
 \begin{proof}
 L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'ordre suivant~:  $\ZZ=\left\lbrace 0,1,(-1),2,(-2),3,(-3),\dots\right\rbrace$
 
-	Pour montrer que le cardinal de $\ZZ$ est bien $\aleph_0$, on définit donc l\index{application}'application $\phi~: \NN \to \ZZ$ telle que \[ \forall k \in \NN, \
+Pour montrer que le cardinal de $\ZZ$ est bien $\aleph_0$, on définit donc l'application $\phi~: \NN \to \ZZ$ telle que
+\[ \forall k \in \NN, \phi\,\colon
 	\begin{dcases}
-	\phi(2k)& = -k \\
-	\phi(2k + 1)& = k+1
-	\end{dcases}
-\]
+	\phi(2k)=& -k \\
+	\phi(2k + 1)=& k+1
+	\end{dcases}\]
 	C'est bien une bijection. Donc $\ZZ$ est dénombrable.
 \end{proof}
 \begin{theoremb}{Dénombrabilité de $\QQ$}{denq}
@@ -797,7 +834,7 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 
 	\noindent On part de $\frac{1}{1}$ dans le tableau. On se déplace à la colonne suivante pour atteindre $\frac{1}{2}$. On parcourt le tableau diagonalement vers le bas pour atteindre $\frac{2}{1}$, on descend d'une case pour obtenir $\frac{3}{1}$ et on parcourt le tableau en diagonale vers le haut jusqu'à atteindre $\frac{1}{3}$, etc.
 
-	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L\index{application}'application $\phi$ qui range les rationnels $x \in \QQ$ dans le tableau \cref{fig:denombQ} est donc une bijection.
+	On s'aperçoit que chaque nombre rationnel dans le tableau a un et un seul rang $r$ (sa place dans le tableau). L'application $\phi$ qui range les rationnels $x \in \QQ$ dans le tableau \cref{fig:denombQ} est donc une bijection.
 \end{proof}
 \begin{figure}[!htb]
     \centering
@@ -869,14 +906,12 @@ L'idée de la démonstration revient à écrire l'ensemble des entiers, dans l'o
 On se propose d'appliquer toutes les notions que nous venons de voir pour démontrer l'assertion suivante : l'ensemble des polynômes à coefficients entiers est dénombrable. Ce résultat peut paraître surprenant. En effet, étant donné qu'un polynôme est caractérisé par ses coefficients, on pense, intuitivement, que l'on peut trouver plus de \enquote{combinaisons d'entiers} pour caractériser un polynôme que d'entiers.
 
 Soit $P \eqdef \sum_{k = 1}^d a_k X^k $, où $d = \operatorname{deg}(P)$. Notons $\ZZ_d[X] = \{P \in \ZZ[X], \operatorname{deg}(P) \leq d \}.$
-On pose  $(a_0, \dots, a_d) $ une suite de ses coefficients. On définit une \index{application}application \[\phi : \begin{array}{ccc}
-\ZZ[X] & \to & \ZZ^{d+1}\\
-P & \mapsto & (a_0, \dots, a_d)
-\end{array}\]
+On pose  $(a_0, \dots, a_d) $ une suite de ses coefficients. On définit une application
+\[\deffunct{\phi}{\ZZ[X]}{\ZZ^{d+1}}{P}{(a_{0},\dots,a_{d}  )}\]
 $\phi$ est une injection, car $\forall Q \in \ZZ[X]$, où $Q \displaystyle\eqdef \sum_{k=1}^d b_k X^k,$ \[{{P = Q} \iff {\forall k \in \left\lBrack 1;d\right\rBrack, a_k = b_k}}.\]C'est une surjection : à toute suite de coefficients $(a_0,\dots, a_d)$ on peut associer un polynôme ${P = \sum_{k=1}^d a_k X^k}$. Or on a vu que comme $\ZZ$ est dénombrable, $\ZZ^{d+1}$ l'est aussi par extension,%\sidepar{car $\NN^{d+1}$ est dénombrable}%
 donc $\ZZ_d[X]$ est dénombrable Mais $\ZZ[X] = \bigcup_{d \in \NN} \ZZ_d[X]$. On a vu que toute réunion dénombrable d'ensembles dénombrables est dénombrable. Donc $\ZZ[X]$ est dénombrable.
 
-\section*{\texorpdfstring{\index{application}Application : bijection entre deux sous-ensembles de $\QQ$}{}}
+\section*{\texorpdfstring{Application : bijection entre deux sous-ensembles de $\QQ$}{}}
 
 Nous allons appliquer les concepts vu récemment pour répondre à la question suivante :
 
@@ -893,16 +928,15 @@ Ainsi on peut construire une bijection $\gamma \eqdef \phi^{-1} \circ \psi :\, X
 Ce problème est une illustration du paradoxe de \bsc{Hilbert} : si $A$ et $B$ sont~dénombrables, peu importe le nombre \emph{fini} d'élements que l'on ajoute à $A$ ou à $B$, ils auront  la même puissance~$\aleph_0$.
 \chapter*{Conclusion}
 
-Nous l'avons vu, les propriétés de l'infini dénombrable défient l'intuition. Même les plus grands mathématiciens furent étonnés lorsqu'ils découvrèrent ces résultats. Cantor écrivit dans sa lettre à Dedekind à ce propos : \emph{<< Je le vois, mais je ne le crois pas. >>} Pourtant ces propriétés bizarres et illogiques à premier abord sont révélatrices de la complexité et de la beauté des mathématiques. 
+Nous l'avons vu, les propriétés de l'infini dénombrable défient l'intuition. Même les plus grands mathématiciens furent étonnés lorsqu'ils découvrirent ces résultats. \bsc{Cantor} écrivit dans sa correspondance à \bsc{Dedekind} à ce propos : \epigraph{\textit{Je le vois, mais je ne le crois pas\textellipsis}\newline [en français dans le texte en allemand]}{\bsc{Georg Cantor}\\29 juin 1877~\cite{Volken2003}.} Pourtant ces propriétés bizarres et contre-intuitives à premier abord sont révélatrices de la complexité et de la beauté des mathématiques.
 
-L'étude de la dénombrabilité a été notre première (modeste) contribution à la Science. Il nous a permis d'appliquer les connaissances emmagasinées durant notre cursus universitaire et de développer notre autonomie et notre curiosité. 
+L'étude de la dénombrabilité a été notre première (modeste) contribution à la Science. Il nous a permis d'appliquer les connaissances agrégées durant notre cursus universitaire et de développer notre autonomie et notre curiosité.
 
 Comme ce sera indiqué dans la prochaine présentation, l'ensemble des réels n'est pas dénombrable. L'argument de la diagonale de Cantor qui construit la démonstration de cette propriété peut être appliqué dans le domaine de l'informatique, notamment pour montrer l'indécidabilité du problème de l'arrêt.
 
 \addcontentsline{toc}{chapter}{Conclusion}
 \appendix
 \appendixpage
-\chapter{Démonstration du théorème fondamental de l'arithmétique}\label{annexe:thmfondarith}
 \backmatter
 \chapter{Manuel des commandes}
 Annexe à lire avec \texttt{main.tex} et \texttt{personalisation.tex} sous les yeux.
@@ -931,8 +965,8 @@ $a$
 $\restriction{f}{A}$ $\corestriction{f}{A}$ $\transp{\left(\transp{M^{2}}\right)}$
 
 \noindent Définition de fonctions : \verb|\displaystyle ($$ $$ / \[ \])| vs \verb|\textstyle ($ $)| :
-\[\deffunct{f}{E}{F}{x}{f(x)} \text{ vs. }\textstyle  \deffunct{f}{E}{F}{x}{f(x)}\]
-\listoffigures
+\[\deffunct{f}{E}{F}{x}{f(x)} \text{ vs. }\textstyle  \deffunct{f}{E}{F}{x}{f(x)}\]--
+%\listoffigures
 %\printindex
 \nocite{*}
 %\raggedright

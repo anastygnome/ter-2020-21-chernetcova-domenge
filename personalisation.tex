@@ -23,7 +23,6 @@
 \definecolor{viol}{RGB}{134,0,175}
 \definecolor{roug}{RGB}{215,15,0}
 \definecolor{bleu}{RGB}{0,104,180}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   BOITES POUR THEOREMES   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,11 +67,11 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 % Avec une étoile, on obtient 
 %[titre en italique : ] 
 
-\newcommand{\deffunctline}[5]{{{#1}\colon {#2}\ni{#4}\to{#5}\in{#3}}}
+\newcommand{\deffunctline}[5]{{{#1}\colon {#2}\ni{#4}\mapsto{#5}\in{#3}}}
 \newcommand{\deffunctdisp}[5]{%
 \begin{aligned}%
-      {#1}\colon & #2\xmapsto{\phantom{#5}}#3\\
-       &{#4}\longrightarrow{#5}
+      {#1}\,\colon {#2} &\xrightarrow{\hphantom{#1}}{#3}\\
+       {#4} &\xmapsto{\hphantom{#1}}{#5}
 \end{aligned}%
 }
 \newcommand{\deffunct}[5]{%
@@ -128,13 +127,15 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   	Marges et note en marge.   			 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setulmargins{*}{*}{*}
 \setheaderspaces{*}{*}{*}
 \setlrmargins{*}{*}{*}
 \setheadfoot{\headheight}{\footskip}
 \checkandfixthelayout[nearest]
 \renewcommand*{\sideparfont}{\itshape\footnotesize}
-\renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi}
+\renewcommand*{\sideparform}{\ifmemtortm\RaggedRight\else\RaggedLeft\fi%
+\mathsurround=1pt%
+}
+\epigraphfontsize{\footnotesize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            Numérotation (classe memoir)       %
@@ -154,7 +155,7 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
 %            Polices                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setmainfont{TeX Gyre Pagella}
-\setmathfont{Asana Math}
+\setmathfont{TeX Gyre Pagella Math}
 \setmathfont[range={"0000-"0001,"0020-"007E,
                     "00A0,"00A7-"00A8,"00AC,"00AF,"00B1,"00B4-"00B5,"00B7,
                     "00D7,"00F7,
@@ -181,19 +182,16 @@ colback=white!90!roug,colbacktitle=white!80!roug,label type=lemma}{lem}
                     "1D507-"1D50A,"1D50D-"1D514,"1D516-"1D51C,"1D51E-"1D537,
                     "1D56C-"1D59F,"1D6A8-"1D6B8,"1D6BA-"1D6D2,"1D6D4-"1D6DD,
                     "1D6DF,"1D6E1,"1D7CE-"1D7D7
-                   }]{euler.otf}
-\setmathfont[range=up/{greek,Greek}, script-features={}, sscript-features={}
-            ]{euler.otf}
-\setmathfont[range=up/{latin,Latin}, script-features={}, sscript-features={}
-            ]{euler.otf}
+                   },Path={backend_code/}]{euler.otf}
+\setmathfont[range=up/{greek,Greek}, script-features={}, sscript-features={},Path={backend_code/}]{euler.otf}
+\setmathfont[range=up/{latin,Latin}, script-features={}, sscript-features={},Path={backend_code/}]{euler.otf}
 \setmathfont[range={bfup/{latin, Latin, greek, Greek}, frak, bffrak},
-             script-features={}, sscript-features={}
-            ]{euler.otf}
-\setmathfont[range={up/num, bfup/num, it, bfit,
+             script-features={}, sscript-features={},Path={backend_code/}]{euler.otf}
+\setmathfont[range={up/num, bfup/num, it, bfit,cal,
                     sfup, sfit, bfsfup, bfsfit, tt}
                   ]{Asana Math}
 \setmathfont[range={bb},Scale=MatchUppercase]{STIX Two Math}
-\setmathfont[range={scr,cal},Scale=MatchUppercase]{TeX Gyre Pagella Math}
+\setmathfont[range={scr},Scale=MatchUppercase]{TeX Gyre Pagella Math}
  \setmathfont[range=bfcal, Scale=MatchUppercase, Alternate]{Asana Math}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Opérateurs (dans le style de max etc.   %

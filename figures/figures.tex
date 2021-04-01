@@ -1,4 +1,5 @@
 \usetikzlibrary{arrows.meta}
+\graphicspath{{./figures/}}
 \tikzset{|/.tip={Bar[width=.8ex,round]}}
 \makeatletter
 \newcommand{\diagdenomb}{\@ifstar{\@diagdenomb}{\@@diagdenomb}}
@@ -166,12 +167,12 @@
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$E$] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$F$] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a4) to[out=20, in=150] (b3);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%
 %
 	\caption{diagramme sagittal d'une application bijective.}
@@ -194,11 +195,11 @@
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3),minimum width=2cm, label=above:$X$] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b4);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b4);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%
 %
 	\caption{diagramme sagittal d'une application injective.}
@@ -221,12 +222,12 @@
 	\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
 	\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3),minimum width=2cm, label=above:$Y$] (Y) {} ;  %
 %
-	\draw[->,projection] (a1) to[out=20, in=150] (b3);
-	\draw[->,projection] (a2) to[out=20, in=160] (b2);
-	\draw[->,projection] (a3) to[out=20, in=170] (b1);
-	\draw[->,projection] (a4) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a1) to[out=20, in=150] (b3);
+	\draw[|->,projection] (a2) to[out=20, in=160] (b2);
+	\draw[|->,projection] (a3) to[out=20, in=170] (b1);
+	\draw[|->,projection] (a4) to[out=20, in=170] (b1);
 %
-	\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+	\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
 	\end{tikzpicture}%
 %
 	\caption{diagramme sagittal d'une application surjective.\\ On a $|X|\geq|Y|$.}
@@ -246,20 +247,20 @@
 			\node[coordinate,fill=roug] (b3) at (4,2) {};
 			\node[bullet,fill=roug,label=right:$4$] (b4) at (4,1) {};
 			\node[coordinate,fill=vert] (c1) at (8,4) {};
-			\node[bullet,fill=vert,label=right:š] (c2) at (8,3) {};
+			\node[bullet,fill=vert,label=right:pair] (c2) at (8,3) {};
 			\node[coordinate,fill=vert] (c3) at (8,2) {};
 			\node[coordinate,fill=vert] (c4) at (8,1) {};
 			\node[fill=bleu,draw=bleu,fill opacity=0.3,fit= (a1) (a2) (a3) (a4),minimum width=2cm, label=above:$X$] (X) {} ;
 			\node[fill=roug,draw=roug,fill opacity=0.3,fit= (b1) (b2) (b3) (b4),minimum width=2cm, label=above:$Y$] (Y) {} ;  
 			\node[fill=vert,draw=vert,fill opacity=0.3,fit= (c1) (c2) (c3) (c4),minimum width=2cm, label=above:$Z$] (Z) {} ;  
-			\draw[->,projection] (a1) to[out=-10, in=150] (b4);
+			\draw[|->,projection] (a1) to[out=-10, in=150] (b4);
 			%
-			\draw[->,projection] (b4) to[out=50, in=180] (c2);
-			\draw[->,projection,dashed] (a1) to[out=-25, in=180] (c2);
+			\draw[|->,projection] (b4) to[out=50, in=180] (c2);
+			\draw[|->,projection,dashed] (a1) to[out=-25, in=180] (c2);
 			%
-			\draw[|->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
-			\draw[|->,thick,shorten <=1cm,shorten >=1cm] (Y.north) -- node [midway,above,align=center]{$g$} (Z.north);
-			\draw[|->,thick,dashed,shorten <=.5cm,shorten >=.5cm] (X.north) to[out=50, in=130] node [midway,above=.25em,align=center]{$g\circ f$} (Z.north);
+			\draw[->,thick,shorten <=1cm,shorten >=1cm] (X.north) -- node [midway,above,align=center]{$f$} (Y.north);
+			\draw[->,thick,shorten <=1cm,shorten >=1cm] (Y.north) -- node [midway,above,align=center]{$g$} (Z.north);
+			\draw[->,thick,dashed,shorten <=.5cm,shorten >=.5cm] (X.north) to[out=50, in=130] node [midway,above=.25em,align=center]{$g\circ f$} (Z.north);
 		\end{tikzpicture}
 		\caption{Composition d'applications, détail pour un antécédent.}
 		\label{fig:diagcompfonct}
